@@ -6045,6 +6045,17 @@ void SmallPacket0x115(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 }
 
 /************************************************************************
+*                                                                        *
+*  Increase Job Point                                                    *
+*                                                                        *
+************************************************************************/
+
+void SmallPacket0x0BF(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    // update job point
+}
+
+/************************************************************************
 *                                                                       *
 *  Packet Array Initialization                                          *
 *                                                                       *
@@ -6160,6 +6171,7 @@ void PacketParserInitialize()
     PacketSize[0x113] = 0x06; PacketParser[0x113] = &SmallPacket0x113;
     PacketSize[0x114] = 0x00; PacketParser[0x114] = &SmallPacket0x114;
     PacketSize[0x115] = 0x02; PacketParser[0x115] = &SmallPacket0x115;
+    PacketSize[0x0BF] = 0x04; PacketParser[0x0BF] = &SmallPacket0x0BF;
 }
 
 /************************************************************************
