@@ -31,7 +31,7 @@
 * Offsets for each job point category (main job)                        *
 *                                                                       *
 ************************************************************************/
-enum JOBPOINT_CATEGORIES
+enum JOBPOINT_CATEGORIES : uint16
 {
     JPCATEGORY_WAR      = 0x040,
     JPCATEGORY_MNK      = 0x080,
@@ -57,12 +57,14 @@ enum JOBPOINT_CATEGORIES
     JPCATEGORY_RUN      = 0x580,
 };
 
+#define JPCATEGORY_COUNT 24
+
 /************************************************************************
 *                                                                       *
 * Bonuses for each job point                                            *
 *                                                                       *
 ************************************************************************/
-enum JOBPOINT_TYPES
+enum JOBPOINT_TYPES : uint16
 {
     //WAR
     JP_MIGHTY_STRIKES_EFFECT    = JPCATEGORY_WAR + 0x00, //p.acc +2
@@ -328,5 +330,72 @@ enum JOBPOINT_TYPES
     JP_ONE_FOR_ALL_DURATION     = JPCATEGORY_RUN + 0x10, //dur. +1s
     JP_GAMBIT_DURATION          = JPCATEGORY_RUN + 0x12, //dur +1s
 };
+
+#define JOBPOINTS_COUNT 220
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+
+
+
+struct JobPoint_t
+{
+	uint8  id;		// job point id
+    uint8  catid;	// cat which job point belongs to
+    uint8  value;   // the current number of upgrades
+    uint16 jobid;   // jobid of the job point
+};
+
+/************************************************************************
+*                                                                       *
+*                                                                       *
+*                                                                       *
+************************************************************************/
+class CCharEntity;
+
+class CJobPoints
+{
+    public:
+
+        CJobPoints(CCharEntity* PChar);
+
+        uint16      GetCapacityPoints();
+        uint8       GetJobPoints();
+        int32       GetJobPointValue(JOBPOINT_TYPES jobPoint, CCharEntity* PChar);
+
+        bool        AddCapacityPoints(uint16 points); // Increase CP, if CP > 1000 add JP
+        bool        IsJobPointExist(JOBPOINT_TYPES jobPoint); // Check to see if JP exists
+
+        void        RaiseJobPoint(JOBPOINT_TYPES jobPoint); // add upgrade
+        void        LowerJobPoint(JOBPOINT_TYPES jobPoint); // delete upgrade
+
+        void        SetCapacityPoints(uint16 points); // sets CP on login
+        void        SetJobPoints(uint16 points); // sets JP on login
+
+        const JobPoint_t* GetJobPoint(JOBPOINT_TYPES jobPoint);
+		const JobPoint_t* GetJobPointByIndex(uint16 index);
+
+		void LoadJobPoints(uint32 charid);  // load JPs for char from db
+		void SaveJobPoints(uint32 charid);  // save JPs for char to db
+
+    private:
+
+        uint16          m_CapacityPoints;
+        uint8           m_JobPoints;
+        CCharEntity*    m_PChar;
+		JobPoint_t      jobpoints[JOBPOINTS_COUNT];
+
+        JobPoint_t*     GetMeritPointer(JOBPOINT_TYPES jobPoint);
+        JobPoint_t*     Categories[JPCATEGORY_COUNT]; //pointers to each category start
+};
+
+namespace jobpointutils {
+    void                LoadJobPointsList();
+    extern JobPoint_t   GJobPointsTemplate[JOBPOINTS_COUNT];
+    extern int16        groupoOffset[JPCATEGORY_COUNT];
+}
 
 #endif
