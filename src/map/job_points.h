@@ -57,7 +57,8 @@ enum JOBPOINT_CATEGORIES : uint16
     JPCATEGORY_RUN      = 0x580,
 };
 
-#define JPCATEGORY_COUNT 24
+#define JPCATEGORY_COUNT 22
+#define JPCATEGORY_START 0x040
 
 /************************************************************************
 *                                                                       *
@@ -332,6 +333,7 @@ enum JOBPOINT_TYPES : uint16
 };
 
 #define JOBPOINTS_COUNT 220
+#define JOBPOINTS_PER_CATEGORY 10
 
 /************************************************************************
 *                                                                       *
@@ -383,12 +385,12 @@ class CJobPoints
 
     private:
 
-        uint16          m_CapacityPoints;
-        uint8           m_JobPoints;
-        CCharEntity*    m_PChar;
+        uint16          jp_CapacityPoints;
+        uint8           jp_JobPoints;
+        CCharEntity*    jp_PChar;
 		JobPoint_t      jobpoints[JOBPOINTS_COUNT];
 
-        JobPoint_t*     GetMeritPointer(JOBPOINT_TYPES jobPoint);
+        JobPoint_t*     GetJobPointPointer(JOBPOINT_TYPES jobPoint);
         JobPoint_t*     Categories[JPCATEGORY_COUNT]; //pointers to each category start
 };
 
