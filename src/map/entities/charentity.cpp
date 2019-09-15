@@ -228,6 +228,7 @@ CCharEntity::~CCharEntity()
     delete UContainer;
     delete CraftContainer;
     delete PMeritPoints;
+    delete PJobPoints;
 }
 
 uint8 CCharEntity::GetGender()

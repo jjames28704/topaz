@@ -150,6 +150,7 @@ struct GearSetMod_t
 class CBasicPacket;
 class CLinkshell;
 class CMeritPoints;
+class CJobPoints;
 class CCharRecastContainer;
 class CLatentEffectContainer;
 class CTradeContainer;
@@ -245,6 +246,7 @@ public:
     CLinkshell*       PLinkshell2;                  // linkshell 2
     CTreasurePool*	  PTreasurePool;                // сокровища, добытые с монстров
     CMeritPoints*     PMeritPoints;                 //
+    CJobPoints*       PJobPoints;                   //
     bool			  MeritMode;					//If true then player is meriting
 
     CLatentEffectContainer* PLatentEffectContainer;
