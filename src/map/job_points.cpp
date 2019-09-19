@@ -146,7 +146,7 @@ namespace jobpointutils
 
     void LoadJobPointsList()
     {
-        int32 ret = Sql_Query(SqlHandle, "SELECT m.job_pointid, m.jobs, ORDER BY m.job_pointid ASC LIMIT %u", JOBPOINTS_COUNT);
+        int32 ret = Sql_Query(SqlHandle, "SELECT m.job_pointid, m.catid, m.jobs, ORDER BY m.job_pointid ASC LIMIT %u", JOBPOINTS_COUNT);
 
         if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != JOBPOINTS_COUNT)
         {
@@ -160,10 +160,12 @@ namespace jobpointutils
                 JobPoint_t JobPoint = {0};
 
                 JobPoint.id = Sql_GetUIntData(SqlHandle, 0);
-                JobPoint.jobid = Sql_GetUIntData(SqlHandle, 1);
-                JobPoint.catid = JobPoint.jobid - 1;
+                JobPoint.catid = Sql_GetUIntData(SqlHandle, 1);
+                JobPoint.jobid = Sql_GetUIntData(SqlHandle, 2);
 
                 GJobPointsTemplate[index] = JobPoint;
+
+                previousCatIndex = JobPoint.catid;
 
                 if(previousCatIndex != catIndex)
                 {
