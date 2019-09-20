@@ -345,9 +345,20 @@ enum JOBPOINT_TYPES : uint16
 
 struct JobPoint_t
 {
-	uint8  id;		// job point id
+	union
+    {
+        struct
+        {
+            uint16  pid;     // job point id
+            uint8  pnext;    // the cost of the next upgrade
+            uint8  pvalue;   // the current number of upgrades
+        };
+        uint32 pdata;
+    };
+    uint16 id;
+    uint8 next;
+    uint8 value;
     uint8  catid;	// cat which job point belongs to
-    uint8  value;   // the current number of upgrades
     uint16 jobid;   // jobid of the job point
 };
 

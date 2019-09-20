@@ -73,6 +73,12 @@ void CJobPoints::LoadJobPoints(uint32 charid)
                    if(jobpoints[i].id == jobPointID)
                    {
                        jobpoints[i].value = upgrades;
+                       jobpoints[i].next = (upgrades + 1) % 21;
+
+                       // set up packet union
+                       jobpoints[i].pid = jobpoints[i].id >> 1;
+                       jobpoints[i].pnext = jobpoints[i].next;
+                       jobpoints[i].pvalue = jobpoints[i].value << 2;
                    }
                }
            }
