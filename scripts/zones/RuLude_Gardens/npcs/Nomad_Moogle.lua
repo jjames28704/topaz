@@ -34,6 +34,9 @@ end;
 function onTrigger(player,npc)
     if (player:hasKeyItem(tpz.ki.LIMIT_BREAKER) == false and player:getMainLvl() >= 75) then
         player:startEvent(10045,75,2,10,7,30,302895,4095);
+    elseif (player:hasKeyItem(tpz.ki.LIMIT_BREAKER) == true and player:hasKeyItem(tpz.ki.JOB_BREAKER) == false and player:getMainLvl() >= 99) then
+        player:addKeyItem(tpz.ki.JOB_BREAKER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.JOB_BREAKER);
     elseif (player:getMainLvl() == 75 and player:levelCap() == 75 and MAX_LEVEL >= 80 and player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.NEW_WORLDS_AWAIT) == QUEST_AVAILABLE) then
         player:startEvent(10045,0,1,1,0);
     elseif (player:getMainLvl() >= 76 and player:levelCap() == 80 and MAX_LEVEL >= 85 and player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.EXPANDING_HORIZONS) == QUEST_AVAILABLE) then
@@ -67,11 +70,11 @@ end;
 function onEventFinish(player,csid,option)
     local meritCount = player:getMeritCount();
 
-    if (csid == 10045 and option == 4) then
-        player:addKeyItem(tpz.ki.LIMIT_BREAKER);
-        player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.LIMIT_BREAKER);
-    elseif (csid == 10045) then
-        if (option == 5) then
+    if (csid == 10045) then
+        if (option == 4) then
+            player:addKeyItem(tpz.ki.LIMIT_BREAKER);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.LIMIT_BREAKER);
+        elseif (option == 5) then
             player:addQuest(JEUNO,tpz.quest.id.jeuno.NEW_WORLDS_AWAIT);
         elseif (option == 7 ) then
             player:addQuest(JEUNO,tpz.quest.id.jeuno.EXPANDING_HORIZONS);
