@@ -58,7 +58,7 @@ This file is part of DarkStar-server source code.
 #include "conquest_system.h"
 #include "utils/mobutils.h"
 #include "ai/controllers/automaton_controller.h"
-#include "../job_points.h";
+#include "job_points.h"
 
 #include "lua/luautils.h"
 
