@@ -121,6 +121,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 #include "packets/map_marker.h"
 #include "packets/menu_config.h"
 #include "packets/menu_merit.h"
+#include "packets/menu_jp.h"
 #include "packets/merit_points_categories.h"
 #include "packets/message_basic.h"
 #include "packets/message_debug.h"
@@ -2969,6 +2970,7 @@ void SmallPacket0x061(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     PChar->pushPacket(new CCharSkillsPacket(PChar));
     PChar->pushPacket(new CCharRecastPacket(PChar));
     PChar->pushPacket(new CMenuMeritPacket(PChar));
+    PChar->pushPacket(new CMenuJobPointsPacket(PChar));
     PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
     PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
     PChar->pushPacket(new CStatusEffectPacket(PChar));
