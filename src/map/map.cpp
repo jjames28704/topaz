@@ -56,7 +56,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 #include "conquest_system.h"
 #include "utils/mobutils.h"
 #include "ai/controllers/automaton_controller.h"
-#include "../job_points.h";
+#include "job_points.h"
 
 #include "lua/luautils.h"
 

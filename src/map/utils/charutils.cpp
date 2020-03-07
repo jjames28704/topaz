@@ -56,6 +56,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 #include "../packets/key_items.h"
 #include "../packets/linkshell_equip.h"
 #include "../packets/menu_merit.h"
+#include "../packets/menu_jp.h"
 #include "../packets/message_basic.h"
 #include "../packets/message_debug.h"
 #include "../packets/message_special.h"
@@ -774,6 +775,10 @@ namespace charutils
         PChar->PMeritPoints = new CMeritPoints(PChar);
         PChar->PMeritPoints->SetMeritPoints(meritPoints);
         PChar->PMeritPoints->SetLimitPoints(limitPoints);
+
+        PChar->PJobPoints = new CJobPoints(PChar);
+        PChar->PJobPoints->SetCapacityPoints(capacityPoints);
+        PChar->PJobPoints->SetJobPoints(jobPoints);
 
         fmtQuery =
             "SELECT "

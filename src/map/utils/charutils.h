@@ -31,6 +31,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 class CPetEntity;
 class CMobEntity;
 class CMeritPoints;
+class CJobPoints;
 class CAbility;
 
 /**

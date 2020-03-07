@@ -323,7 +323,7 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     PChar->pushPacket(new CInventorySizePacket(PChar));
     PChar->pushPacket(new CMenuConfigPacket(PChar));
     PChar->pushPacket(new CCharJobsPacket(PChar));
-    PChar->pushPacket(new CJobPointsDetailsPacket(PChar));
+    PChar->pushPacket(new CJobPointDetailsPacket(PChar));
 
     // TODO: While in mog house; treasure pool is not created.
     if (PChar->PTreasurePool != nullptr)
