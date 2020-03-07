@@ -325,6 +325,8 @@ namespace charutils
     {
         uint8 meritPoints = 0;
         uint16 limitPoints = 0;
+        uint8 jobPoints = 0;
+        uint16 capacityPoints = 0;
         int32 HP = 0;
         int32 MP = 0;
 
@@ -607,7 +609,7 @@ namespace charutils
             PChar->jobs.job[JOB_RUN] = (uint8)Sql_GetIntData(SqlHandle, 23);
         }
 
-        fmtQuery = "SELECT mode, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run, merits, limits "
+        fmtQuery = "SELECT mode, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run, merits, limits, capacitypoints, jobpoints "
             "FROM char_exp "
             "WHERE charid = %u;";
 
@@ -640,8 +642,10 @@ namespace charutils
             PChar->jobs.exp[JOB_SCH] = (uint16)Sql_GetIntData(SqlHandle, 20);
             PChar->jobs.exp[JOB_GEO] = (uint16)Sql_GetIntData(SqlHandle, 21);
             PChar->jobs.exp[JOB_RUN] = (uint16)Sql_GetIntData(SqlHandle, 22);
-            meritPoints = (uint8)Sql_GetIntData(SqlHandle, 23);
-            limitPoints = (uint16)Sql_GetIntData(SqlHandle, 24);
+            meritPoints              = (uint8)Sql_GetIntData(SqlHandle, 23);
+            limitPoints              = (uint16)Sql_GetIntData(SqlHandle, 24);
+            capacityPoints           = (uint16)Sql_GetIntData(SqlHandle, 25);
+            jobPoints                = (uint8)Sql_GetIntData(SqlHandle, 26);
         }
 
         fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, zoning, "
