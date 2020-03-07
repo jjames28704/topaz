@@ -382,6 +382,7 @@
     <ClInclude Include="..\..\src\map\packets\map_marker.h" />
     <ClInclude Include="..\..\src\map\packets\menu_config.h" />
     <ClInclude Include="..\..\src\map\packets\menu_merit.h" />
+    <ClInclude Include="..\..\src\map\packets\menu_jp.h" />
     <ClInclude Include="..\..\src\map\packets\menu_mog.h" />
     <ClInclude Include="..\..\src\map\packets\menu_raisetractor.h" />
     <ClInclude Include="..\..\src\map\packets\merit_points_categories.h" />
@@ -633,6 +634,7 @@
     <ClCompile Include="..\..\src\map\packets\map_marker.cpp" />
     <ClCompile Include="..\..\src\map\packets\menu_config.cpp" />
     <ClCompile Include="..\..\src\map\packets\menu_merit.cpp" />
+    <ClCompile Include="..\..\src\map\packets\menu_jp.cpp" />
     <ClCompile Include="..\..\src\map\packets\menu_mog.cpp" />
     <ClCompile Include="..\..\src\map\packets\menu_raisetractor.cpp" />
     <ClCompile Include="..\..\src\map\packets\merit_points_categories.cpp" />
