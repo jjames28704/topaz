@@ -28,8 +28,8 @@
 #include "entities/charentity.h"
 #include "utils/charutils.h"
 
-#define GetJobPointCategory(jp) ((jp >> 6) - 1)
-#define GetJobPointIndex(jp) ((jp & 0x3F) >> 1)
+#define GetJobPointCategory(jp) ((jp >> 5) - 1)
+#define GetJobPointIndex(jp) (jp & 0x1F)
 #define MAX_JOB_POINTS 500
 #define MAX_CAPACTIY_POINTS 30000
 
@@ -76,7 +76,7 @@ void CJobPoints::LoadJobPoints(uint32 charid)
                        jobpoints[i].next = (upgrades + 1) % 21;
 
                        // set up packet union
-                       jobpoints[i].pid = jobpoints[i].id >> 1;
+                       jobpoints[i].pid = jobpoints[i].id;
                        jobpoints[i].pnext = jobpoints[i].next;
                        jobpoints[i].pvalue = jobpoints[i].value << 2;
                    }
