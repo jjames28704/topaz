@@ -115,7 +115,7 @@ void CJobPoints::SetJobPoints(uint16 points)
     jp_JobPoints = std::min<uint8>(points, MAX_JOB_POINTS);
 }
 
-bool CJobPoints::IsJobPointExist(JOBPOINT_TYPES jobpoint)
+bool CJobPoints::IsJobPointExist(JOBPOINT_TYPE jobpoint)
 {
     if((int16)jobpoint < JPCATEGORY_START) return false;
     if(GetJobPointCategory(jobpoint) > JPCATEGORY_COUNT) return false;
@@ -131,7 +131,7 @@ const JobPoint_t* CJobPoints::GetJobPointByIndex(uint16 index)
 	return  &jobpoints[index];
 }
 
-JobPoint_t* CJobPoints::GetJobPointPointer(JOBPOINT_TYPES jobpoint)
+JobPoint_t* CJobPoints::GetJobPointPointer(JOBPOINT_TYPE jobpoint)
 {
     if (IsJobPointExist(jobpoint))
     {
@@ -140,7 +140,7 @@ JobPoint_t* CJobPoints::GetJobPointPointer(JOBPOINT_TYPES jobpoint)
     return nullptr;
 }
 
-void CJobPoints::RaiseJobPoint(JOBPOINT_TYPES jobpoint)
+void CJobPoints::RaiseJobPoint(JOBPOINT_TYPE jobpoint)
 {
     JobPoint_t* PJobPoint = GetJobPointPointer(jobpoint);
 }

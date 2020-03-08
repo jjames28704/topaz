@@ -31,7 +31,7 @@
 * Offsets for each job point category (main job)                        *
 *                                                                       *
 ************************************************************************/
-enum JOBPOINT_CATEGORIES : uint16
+enum JOBPOINT_CATEGORY : uint16
 {
     JPCATEGORY_WAR      = 0x040,
     JPCATEGORY_MNK      = 0x080,
@@ -65,7 +65,7 @@ enum JOBPOINT_CATEGORIES : uint16
 * Bonuses for each job point                                            *
 *                                                                       *
 ************************************************************************/
-enum JOBPOINT_TYPES : uint16
+enum JOBPOINT_TYPE : uint16
 {
     //WAR
     JP_MIGHTY_STRIKES_EFFECT    = JPCATEGORY_WAR + 0x00, //p.acc +2
@@ -377,18 +377,18 @@ class CJobPoints
 
         uint16      GetCapacityPoints();
         uint8       GetJobPoints();
-        int32       GetJobPointValue(JOBPOINT_TYPES jobPoint, CCharEntity* PChar);
+        int32       GetJobPointValue(JOBPOINT_TYPE jobPoint, CCharEntity* PChar);
 
         bool        AddCapacityPoints(uint16 points); // Increase CP, if CP > 1000 add JP
-        bool        IsJobPointExist(JOBPOINT_TYPES jobPoint); // Check to see if JP exists
+        bool        IsJobPointExist(JOBPOINT_TYPE jobPoint); // Check to see if JP exists
 
-        void        RaiseJobPoint(JOBPOINT_TYPES jobPoint); // add upgrade
-        void        LowerJobPoint(JOBPOINT_TYPES jobPoint); // delete upgrade
+        void        RaiseJobPoint(JOBPOINT_TYPE jobPoint); // add upgrade
+        void        LowerJobPoint(JOBPOINT_TYPE jobPoint); // delete upgrade
 
         void        SetCapacityPoints(uint16 points); // sets CP on login
         void        SetJobPoints(uint16 points); // sets JP on login
 
-        const JobPoint_t* GetJobPoint(JOBPOINT_TYPES jobPoint);
+        const JobPoint_t* GetJobPoint(JOBPOINT_TYPE jobPoint);
 		const JobPoint_t* GetJobPointByIndex(uint16 index);
 
 		void LoadJobPoints(uint32 charid);  // load JPs for char from db
@@ -401,7 +401,7 @@ class CJobPoints
         CCharEntity*    jp_PChar;
 		JobPoint_t      jobpoints[JOBPOINTS_COUNT];
 
-        JobPoint_t*     GetJobPointPointer(JOBPOINT_TYPES jobPoint);
+        JobPoint_t*     GetJobPointPointer(JOBPOINT_TYPE jobPoint);
         JobPoint_t*     Categories[JPCATEGORY_COUNT]; //pointers to each category start
 };
 
