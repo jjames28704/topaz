@@ -29,6 +29,8 @@
 #include "../utils/charutils.h"
 #include "../job_points.h"
 
+#define JP_PACKET_DATA_START 0x04
+
 CJobPointDetailsPacket::CJobPointDetailsPacket(CCharEntity* PChar)
 {
     #define AMT_PER_PACKET 20
@@ -36,16 +38,22 @@ CJobPointDetailsPacket::CJobPointDetailsPacket(CCharEntity* PChar)
 	this->type = 0x8D;
 	this->size = 0x82;
 
-    for(uint8 i = 0; i < JPCATEGORY_COUNT; i++)
-    {
-        for(uint8 j = 0; j < AMT_PER_PACKET;j++)
-        {
-            uint8 offset = i * AMT_PER_PACKET;
-            memcpy(data+(0x08) + sizeof(uint32) * j, &PChar->PJobPoints->GetJobPointByIndex(offset + j)->pdata, sizeof(uint32));
-        }
+    JobPoints_t * job_points = PChar->PJobPoints->GetAllJobPoints();
+    JobPoints_t current_job = job_points[0];
 
-        PChar->pushPacket(new CBasicPacket(*this));
+    /**
+     *  Two jobs per packet...
+    for(uint8 i = 0; i < JPCATEGORY_COUNT; i+=2)
+    {
+        JobPoints_t * current_job = job_points[i];
+        if (current_job->jobid != 0) {
+            for(uint8 i = 0; i < JOBPOINTS_PER_CATEGORY; i++) {
+                // add to packet
+            }
+        }
     }
+    */
+
 }
 
 // [2019-09-03 20:04:13]

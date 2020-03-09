@@ -2971,6 +2971,7 @@ void SmallPacket0x061(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     PChar->pushPacket(new CCharRecastPacket(PChar));
     PChar->pushPacket(new CMenuMeritPacket(PChar));
     PChar->pushPacket(new CMenuJobPointsPacket(PChar));
+    PChar->pushPacket(new CJobPointDetailsPacket(PChar));
     PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
     PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
     PChar->pushPacket(new CStatusEffectPacket(PChar));
@@ -4301,6 +4302,20 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     }
     break;
     }
+    return;
+}
+
+/************************************************************************
+*                                                                       *
+*  Job Points Menu Request                                              *
+*                                                                       *
+************************************************************************/
+
+void SmallPacket0x0C0(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    // Return all job points information for character
+    ShowDebug("Recieved 0x0C0 packet");
+    PChar->pushPacket(new CJobPointDetailsPacket(PChar));
     return;
 }
 
@@ -6184,6 +6199,7 @@ void PacketParserInitialize()
     PacketSize[0x0B5] = 0x00; PacketParser[0x0B5] = &SmallPacket0x0B5;
     PacketSize[0x0B6] = 0x00; PacketParser[0x0B6] = &SmallPacket0x0B6;
     PacketSize[0x0BE] = 0x00; PacketParser[0x0BE] = &SmallPacket0x0BE;    //  merit packet
+    PacketSize[0x0C0] = 0x04; PacketParser[0x0C0] = &SmallPacket0x0C0;    //  job points menu packet
     PacketSize[0x0C3] = 0x00; PacketParser[0x0C3] = &SmallPacket0x0C3;
     PacketSize[0x0C4] = 0x0E; PacketParser[0x0C4] = &SmallPacket0x0C4;
     PacketSize[0x0CB] = 0x04; PacketParser[0x0CB] = &SmallPacket0x0CB;

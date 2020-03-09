@@ -362,6 +362,22 @@ struct JobPoint_t
     uint16 jobid;   // jobid of the job point
 };
 
+struct JobPointType_t 
+{
+    uint16 id;
+    uint8 value;
+};
+
+struct JobPoints_t
+{
+    uint16 jobid;
+    uint16 job_category;
+    uint16 capacity_points;
+    uint16 job_points;
+    uint16 job_points_spent;
+    JobPointType_t job_point_types[JOBPOINTS_PER_CATEGORY];
+};
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
@@ -386,7 +402,7 @@ class CJobPoints
         void        LowerJobPoint(JOBPOINT_TYPE jobPoint); // delete upgrade
 
         void        SetCapacityPoints(uint16 points); // sets CP on login
-        void        SetJobPoints(uint16 points); // sets JP on login
+        void        SetJobPoints(uint8 points); // sets JP on login
 
         const JobPoint_t* GetJobPoint(JOBPOINT_TYPE jobPoint);
 		const JobPoint_t* GetJobPointByIndex(uint16 index);
@@ -394,15 +410,20 @@ class CJobPoints
 		void LoadJobPoints(uint32 charid);  // load JPs for char from db
 		void SaveJobPoints(uint32 charid);  // save JPs for char to db
 
-    private:
+        //
+        JobPoints_t*    GetAllJobPoints();
 
+    private:
         uint16          jp_CapacityPoints;
         uint8           jp_JobPoints;
-        CCharEntity*    jp_PChar;
 		JobPoint_t      jobpoints[JOBPOINTS_COUNT];
 
         JobPoint_t*     GetJobPointPointer(JOBPOINT_TYPE jobPoint);
         JobPoint_t*     Categories[JPCATEGORY_COUNT]; //pointers to each category start
+
+        // Should only need these
+        CCharEntity*    jp_PChar;
+        JobPoints_t     job_points[JPCATEGORY_COUNT];
 };
 
 namespace jobpointutils {

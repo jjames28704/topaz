@@ -607,7 +607,7 @@ namespace charutils
             PChar->jobs.job[JOB_RUN] = (uint8)Sql_GetIntData(SqlHandle, 23);
         }
 
-        fmtQuery = "SELECT mode, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run, merits, limits, capacitypoints, jobpoints "
+        fmtQuery = "SELECT mode, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run, merits, limits "
             "FROM char_exp "
             "WHERE charid = %u;";
 
@@ -642,8 +642,8 @@ namespace charutils
             PChar->jobs.exp[JOB_RUN] = (uint16)Sql_GetIntData(SqlHandle, 22);
             meritPoints              = (uint8)Sql_GetIntData(SqlHandle, 23);
             limitPoints              = (uint16)Sql_GetIntData(SqlHandle, 24);
-            capacityPoints           = (uint16)Sql_GetIntData(SqlHandle, 25);
-            jobPoints                = (uint8)Sql_GetIntData(SqlHandle, 26);
+            capacityPoints           = 0;
+            jobPoints                = 0;
         }
 
         fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, zoning, "
@@ -4344,36 +4344,34 @@ namespace charutils
 
         switch (job)
         {
-            case JOB_WAR: Query = "UPDATE char_exp SET war = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_MNK: Query = "UPDATE char_exp SET mnk = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_WHM: Query = "UPDATE char_exp SET whm = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_BLM: Query = "UPDATE char_exp SET blm = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_RDM: Query = "UPDATE char_exp SET rdm = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_THF: Query = "UPDATE char_exp SET thf = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_PLD: Query = "UPDATE char_exp SET pld = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_DRK: Query = "UPDATE char_exp SET drk = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_BST: Query = "UPDATE char_exp SET bst = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_BRD: Query = "UPDATE char_exp SET brd = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_RNG: Query = "UPDATE char_exp SET rng = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_SAM: Query = "UPDATE char_exp SET sam = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_NIN: Query = "UPDATE char_exp SET nin = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_DRG: Query = "UPDATE char_exp SET drg = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_SMN: Query = "UPDATE char_exp SET smn = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_BLU: Query = "UPDATE char_exp SET blu = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_COR: Query = "UPDATE char_exp SET cor = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_PUP: Query = "UPDATE char_exp SET pup = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_DNC: Query = "UPDATE char_exp SET dnc = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_SCH: Query = "UPDATE char_exp SET sch = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_GEO: Query = "UPDATE char_exp SET geo = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
-            case JOB_RUN: Query = "UPDATE char_exp SET run = %u, merits = %u, limits = %u, jobpoints = %u, capacity = %u WHERE charid = %u"; break;
+            case JOB_WAR: Query = "UPDATE char_exp SET war = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_MNK: Query = "UPDATE char_exp SET mnk = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_WHM: Query = "UPDATE char_exp SET whm = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_BLM: Query = "UPDATE char_exp SET blm = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_RDM: Query = "UPDATE char_exp SET rdm = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_THF: Query = "UPDATE char_exp SET thf = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_PLD: Query = "UPDATE char_exp SET pld = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_DRK: Query = "UPDATE char_exp SET drk = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_BST: Query = "UPDATE char_exp SET bst = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_BRD: Query = "UPDATE char_exp SET brd = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_RNG: Query = "UPDATE char_exp SET rng = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_SAM: Query = "UPDATE char_exp SET sam = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_NIN: Query = "UPDATE char_exp SET nin = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_DRG: Query = "UPDATE char_exp SET drg = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_SMN: Query = "UPDATE char_exp SET smn = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_BLU: Query = "UPDATE char_exp SET blu = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_COR: Query = "UPDATE char_exp SET cor = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_PUP: Query = "UPDATE char_exp SET pup = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_DNC: Query = "UPDATE char_exp SET dnc = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_SCH: Query = "UPDATE char_exp SET sch = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_GEO: Query = "UPDATE char_exp SET geo = %u, merits = %u, limits = %u WHERE charid = %u"; break;
+            case JOB_RUN: Query = "UPDATE char_exp SET run = %u, merits = %u, limits = %u WHERE charid = %u"; break;
             default: Query = ""; break;
         }
         Sql_Query(SqlHandle, Query,
             PChar->jobs.exp[job],
             PChar->PMeritPoints->GetMeritPoints(),
             PChar->PMeritPoints->GetLimitPoints(),
-            PChar->PJobPoints->GetJobPoints(),
-            PChar->PJobPoints->GetCapacityPoints(),
             PChar->id);
     }
 
