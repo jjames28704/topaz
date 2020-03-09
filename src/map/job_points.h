@@ -25,6 +25,7 @@
 #define _CJOBPOINTS_H
 
 #include "../common/cbasetypes.h"
+#include "./entities/battleentity.h"
 
 /************************************************************************
 *                                                                       *
@@ -423,7 +424,7 @@ class CJobPoints
 
         // Should only need these
         CCharEntity*    jp_PChar;
-        JobPoints_t     job_points[JPCATEGORY_COUNT];
+        JobPoints_t     job_points[MAX_JOBTYPE];
 };
 
 namespace jobpointutils {

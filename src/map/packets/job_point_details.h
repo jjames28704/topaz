@@ -28,6 +28,10 @@
 
 #include "basic.h"
 
+#define JP_DATA_SIZE 0x4
+#define JP_PACKET_DATA_OFFSET(value) (value % 2 ? 0x04 : 0x54)
+#define JP_GET_NEXT(value) ((value + 1) % 21)
+#define JP_FORMAT_VALUE(value) (value << 2)
 
 /************************************************************************
 *																		*
@@ -40,7 +44,6 @@ class CCharEntity;
 class CJobPointDetailsPacket : public CBasicPacket
 {
 public:
-
 	CJobPointDetailsPacket(CCharEntity* PChar);
 };
 

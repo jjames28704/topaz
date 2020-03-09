@@ -29,30 +29,33 @@
 #include "../utils/charutils.h"
 #include "../job_points.h"
 
-#define JP_PACKET_DATA_START 0x04
-
 CJobPointDetailsPacket::CJobPointDetailsPacket(CCharEntity* PChar)
 {
-    #define AMT_PER_PACKET 20
 
 	this->type = 0x8D;
 	this->size = 0x82;
 
     JobPoints_t * job_points = PChar->PJobPoints->GetAllJobPoints();
-    JobPoints_t current_job = job_points[0];
 
-    /**
-     *  Two jobs per packet...
-    for(uint8 i = 0; i < JPCATEGORY_COUNT; i+=2)
-    {
-        JobPoints_t * current_job = job_points[i];
-        if (current_job->jobid != 0) {
-            for(uint8 i = 0; i < JOBPOINTS_PER_CATEGORY; i++) {
-                // add to packet
+    // Start 1 for WAR
+    for (uint8 i = 1; i < MAX_JOBTYPE; i++) {
+        JobPoints_t current_job = job_points[i];
+        for(uint8 j = 0; j < JOBPOINTS_PER_CATEGORY; j++) {
+            JobPointType_t current_type = current_job.job_point_types[j];
+            if(current_type.id != 0) {
+                uint16 offset = JP_PACKET_DATA_OFFSET(i) + (JP_DATA_SIZE * j);
+                ref<uint16>(offset) = current_type.id;
+                ref<uint8>(offset + 2) = JP_GET_NEXT(current_type.value);
+                ref<uint8>(offset + 3) = JP_FORMAT_VALUE(current_type.value);
             }
         }
+
+        //Send a packet every 2 jobs...
+        if (i % 2 == 1) {
+            PChar->pushPacket(new CBasicPacket(*this));
+            memset(data + 4, 0, sizeof(JP_DATA_SIZE * 20));
+        }
     }
-    */
 
 }
 
