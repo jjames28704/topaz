@@ -405,8 +405,8 @@ class CJobPoints
         void        SetCapacityPoints(uint16 points); // sets CP on login
         void        SetJobPoints(uint8 points); // sets JP on login
 
-        const JobPoint_t* GetJobPoint(JOBPOINT_TYPE jobPoint);
-		const JobPoint_t* GetJobPointByIndex(uint16 index);
+        JobPoints_t*    GetJobPointJob(JOBPOINT_TYPE jp);
+        JobPointType_t* GetJobPoint(JOBPOINT_TYPE jp);
 
 		void LoadJobPoints(uint32 charid);  // load JPs for char from db
 		void SaveJobPoints(uint32 charid);  // save JPs for char to db

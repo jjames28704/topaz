@@ -27,6 +27,7 @@
 #include "../../common/cbasetypes.h"
 
 #include "basic.h"
+#include "../job_points.h"
 
 /************************************************************************
 *																		*
@@ -40,7 +41,7 @@ class CJobPointUpdatePacket : public CBasicPacket
 {
 public:
 
-	CJobPointUpdatePacket(CCharEntity* PChar);
+	CJobPointUpdatePacket(CCharEntity* PChar, JOBPOINT_TYPE jp);
 };
 
 #endif

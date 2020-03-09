@@ -29,9 +29,11 @@
 #include "utils/charutils.h"
 #include "entities/battleentity.h"
 
-#define GetJobPointCategory(jp) ((jp >> 5) - 1)
+#define GetJobPointJobId(jp) (jp >> 5)
 #define GetJobPointIndex(jp) (jp & 0x1F)
+#define GetJobPointTypeIndex(jp) ((jp & 0x1F) + 1)
 #define GetJobPointCategoryByJobId(jobid) (JPCATEGORY_START * jobid)
+#define GetJobPointCost(val) ((val + 1) % 21);
 #define MAX_JOB_POINTS 500
 #define MAX_CAPACTIY_POINTS 30000
 #define SQL_JPTYPE_OFFSET 5
@@ -107,31 +109,43 @@ void CJobPoints::SetJobPoints(uint8 points)
 bool CJobPoints::IsJobPointExist(JOBPOINT_TYPE jobpoint)
 {
     if((int16)jobpoint < JPCATEGORY_START) return false;
-    if(GetJobPointCategory(jobpoint) > JPCATEGORY_COUNT) return false;
+    if(GetJobPointCategoryByJobId(GetJobPointJobId(jobpoint)) > JPCATEGORY_COUNT) return false;
     if(GetJobPointIndex(jobpoint) > JOBPOINTS_PER_CATEGORY) return false;
 
     return true;
 }
 
-const JobPoint_t* CJobPoints::GetJobPointByIndex(uint16 index)
-{
-    DSP_DEBUG_BREAK_IF(index >= JOBPOINTS_COUNT);
-
-	return  &jobpoints[index];
-}
-
-JobPoint_t* CJobPoints::GetJobPointPointer(JOBPOINT_TYPE jobpoint)
-{
-    if (IsJobPointExist(jobpoint))
+JobPoints_t* CJobPoints::GetJobPointJob(JOBPOINT_TYPE jp) {
+    if (IsJobPointExist(jp))
     {
-        return &Categories[GetJobPointCategory(jobpoint)][GetJobPointIndex(jobpoint)];
+        return &job_points[GetJobPointJobId(jp)];
     }
     return nullptr;
 }
 
-void CJobPoints::RaiseJobPoint(JOBPOINT_TYPE jobpoint)
+JobPointType_t* CJobPoints::GetJobPoint(JOBPOINT_TYPE jp)
 {
-    JobPoint_t* PJobPoint = GetJobPointPointer(jobpoint);
+    if (IsJobPointExist(jp))
+    {
+        return &job_points[GetJobPointJobId(jp)].job_point_types[GetJobPointIndex(jp)];
+    }
+    return nullptr;
+}
+
+void CJobPoints::RaiseJobPoint(JOBPOINT_TYPE jp)
+{
+    JobPoints_t* job = GetJobPointJob(jp);
+    JobPointType_t* job_point = GetJobPoint(jp);
+    
+    uint8 cost = GetJobPointCost(job_point->value);
+    if(cost != 0 && job->job_points >= cost) 
+    {
+        job->job_points -= cost;
+        job->job_points_spent += 1;
+        job_point->value += 1;
+    }
+
+    Sql_Query(SqlHandle, "UPDATE char_jobpoints SET jptype%u='%u' WHERE charid='%u' AND jobid='%u'", GetJobPointTypeIndex(job_point->id), job_point->value, jp_PChar->id, job->jobid);
 }
 
 JobPoints_t* CJobPoints::GetAllJobPoints()
