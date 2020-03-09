@@ -40,8 +40,7 @@ class CCharEntity;
 class CJobPointUpdatePacket : public CBasicPacket
 {
 public:
-
-	CJobPointUpdatePacket(CCharEntity* PChar, JOBPOINT_TYPE jp);
+	CJobPointUpdatePacket(CCharEntity* PChar, JOBPOINT_TYPE jp_type);
 };
 
 #endif

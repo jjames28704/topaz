@@ -325,8 +325,6 @@ namespace charutils
     {
         uint8 meritPoints = 0;
         uint16 limitPoints = 0;
-        uint8 jobPoints = 0;
-        uint16 capacityPoints = 0;
         int32 HP = 0;
         int32 MP = 0;
 
@@ -644,8 +642,6 @@ namespace charutils
             PChar->jobs.exp[JOB_RUN] = (uint16)Sql_GetIntData(SqlHandle, 22);
             meritPoints              = (uint8)Sql_GetIntData(SqlHandle, 23);
             limitPoints              = (uint16)Sql_GetIntData(SqlHandle, 24);
-            capacityPoints           = 0;
-            jobPoints                = 0;
         }
 
         fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, zoning, "
@@ -783,8 +779,6 @@ namespace charutils
         PChar->PMeritPoints->SetLimitPoints(limitPoints);
 
         PChar->PJobPoints = new CJobPoints(PChar);
-        PChar->PJobPoints->SetCapacityPoints(capacityPoints);
-        PChar->PJobPoints->SetJobPoints(jobPoints);
 
         fmtQuery =
             "SELECT "

@@ -40,20 +40,20 @@ CJobPointDetailsPacket::CJobPointDetailsPacket(CCharEntity* PChar)
     // Start 1 for WAR
     for (uint8 i = 1; i < MAX_JOBTYPE; i++) {
         JobPoints_t current_job = job_points[i];
-        for(uint8 j = 0; j < JOBPOINTS_PER_CATEGORY; j++) {
+        for(uint8 j = 0; j < JOBPOINTS_JPTYPE_PER_CATEGORY; j++) {
             JobPointType_t current_type = current_job.job_point_types[j];
             if(current_type.id != 0) {
-                uint16 offset = JP_PACKET_DATA_OFFSET(i) + (JP_DATA_SIZE * j);
+                uint16 offset = JP_DETAIL_PACKET_DATA_OFFSET(i) + (JP_DETAIL_DATA_SIZE * j);
                 ref<uint16>(offset) = current_type.id;
-                ref<uint8>(offset + 2) = JP_GET_NEXT(current_type.value);
-                ref<uint8>(offset + 3) = JP_FORMAT_VALUE(current_type.value);
+                ref<uint8>(offset + 2) = JOBPOINTS_NEXT_COST(current_type.value);
+                ref<uint8>(offset + 3) = JOBPOINTS_FORMAT_VALUE(current_type.value);
             }
         }
 
         //Send a packet every 2 jobs...
         if (i % 2 == 1) {
             PChar->pushPacket(new CBasicPacket(*this));
-            memset(data + 4, 0, sizeof(JP_DATA_SIZE * 20));
+            memset(data + 4, 0, sizeof(JP_DETAIL_DATA_SIZE * 20));
         }
     }
 

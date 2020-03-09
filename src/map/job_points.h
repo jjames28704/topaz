@@ -58,9 +58,6 @@ enum JOBPOINT_CATEGORY : uint16
     JPCATEGORY_RUN      = 0x2C0,
 };
 
-#define JPCATEGORY_COUNT 22
-#define JPCATEGORY_START 0x020
-
 /************************************************************************
 *                                                                       *
 * Bonuses for each job point                                            *
@@ -333,35 +330,24 @@ enum JOBPOINT_TYPE : uint16
     JP_GAMBIT_DURATION          = JPCATEGORY_RUN + 0x09, //dur +1s
 };
 
-#define JOBPOINTS_COUNT 220
-#define JOBPOINTS_PER_CATEGORY 10
+#define JOBPOINTS_CATEGORY_COUNT 22
+#define JOBPOINTS_CATEGORY_START 0x020
+#define JOBPOINTS_JPTYPE_COUNT 220
+#define JOBPOINTS_JPTYPE_PER_CATEGORY 10
+#define JOBPOINTS_MAX 500
+#define JOBPOINTS_CAPACITY_MAX 30000
+#define JOBPOINTS_SQL_COLUMN_OFFSET 5
+#define JOBPOINTS_CATEGORY_BY_JOBID(jobid) (JOBPOINTS_CATEGORY_START * jobid)
+#define JOBPOINTS_CATEGORY_BY_JPTYPE(id) (id >> 5)
+#define JOBPOINTS_JPTYPE_INDEX(id) ((id & 0x1F) + 1)
+#define JOBPOINTS_NEXT_COST(value) ((value + 1) % 21)
+#define JOBPOINTS_FORMAT_VALUE(value) (value << 2)
 
 /************************************************************************
 *                                                                       *
 *                                                                       *
 *                                                                       *
 ************************************************************************/
-
-
-
-struct JobPoint_t
-{
-	union
-    {
-        struct
-        {
-            uint16  pid;     // job point id
-            uint8  pnext;    // the cost of the next upgrade
-            uint8  pvalue;   // the current number of upgrades
-        };
-        uint32 pdata;
-    };
-    uint16 id;
-    uint8 next;
-    uint8 value;
-    uint8  catid;	// cat which job point belongs to
-    uint16 jobid;   // jobid of the job point
-};
 
 struct JobPointType_t 
 {
@@ -376,7 +362,7 @@ struct JobPoints_t
     uint16 capacity_points;
     uint16 job_points;
     uint16 job_points_spent;
-    JobPointType_t job_point_types[JOBPOINTS_PER_CATEGORY];
+    JobPointType_t job_point_types[JOBPOINTS_JPTYPE_PER_CATEGORY];
 };
 
 /************************************************************************
@@ -391,46 +377,23 @@ class CJobPoints
     public:
 
         CJobPoints(CCharEntity* PChar);
+        bool        IsJobPointExist(JOBPOINT_TYPE jp_type); // Check to see if JP exists
+        void        RaiseJobPoint(JOBPOINT_TYPE jp_type); // add upgrade
 
-        uint16      GetCapacityPoints();
-        uint8       GetJobPoints();
-        int32       GetJobPointValue(JOBPOINT_TYPE jobPoint, CCharEntity* PChar);
+        JobPoints_t*    GetJobPointsByType(JOBPOINT_TYPE jp_type);
+        JobPointType_t* GetJobPointType(JOBPOINT_TYPE jp_type);
 
-        bool        AddCapacityPoints(uint16 points); // Increase CP, if CP > 1000 add JP
-        bool        IsJobPointExist(JOBPOINT_TYPE jobPoint); // Check to see if JP exists
+		void LoadJobPoints();  // load JPs for char from db
 
-        void        RaiseJobPoint(JOBPOINT_TYPE jobPoint); // add upgrade
-        void        LowerJobPoint(JOBPOINT_TYPE jobPoint); // delete upgrade
-
-        void        SetCapacityPoints(uint16 points); // sets CP on login
-        void        SetJobPoints(uint8 points); // sets JP on login
-
-        JobPoints_t*    GetJobPointJob(JOBPOINT_TYPE jp);
-        JobPointType_t* GetJobPoint(JOBPOINT_TYPE jp);
-
-		void LoadJobPoints(uint32 charid);  // load JPs for char from db
-		void SaveJobPoints(uint32 charid);  // save JPs for char to db
-
-        //
         JobPoints_t*    GetAllJobPoints();
 
     private:
-        uint16          jp_CapacityPoints;
-        uint8           jp_JobPoints;
-		JobPoint_t      jobpoints[JOBPOINTS_COUNT];
-
-        JobPoint_t*     GetJobPointPointer(JOBPOINT_TYPE jobPoint);
-        JobPoint_t*     Categories[JPCATEGORY_COUNT]; //pointers to each category start
-
-        // Should only need these
         CCharEntity*    jp_PChar;
         JobPoints_t     job_points[MAX_JOBTYPE];
 };
 
 namespace jobpointutils {
-    void                LoadJobPointsList();
-    extern JobPoint_t   GJobPointsTemplate[JOBPOINTS_COUNT];
-    extern int16        groupOffset[JPCATEGORY_COUNT];
+    void    LoadJobPointsList();
 }
 
 #endif
