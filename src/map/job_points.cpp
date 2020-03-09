@@ -109,7 +109,7 @@ void CJobPoints::SetJobPoints(uint8 points)
 bool CJobPoints::IsJobPointExist(JOBPOINT_TYPE jobpoint)
 {
     if((int16)jobpoint < JPCATEGORY_START) return false;
-    if(GetJobPointCategoryByJobId(GetJobPointJobId(jobpoint)) > JPCATEGORY_COUNT) return false;
+    if((GetJobPointJobId(jobpoint) - 1) > JPCATEGORY_COUNT) return false;
     if(GetJobPointIndex(jobpoint) > JOBPOINTS_PER_CATEGORY) return false;
 
     return true;
@@ -141,11 +141,11 @@ void CJobPoints::RaiseJobPoint(JOBPOINT_TYPE jp)
     if(cost != 0 && job->job_points >= cost) 
     {
         job->job_points -= cost;
-        job->job_points_spent += 1;
+        job->job_points_spent += cost;
         job_point->value += 1;
     }
 
-    Sql_Query(SqlHandle, "UPDATE char_jobpoints SET jptype%u='%u' WHERE charid='%u' AND jobid='%u'", GetJobPointTypeIndex(job_point->id), job_point->value, jp_PChar->id, job->jobid);
+    Sql_Query(SqlHandle, "UPDATE char_job_points SET jptype%u='%u', job_points='%u', job_points_spent='%u' WHERE charid='%u' AND jobid='%u'", GetJobPointTypeIndex(job_point->id), job_point->value, job->job_points, job->job_points_spent, jp_PChar->id, job->jobid);
 }
 
 JobPoints_t* CJobPoints::GetAllJobPoints()
