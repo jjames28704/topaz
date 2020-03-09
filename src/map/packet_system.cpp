@@ -116,6 +116,7 @@ This file is part of DarkStar-server source code.
 #include "packets/inventory_modify.h"
 #include "packets/inventory_size.h"
 #include "packets/job_point_details.h"
+#include "packets/job_point_update.h"
 #include "packets/lock_on.h"
 #include "packets/linkshell_equip.h"
 #include "packets/linkshell_message.h"
@@ -6064,7 +6065,17 @@ void SmallPacket0x115(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0BF(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    // update job point
+    if (PChar->m_moghouseID)
+    {
+        JOBPOINT_TYPE id = (JOBPOINT_TYPE)data.ref<uint16>(0x04);
+
+        if (PChar->PJobPoints->IsJobPointExist(id))
+        {
+            PChar->PJobPoints->RaiseJobPoint(id);
+            PChar->pushPacket(new CMenuJobPointsPacket(PChar));
+            PChar->pushPacket(new CJobPointUpdatePacket(PChar, id));
+        }
+    }
 }
 
 /************************************************************************
@@ -6144,6 +6155,7 @@ void PacketParserInitialize()
     PacketSize[0x0B5] = 0x00; PacketParser[0x0B5] = &SmallPacket0x0B5;
     PacketSize[0x0B6] = 0x00; PacketParser[0x0B6] = &SmallPacket0x0B6;
     PacketSize[0x0BE] = 0x00; PacketParser[0x0BE] = &SmallPacket0x0BE;    //  merit packet
+    PacketSize[0x0BF] = 0x04; PacketParser[0x0BF] = &SmallPacket0x0BF;    // job point increase
     PacketSize[0x0C0] = 0x04; PacketParser[0x0C0] = &SmallPacket0x0C0;    //  job points menu packet
     PacketSize[0x0C3] = 0x00; PacketParser[0x0C3] = &SmallPacket0x0C3;
     PacketSize[0x0C4] = 0x0E; PacketParser[0x0C4] = &SmallPacket0x0C4;
@@ -6184,7 +6196,6 @@ void PacketParserInitialize()
     PacketSize[0x113] = 0x06; PacketParser[0x113] = &SmallPacket0x113;
     PacketSize[0x114] = 0x00; PacketParser[0x114] = &SmallPacket0x114;
     PacketSize[0x115] = 0x02; PacketParser[0x115] = &SmallPacket0x115;
-    PacketSize[0x0BF] = 0x04; PacketParser[0x0BF] = &SmallPacket0x0BF;
 }
 
 /************************************************************************

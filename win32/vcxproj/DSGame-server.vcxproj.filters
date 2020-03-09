@@ -365,6 +365,9 @@
     <ClInclude Include="..\..\src\map\packets\job_point_details.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\job_point_update.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\map\packets\key_items.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
@@ -1139,6 +1142,9 @@
       <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\job_point_details.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\job_point_update.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\key_items.cpp">
