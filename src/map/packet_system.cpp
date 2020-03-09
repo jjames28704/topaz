@@ -6073,7 +6073,7 @@ void SmallPacket0x0BF(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             PChar->PJobPoints->RaiseJobPoint(jpid);
             PChar->pushPacket(new CMenuJobPointsPacket(PChar));
-            PChar->pushPacket(new CJobPointUpdatePacket(PChar, id));
+            PChar->pushPacket(new CJobPointUpdatePacket(PChar, jpid));
         }
     }
 }
