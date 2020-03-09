@@ -29,46 +29,34 @@
 #include "utils/charutils.h"
 #include "entities/battleentity.h"
 
-#define GetJobPointJobId(jp) (jp >> 5)
-#define GetJobPointIndex(jp) (jp & 0x1F)
-#define GetJobPointTypeIndex(jp) ((jp & 0x1F) + 1)
-#define GetJobPointCategoryByJobId(jobid) (JPCATEGORY_START * jobid)
-#define GetJobPointCost(val) ((val + 1) % 21);
-#define MAX_JOB_POINTS 500
-#define MAX_CAPACTIY_POINTS 30000
-#define SQL_JPTYPE_OFFSET 5
-
 CJobPoints::CJobPoints(CCharEntity* PChar)
 {
-	DSP_DEBUG_BREAK_IF(sizeof(jobpoints) != sizeof(jobpointutils::GJobPointsTemplate));
-
-    memcpy(jobpoints, jobpointutils::GJobPointsTemplate, sizeof(jobpoints));
-
     jp_PChar = PChar;
-    LoadJobPoints(PChar->id);
-
-    jp_CapacityPoints = 0;
-    jp_JobPoints = 0;
+    this->LoadJobPoints();
 }
 
-void CJobPoints::LoadJobPoints(uint32 charid)
+void CJobPoints::LoadJobPoints()
 {
     memset(job_points, 0, sizeof(job_points));
-    if(Sql_Query(SqlHandle, "SELECT charid, jobid, capacity_points, job_points, job_points_spent, jptype1, jptype2, jptype3, jptype4, jptype5, jptype6, jptype7, jptype8, jptype9, jptype10 FROM char_job_points WHERE charid = %u ORDER BY jobid ASC", charid) != SQL_ERROR) {
+    if (
+        Sql_Query(SqlHandle, "SELECT charid, jobid, capacity_points, job_points, job_points_spent, "
+                            "jptype1, jptype2, jptype3, jptype4, jptype5, jptype6, jptype7, jptype8, jptype9, jptype10 "
+                            "FROM char_job_points WHERE charid = %u ORDER BY jobid ASC", jp_PChar->id) != SQL_ERROR
+    ){
         for(uint8 i = 0; i < Sql_NumRows(SqlHandle); i++) {
             if(Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
                 uint32 jobid = Sql_GetUIntData(SqlHandle, 1);
-                uint16 job_category = GetJobPointCategoryByJobId(jobid);
+                uint16 job_category = JOBPOINTS_CATEGORY_BY_JOBID(jobid);
                 JobPoints_t current_job = {}; 
                 current_job.jobid = jobid;
                 current_job.job_category = job_category;
                 current_job.capacity_points = Sql_GetUIntData(SqlHandle, 2);
                 current_job.job_points = Sql_GetUIntData(SqlHandle, 3);
                 current_job.job_points_spent = Sql_GetUIntData(SqlHandle, 4);
-                for(uint8 j = 0; j < JOBPOINTS_PER_CATEGORY; j++) {
+                for(uint8 j = 0; j < JOBPOINTS_JPTYPE_PER_CATEGORY; j++) {
                     JobPointType_t current_type = {};
                     current_type.id = current_job.job_category + j;
-                    current_type.value = Sql_GetUIntData(SqlHandle, SQL_JPTYPE_OFFSET + j);
+                    current_type.value = Sql_GetUIntData(SqlHandle, JOBPOINTS_SQL_COLUMN_OFFSET + j);
                     memcpy(&current_job.job_point_types[j], &current_type, sizeof(JobPointType_t));
                 }
                 memcpy(&job_points[jobid], &current_job, sizeof(JobPoints_t));
@@ -77,75 +65,47 @@ void CJobPoints::LoadJobPoints(uint32 charid)
     }
 }
 
-void CJobPoints::SaveJobPoints(uint32 charid)
+bool CJobPoints::IsJobPointExist(JOBPOINT_TYPE jp_type)
 {
-    for (uint16 i = 0; i < JOBPOINTS_COUNT; ++i)
-        if (jobpoints[i].value > 0)
-            Sql_Query(SqlHandle, "INSERT INTO char_jobpoints (charid, jobpointid, value) VALUES(%u, %u, %u) ON DUPLICATE KEY UPDATE upgrades = %u", charid, jobpoints[i].id, jobpoints[i].value, jobpoints[i].value);
-        else
-            Sql_Query(SqlHandle, "DELETE FROM char_jobpoints WHERE charid = %u AND jobpointid = %u", charid, jobpoints[i].id);
-}
-
-uint16 CJobPoints::GetCapacityPoints()
-{
-    return jp_CapacityPoints;
-}
-
-uint8 CJobPoints::GetJobPoints()
-{
-    return jp_JobPoints;
-}
-
-void CJobPoints::SetCapacityPoints(uint16 points)
-{
-    jp_CapacityPoints = std::min<uint16>(points, MAX_CAPACTIY_POINTS - 1);
-}
-
-void CJobPoints::SetJobPoints(uint8 points)
-{
-    jp_JobPoints = std::min<uint8>(points, MAX_JOB_POINTS);
-}
-
-bool CJobPoints::IsJobPointExist(JOBPOINT_TYPE jobpoint)
-{
-    if((int16)jobpoint < JPCATEGORY_START) return false;
-    if((GetJobPointJobId(jobpoint) - 1) > JPCATEGORY_COUNT) return false;
-    if(GetJobPointIndex(jobpoint) > JOBPOINTS_PER_CATEGORY) return false;
+    if((int16)jp_type < JOBPOINTS_CATEGORY_START) return false;
+    if((JOBPOINTS_CATEGORY_BY_JPTYPE(jp_type) - 1) > JOBPOINTS_CATEGORY_COUNT) return false;
+    if(JOBPOINTS_JPTYPE_INDEX(jp_type) > JOBPOINTS_JPTYPE_PER_CATEGORY) return false;
 
     return true;
 }
 
-JobPoints_t* CJobPoints::GetJobPointJob(JOBPOINT_TYPE jp) {
-    if (IsJobPointExist(jp))
+JobPoints_t* CJobPoints::GetJobPointsByType(JOBPOINT_TYPE jp_type) {
+    if (IsJobPointExist(jp_type))
     {
-        return &job_points[GetJobPointJobId(jp)];
+        return &job_points[JOBPOINTS_CATEGORY_BY_JPTYPE(jp_type)];
     }
     return nullptr;
 }
 
-JobPointType_t* CJobPoints::GetJobPoint(JOBPOINT_TYPE jp)
+JobPointType_t* CJobPoints::GetJobPointType(JOBPOINT_TYPE jp_type)
 {
-    if (IsJobPointExist(jp))
+    if (IsJobPointExist(jp_type))
     {
-        return &job_points[GetJobPointJobId(jp)].job_point_types[GetJobPointIndex(jp)];
+        return &job_points[JOBPOINTS_CATEGORY_BY_JPTYPE(jp_type)].job_point_types[JOBPOINTS_JPTYPE_INDEX(jp_type)];
     }
     return nullptr;
 }
 
-void CJobPoints::RaiseJobPoint(JOBPOINT_TYPE jp)
+void CJobPoints::RaiseJobPoint(JOBPOINT_TYPE jp_type)
 {
-    JobPoints_t* job = GetJobPointJob(jp);
-    JobPointType_t* job_point = GetJobPoint(jp);
-    
-    uint8 cost = GetJobPointCost(job_point->value);
+    JobPoints_t* job = GetJobPointsByType(jp_type);
+    JobPointType_t* job_point = GetJobPointType(jp_type);
+
+    uint8 cost = JOBPOINTS_NEXT_COST(job_point->value);
     if(cost != 0 && job->job_points >= cost) 
     {
         job->job_points -= cost;
         job->job_points_spent += cost;
         job_point->value += 1;
+        Sql_Query(SqlHandle, "UPDATE char_job_points SET jptype%u='%u', job_points='%u', job_points_spent='%u' WHERE charid='%u' AND jobid='%u'", 
+            JOBPOINTS_JPTYPE_INDEX(job_point->id), job_point->value, job->job_points, job->job_points_spent, jp_PChar->id, job->jobid);
     }
 
-    Sql_Query(SqlHandle, "UPDATE char_job_points SET jptype%u='%u', job_points='%u', job_points_spent='%u' WHERE charid='%u' AND jobid='%u'", GetJobPointTypeIndex(job_point->id), job_point->value, job->job_points, job->job_points_spent, jp_PChar->id, job->jobid);
 }
 
 JobPoints_t* CJobPoints::GetAllJobPoints()
@@ -155,53 +115,8 @@ JobPoints_t* CJobPoints::GetAllJobPoints()
 
 namespace jobpointutils
 {
-	JobPoint_t  GJobPointsTemplate[JOBPOINTS_COUNT] = {0};	// global list of jobpoints
-	int16       groupOffset[JPCATEGORY_COUNT] = {0};		// the first jp of each job
-
     void LoadJobPointsList()
     {
-        int32 ret = Sql_Query(SqlHandle, "SELECT job_pointid, catid, jobs FROM job_points ORDER BY job_pointid ASC LIMIT %u", JOBPOINTS_COUNT);
 
-        if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != JOBPOINTS_COUNT)
-        {
-            uint16 index = 0;
-            uint8 catIndex = 0;
-            int8 previousCatIndex = 0;
-            int8 catJobPointIndex = 0;
-
-            while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-            {
-                JobPoint_t JobPoint = {0};
-
-                JobPoint.id = Sql_GetUIntData(SqlHandle, 0);
-                JobPoint.catid = Sql_GetUIntData(SqlHandle, 1);
-                JobPoint.jobid = Sql_GetUIntData(SqlHandle, 2);
-
-                GJobPointsTemplate[index] = JobPoint;
-
-                previousCatIndex = JobPoint.catid;
-
-                if(previousCatIndex != catIndex)
-                {
-                    groupOffset[catIndex] = index - catJobPointIndex;
-                    catIndex++;
-                    catJobPointIndex = 0; 
-
-                    if(previousCatIndex != catIndex)
-                    {
-                        catIndex = previousCatIndex;
-                    }
-                }
-
-                catJobPointIndex++;
-                index++;
-            }
-
-            groupOffset[catIndex] = index - catJobPointIndex;
-        }
-        else
-        {
-            ShowError(CL_RED"The jobpoints table is damaged\n" CL_RESET);
-        }
     };
 }

@@ -29,15 +29,15 @@
 #include "../utils/charutils.h"
 #include "../job_points.h"
 
-CJobPointUpdatePacket::CJobPointUpdatePacket(CCharEntity* PChar, JOBPOINT_TYPE jp)
+CJobPointUpdatePacket::CJobPointUpdatePacket(CCharEntity* PChar, JOBPOINT_TYPE jp_type)
 {
 	this->type = 0x8D;
 	this->size = 0x82;
 
-	JobPointType_t* jobpoint = PChar->PJobPoints->GetJobPoint(jp);
-    ref<uint16>(0x04) = jobpoint->id;
-	ref<uint8>(0x06)  = (jobpoint->value + 1) % 21;
-	ref<uint8>(0x07)  = jobpoint->value << 2; 
+	JobPointType_t* jobpoint = PChar->PJobPoints->GetJobPointType(jp_type);
+  ref<uint16>(0x04) = jobpoint->id;
+	ref<uint8>(0x06)  = JOBPOINTS_NEXT_COST(jobpoint->value);
+	ref<uint8>(0x07)  = JOBPOINTS_FORMAT_VALUE(jobpoint->value);
 }
 
 // [2019-09-03 20:04:13]
