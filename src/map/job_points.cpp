@@ -27,11 +27,14 @@
 #include "job_points.h"
 #include "entities/charentity.h"
 #include "utils/charutils.h"
+#include "entities/battleentity.h"
 
 #define GetJobPointCategory(jp) ((jp >> 5) - 1)
 #define GetJobPointIndex(jp) (jp & 0x1F)
+#define GetJobPointCategoryByJobId(jobid) (JPCATEGORY_START * jobid)
 #define MAX_JOB_POINTS 500
 #define MAX_CAPACTIY_POINTS 30000
+#define SQL_JPTYPE_OFFSET 5
 
 CJobPoints::CJobPoints(CCharEntity* PChar)
 {
@@ -48,40 +51,25 @@ CJobPoints::CJobPoints(CCharEntity* PChar)
 
 void CJobPoints::LoadJobPoints(uint32 charid)
 {
-    uint8 catNumber = 0;
-
-    for(uint16 i = 0; i < JOBPOINTS_COUNT; i++)
-    {
-       if(i == jobpointutils::groupOffset[catNumber])
-       {
-           Categories[catNumber] = &jobpoints[i];
-           catNumber++;
-       }
-    }
-
-    if(Sql_Query(SqlHandle, "SELECT jobpointid, upgrades FROM char_jobpoints WHERE charid = %u", charid) != SQL_ERROR)
-    {
-        for(uint16 i = 0; i < Sql_NumRows(SqlHandle); i++)
-        {
-           if(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-           {
-               uint32 jobPointID = Sql_GetUIntData(SqlHandle, 0);
-               uint32 upgrades = Sql_GetUIntData(SqlHandle, 1);
-
-               for(uint16 j = 0; j < JOBPOINTS_COUNT; j++)
-               {
-                   if(jobpoints[i].id == jobPointID)
-                   {
-                       jobpoints[i].value = upgrades;
-                       jobpoints[i].next = (upgrades + 1) % 21;
-
-                       // set up packet union
-                       jobpoints[i].pid = jobpoints[i].id;
-                       jobpoints[i].pnext = jobpoints[i].next;
-                       jobpoints[i].pvalue = jobpoints[i].value << 2;
-                   }
-               }
-           }
+    if(Sql_Query(SqlHandle, "SELECT charid, jobid, capacity_points, job_points, job_points_spent, jptype1, jptype2, jptype3, jptype4, jptype5, jptype6, jptype7, jptype8, jptype9, jptype10 FROM char_job_points WHERE charid = %u ORDER BY jobid ASC", charid) != SQL_ERROR) {
+        for(uint8 i = 0; i < Sql_NumRows(SqlHandle); i++) {
+            if(Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
+                uint32 jobid = Sql_GetUIntData(SqlHandle, 1);
+                uint16 job_category = GetJobPointCategoryByJobId(jobid);
+                JobPoints_t current_job = {}; 
+                current_job.jobid = jobid;
+                current_job.job_category = job_category;
+                current_job.capacity_points = Sql_GetUIntData(SqlHandle, 2);
+                current_job.job_points = Sql_GetUIntData(SqlHandle, 3);
+                current_job.job_points_spent = Sql_GetUIntData(SqlHandle, 4);
+                for(uint8 j = 0; j < JOBPOINTS_PER_CATEGORY; j++) {
+                    JobPointType_t current_type = {};
+                    current_type.id = current_job.job_category + j;
+                    current_type.value = Sql_GetUIntData(SqlHandle, SQL_JPTYPE_OFFSET + j);
+                    memcpy(&current_job.job_point_types[j], &current_type, sizeof(JobPointType_t));
+                }
+                memcpy(&job_points[jobid], &current_job, sizeof(JobPoints_t));
+            }
         }
     }
 }
@@ -110,7 +98,7 @@ void CJobPoints::SetCapacityPoints(uint16 points)
     jp_CapacityPoints = std::min<uint16>(points, MAX_CAPACTIY_POINTS - 1);
 }
 
-void CJobPoints::SetJobPoints(uint16 points)
+void CJobPoints::SetJobPoints(uint8 points)
 {
     jp_JobPoints = std::min<uint8>(points, MAX_JOB_POINTS);
 }
@@ -145,6 +133,11 @@ void CJobPoints::RaiseJobPoint(JOBPOINT_TYPE jobpoint)
     JobPoint_t* PJobPoint = GetJobPointPointer(jobpoint);
 }
 
+JobPoints_t* CJobPoints::GetAllJobPoints()
+{
+    return job_points;
+}
+
 namespace jobpointutils
 {
 	JobPoint_t  GJobPointsTemplate[JOBPOINTS_COUNT] = {0};	// global list of jobpoints
@@ -152,7 +145,7 @@ namespace jobpointutils
 
     void LoadJobPointsList()
     {
-        int32 ret = Sql_Query(SqlHandle, "SELECT m.job_pointid, m.catid, m.jobs, ORDER BY m.job_pointid ASC LIMIT %u", JOBPOINTS_COUNT);
+        int32 ret = Sql_Query(SqlHandle, "SELECT job_pointid, catid, jobs FROM job_points ORDER BY job_pointid ASC LIMIT %u", JOBPOINTS_COUNT);
 
         if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != JOBPOINTS_COUNT)
         {
@@ -177,7 +170,7 @@ namespace jobpointutils
                 {
                     groupOffset[catIndex] = index - catJobPointIndex;
                     catIndex++;
-                    catJobPointIndex = 0;
+                    catJobPointIndex = 0; 
 
                     if(previousCatIndex != catIndex)
                     {

@@ -26,6 +26,7 @@
 #include "menu_jp.h"
 
 #include "../entities/charentity.h"
+#include "../entities/battleentity.h"
 #include "../utils/charutils.h"
 
 
@@ -40,7 +41,9 @@ CMenuJobPointsPacket::CMenuJobPointsPacket(CCharEntity* PChar)
     ref<uint8>(0x08) = 0x1; // 0x0 for no access, 0x1 for access
     ref<uint8>(0x0A) = 0x0;
 
-	//TODO: Add Job iteration unit8 CP, uint8 JP, uint8 SPENT, 0X0c is always 0'd
+    ref<uint8>(0x14) = 0x1;
+
+	  //TODO: Add Job iteration unit8 CP, uint8 JP, uint8 SPENT, 0X0c is always 0'd
 }
 
 
