@@ -388,6 +388,10 @@ class CJobPoints
 
         JobPoints_t*    GetAllJobPoints();
 
+        /**
+         * Returns the level of a given job point type. Will return 0 if the type doesn't match the
+         * player's main job or if their main job is not 99
+         */
         uint8    GetJobPointValue(JOBPOINT_TYPE jp_type);
 
     private:
