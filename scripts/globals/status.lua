@@ -2127,16 +2127,16 @@ dsp.jp = {
     MAGIC_DMG_BONUS          = JPCATEGORY_BLM + 0x09, --m.dmg +1
 
     --RDM
-    CHAINSPELL_EFFECT        = JPCATEGORY_RDM + 0x00, --elem. m.dmg +2
-    STYMIE_EFFECT            = JPCATEGORY_RDM + 0x01, --effect dur. +1s
-    CONVERT_EFFECT           = JPCATEGORY_RDM + 0x02, --HP consumed -1%
-    RDM_MAGIC_ACC_BONUS      = JPCATEGORY_RDM + 0x03, --m.acc +1
-    COMPOSURE_EFFECT         = JPCATEGORY_RDM + 0x04, --p.acc +1
-    RDM_MAGIC_ATK_BONUS      = JPCATEGORY_RDM + 0x05, --MAB +1
-    SABOTEUR_EFFECT          = JPCATEGORY_RDM + 0x06, --enfeeble m.acc +2
-    ENFEEBLE_DURATION        = JPCATEGORY_RDM + 0x07, --enfeeble dur. +1s
-    QUICK_MAGIC_EFFECT       = JPCATEGORY_RDM + 0x08, --MP consumption -2%
-    ENHANCING_DURATION       = JPCATEGORY_RDM + 0x09, --dur. +1s
+    CHAINSPELL_EFFECT        = JPCATEGORY_RDM + 0x00, --O elem. m.dmg +2
+    STYMIE_EFFECT            = JPCATEGORY_RDM + 0x01, --O effect dur. +1s
+    CONVERT_EFFECT           = JPCATEGORY_RDM + 0x02, --O HP consumed -1%
+    RDM_MAGIC_ACC_BONUS      = JPCATEGORY_RDM + 0x03, --O m.acc +1
+    COMPOSURE_EFFECT         = JPCATEGORY_RDM + 0x04, --O p.acc +1
+    RDM_MAGIC_ATK_BONUS      = JPCATEGORY_RDM + 0x05, --O MAB +1
+    SABOTEUR_EFFECT          = JPCATEGORY_RDM + 0x06, --O enfeeble m.acc +2
+    ENFEEBLE_DURATION        = JPCATEGORY_RDM + 0x07, --O enfeeble dur. +1s
+    QUICK_MAGIC_EFFECT       = JPCATEGORY_RDM + 0x08, --X MP consumption -2%
+    ENHANCING_DURATION       = JPCATEGORY_RDM + 0x09, --O dur. +1s
 
     --THF
     PERFECT_DODGE_EFFECT     = JPCATEGORY_THF + 0x00, --m.eva +3
