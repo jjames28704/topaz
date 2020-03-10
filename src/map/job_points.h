@@ -388,6 +388,8 @@ class CJobPoints
 
         JobPoints_t*    GetAllJobPoints();
 
+        int8    GetJobPointValue(JOBPOINT_TYPE jp_type);
+
     private:
         CCharEntity*    jp_PChar;
         JobPoints_t     job_points[MAX_JOBTYPE];

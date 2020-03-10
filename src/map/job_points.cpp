@@ -113,6 +113,15 @@ JobPoints_t* CJobPoints::GetAllJobPoints()
     return job_points;
 }
 
+int8 CJobPoints::GetJobPointValue(JOBPOINT_TYPE jp_type)
+{
+    if(IsJobPointExist(jp_type))
+    {
+        return GetJobPointType(jp_type)->value;
+    }
+    return 0;
+}
+
 namespace jobpointutils
 {
     void LoadJobPointsList()
