@@ -348,6 +348,11 @@ function doBoostGain(caster, target, spell, effect)
 end
 
 function doEnspell(caster, target, spell, effect)
+    if effect == tpz.effect.BLOOD_WEAPON then
+        target:addStatusEffect(dsp.effect.BLOOD_WEAPON, 1, 0, 30)
+        return
+    end
+
     local duration = calculateDuration(180, spell:getSkillType(), spell:getSpellGroup(), caster, target)
 
     --calculate potency
@@ -756,6 +761,12 @@ function getSpellBonusAcc(caster, target, spell, params)
         magicAccBonus = magicAccBonus + caster:getMerit(rdmMerit[element])
     end
 
+    --add acc for RDM job points
+    if (skill = tpz.skill.ENFEEBLING_MAGIC and caster:hasStatusEffect(tpz.effect.SABOTEUR)) then
+        local jp_value = caster:getJobPointValue(tpz.jp.SABOTEUR_EFFECT)
+        magicAccBonus = magicAccBonus + (jp_value * 2)
+    end
+
     -- BLU mag acc merits - nuke acc is handled in bluemagic.lua
     if (skill == tpz.skill.BLUE_MAGIC) then
         magicAccBonus = magicAccBonus + caster:getMerit(tpz.merit.MAGICAL_ACCURACY)
@@ -1043,7 +1054,11 @@ function addBonuses(caster, spell, target, dmg, params)
                 mdefBarBonus = target:getStatusEffect(tpz.magic.barSpell[ele]):getSubPower()
             end
         end
-        mabbonus = (100 + mab) / (100 + target:getMod(tpz.mod.MDEF) + mdefBarBonus)
+
+        mab = mab + caster:getJobPointValue(tpz.jp.RDM_MAGIC_ATK_BONUS);
+        mab = mab + caster:getJobPointValue(tpz.jp.GEO_MAGIC_ATK_BONUS);
+
+        mabbonus = (100 + mab) / (100 + target:getMod(dsp.mod.MDEF) + mdefBarBonus);
     end
 
     if (mabbonus < 0) then
@@ -1492,17 +1507,24 @@ function calculateDuration(duration, magicSkill, spellGroup, caster, target, use
         if caster:hasStatusEffect(tpz.effect.PERPETUANCE) and spellGroup == tpz.magic.spellGroup.WHITE then
             duration  = duration * 2
         end
-    elseif magicSkill == tpz.skill.ENFEEBLING_MAGIC then -- Enfeebling Magic
-        if caster:hasStatusEffect(tpz.effect.SABOTEUR) then
-            if target:isNM() then
-                duration = duration * 1.25
-            else
-                duration = duration * 2
-            end
+
+        -- rdm job point
+        duration = duration + caster:getJobPointValue(tpz.jp.ENHANCING_DURATION)
+    elseif magicSkill == dsp.skill.ENFEEBLING_MAGIC then -- Enfeebling Magic
+        if caster:hasStatusEffect(dsp.effect.SABOTEUR) then
+            duration = duration * 2
+        end
         end
 
         -- After Saboteur according to bg-wiki
-        duration = duration + caster:getMerit(tpz.merit.ENFEEBLING_MAGIC_DURATION)
+        duration = duration + caster:getMerit(dsp.merit.ENFEEBLING_MAGIC_DURATION)
+
+        -- rdm job point
+        duration = duration + caster:getJobPointValue(tpz.jp.ENFEEBLE_DURATION)
+
+        if (caster:hasStatusEffect(tpz.effect.STYMIE) and target:canGainStatusEffect(effect)) then
+            duration = duration + caster:getJobPointValue(tpz.jp.STYMIE_EFFECT)
+        end
     end
 
     return math.floor(duration)
