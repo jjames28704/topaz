@@ -68,7 +68,7 @@ void CJobPoints::LoadJobPoints()
 bool CJobPoints::IsJobPointExist(JOBPOINT_TYPE jp_type)
 {
     if((int16)jp_type < JOBPOINTS_CATEGORY_START) return false;
-    if((JobPointsCategoryByJpType(jp_type) - 1) > JOBPOINTS_CATEGORY_COUNT) return false;
+    if((JobPointsCategoryIndexByJpType(jp_type) - 1) > JOBPOINTS_CATEGORY_COUNT) return false;
     if(JobPointTypeIndex(jp_type) > JOBPOINTS_JPTYPE_PER_CATEGORY) return false;
 
     return true;
@@ -77,7 +77,7 @@ bool CJobPoints::IsJobPointExist(JOBPOINT_TYPE jp_type)
 JobPoints_t* CJobPoints::GetJobPointsByType(JOBPOINT_TYPE jp_type) {
     if (IsJobPointExist(jp_type))
     {
-        return &job_points[JobPointsCategoryByJpType(jp_type)];
+        return &job_points[JobPointsCategoryIndexByJpType(jp_type)];
     }
     return nullptr;
 }
@@ -86,7 +86,7 @@ JobPointType_t* CJobPoints::GetJobPointType(JOBPOINT_TYPE jp_type)
 {
     if (IsJobPointExist(jp_type))
     {
-        return &job_points[JobPointsCategoryByJpType(jp_type)].job_point_types[JobPointTypeIndex(jp_type)];
+        return &job_points[JobPointsCategoryIndexByJpType(jp_type)].job_point_types[JobPointTypeIndex(jp_type)];
     }
     return nullptr;
 }
@@ -118,7 +118,7 @@ uint8 CJobPoints::GetJobPointValue(JOBPOINT_TYPE jp_type)
     if(
             IsJobPointExist(jp_type)
         &&  jp_PChar->GetMLevel() >= 99
-        &&  JobPointsCategoryByJobId(jp_PChar->GetMJob()) == JobPointsCategoryByJpType(jp_type) 
+        &&  jp_PChar->GetMJob() == JobPointsCategoryIndexByJpType(jp_type) 
     ){
         return GetJobPointType(jp_type)->value;
     }
