@@ -596,11 +596,14 @@ function getSpellBonusAcc(caster, target, spell, params)
         magicAccBonus = magicAccBonus + caster:getMerit(rdmMerit[element]);
     end
 
-    --add acc for RDM job points
+    --rdm job point: during saboteur, enfeebling macc +2
     if (skill = dsp.skill.ENFEEBLING_MAGIC and caster:hasStatusEffect(dsp.effect.SABOTEUR)) then
         local jp_value = caster:getJobPointValue(dsp.jp.SABOTEUR_EFFECT)
         magicAccBonus = magicAccBonus + (jp_value * 2)
     end
+
+    --blm job point: macc bonus +1
+    magicAccBonus = magicAccBonus + caster:getJobPointValue(dsp.jp.BLM_MAGIC_ACC_BONUS)
 
     -- BLU mag acc merits - nuke acc is handled in bluemagic.lua
     if (skill == dsp.skill.BLUE_MAGIC) then
@@ -757,6 +760,9 @@ function calculateMagicBurst(caster, spell, target, params)
     if caster:isBehind(target) and caster:hasStatusEffect(dsp.effect.INNIN) then
         modburst = modburst + (caster:getMerit(dsp.merit.INNIN_EFFECT)/100)
     end
+
+    -- blm job point: magic burst damage
+    modburst = modburst + (caster:getJobPointValue(dsp.jp.MAGIC_BURST_DMG_BONUS)/100)
 
     -- Cap bonuses from first multiplier at 40% or 1.4
     if (modburst > 1.4) then
@@ -1186,6 +1192,20 @@ function doElementalNuke(caster, spell, target, spellParams)
         local resistBonus = spellParams.resistBonus;
         local mDMG = caster:getMod(dsp.mod.MAGIC_DAMAGE);
 
+        -- blm job point: manafont elemental magic damage +3
+        if caster:hasStatusEffect(dsp.effect.MANAFONT) then
+            mDMG = mDMG + (caster:getJobPointValue(dsp.jp.MANAFONT_EFFECT) * 3);
+        end
+
+        -- blm job point: with manawell mDMG +1
+        if caster:hasStatusEffect(dsp.effect.MANAWELL) then
+            mDMG = mDMG + caster:getJobPointValue(dsp.jp.MANAWELL_EFFECT)
+            caster:delStatusEffectSilent(dsp.effect.MANAWELL);
+        end
+
+        -- blm job point: magic damage bonus
+        mDMG = mDMG + caster:getJobPointValue(dsp.jp.MAGIC_DMG_BONUS)
+
         --[[
                 Calculate base damage:
                 D = mDMG + V + (dINT × M)
@@ -1353,7 +1373,7 @@ function calculateDuration(duration, magicSkill, spellGroup, caster, target, use
             duration  = duration * 2
         end
 
-        -- rdm job point
+        -- rdm job point: enhancing duration +1 second
         duration = duration + caster:getJobPointValue(dsp.jp.ENHANCING_DURATION)
     elseif magicSkill == dsp.skill.ENFEEBLING_MAGIC then -- Enfeebling Magic
         if caster:hasStatusEffect(dsp.effect.SABOTEUR) then
@@ -1363,7 +1383,7 @@ function calculateDuration(duration, magicSkill, spellGroup, caster, target, use
         -- After Saboteur according to bg-wiki
         duration = duration + caster:getMerit(dsp.merit.ENFEEBLING_MAGIC_DURATION)
 
-        -- rdm job point
+        -- rdm job point: enfeebling magic duration +1 second
         duration = duration + caster:getJobPointValue(dsp.jp.ENFEEBLE_DURATION)
 
         if (caster:hasStatusEffect(dsp.effect.STYMIE) and target:canGainStatusEffect(effect)) then
