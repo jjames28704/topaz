@@ -338,8 +338,8 @@ enum JOBPOINT_TYPE : uint16
 #define JOBPOINTS_CAPACITY_MAX 30000
 #define JOBPOINTS_SQL_COLUMN_OFFSET 5
 #define JOBPOINTS_CATEGORY_BY_JOBID(jobid) (JOBPOINTS_CATEGORY_START * jobid)
-#define JOBPOINTS_CATEGORY_BY_JPTYPE(id) (id >> 5)
-#define JOBPOINTS_JPTYPE_INDEX(id) ((id & 0x1F) + 1)
+#define JOBPOINTS_CATEGORY_BY_JPTYPE(jp_type) (jp_type >> 5)
+#define JOBPOINTS_JPTYPE_INDEX(id) (id & 0x1F)
 #define JOBPOINTS_NEXT_COST(value) ((value + 1) % 21)
 #define JOBPOINTS_FORMAT_VALUE(value) (value << 2)
 
