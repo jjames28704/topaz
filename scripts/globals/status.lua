@@ -2103,16 +2103,16 @@ dsp.jp = {
     KICK_ATTACKS_EFFECT      = JPCATEGORY_MNK + 0x09, --kick attacks atk +2 acc +1
 
     --WHM
-    BENEDICTION_EFFECT       = JPCATEGORY_WHM + 0x00, --mp recovered +1%
-    ASYLUM_EFFECT            = JPCATEGORY_WHM + 0x01, --m.eva +4
-    DIVINE_SEAL_EFFECT       = JPCATEGORY_WHM + 0x02, --reduce emnity from use +3
-    WHM_MAGIC_ACC_BONUS      = JPCATEGORY_WHM + 0x03, --m.acc +1
-    AFFLATUS_SOLACE_EFFECT   = JPCATEGORY_WHM + 0x04, --cure potency +2 (not %)
-    AFFLATUS_MISERY_EFFECT   = JPCATEGORY_WHM + 0x05, --banish +2 m.dmg, miss => acc +1 dmg +1
-    DIVINE_CARESS_DURATION   = JPCATEGORY_WHM + 0x06, --dur. +2 sec
-    SACROSANCTITY_EFFECT     = JPCATEGORY_WHM + 0x07, --minimum DEF +1
-    REGEN_DURATION           = JPCATEGORY_WHM + 0x08, --dur. +3 sec
-    BAR_SPELL_EFFECT         = JPCATEGORY_WHM + 0x09, --resistance +2
+    BENEDICTION_EFFECT       = JPCATEGORY_WHM + 0x00, --X mp recovered +1%
+    ASYLUM_EFFECT            = JPCATEGORY_WHM + 0x01, --X m.eva +4
+    DIVINE_SEAL_EFFECT       = JPCATEGORY_WHM + 0x02, --X reduce emnity from use +3
+    WHM_MAGIC_ACC_BONUS      = JPCATEGORY_WHM + 0x03, --O m.acc +1
+    AFFLATUS_SOLACE_EFFECT   = JPCATEGORY_WHM + 0x04, --X cure potency +2 (not %) ||||I DON'T KNOW WHAT THIS MEANS||||
+    AFFLATUS_MISERY_EFFECT   = JPCATEGORY_WHM + 0x05, --X banish +2 m.dmg, miss => acc +1 dmg +1
+    DIVINE_CARESS_DURATION   = JPCATEGORY_WHM + 0x06, --X dur. +2 sec
+    SACROSANCTITY_EFFECT     = JPCATEGORY_WHM + 0x07, --X minimum DEF +1
+    REGEN_DURATION           = JPCATEGORY_WHM + 0x08, --O dur. +3 sec
+    BAR_SPELL_EFFECT         = JPCATEGORY_WHM + 0x09, --O resistance +2
 
     --BLM
     MANAFONT_EFFECT          = JPCATEGORY_BLM + 0x00, --O elemental m.dmg +2

@@ -302,6 +302,8 @@ function getCureFinal(caster, spell, basecure, minCure, isBlueMagic)
     end
 
     local final = math.floor(math.floor(math.floor(math.floor(basecure) * potency) * dayWeatherBonus) * rapture) * dSeal;
+
+    --whm job point afflatus solace
     return final;
 end;
 
@@ -604,6 +606,9 @@ function getSpellBonusAcc(caster, target, spell, params)
 
     --blm job point: macc bonus +1
     magicAccBonus = magicAccBonus + caster:getJobPointValue(dsp.jp.BLM_MAGIC_ACC_BONUS)
+
+    --whm job point: macc bonus +1
+    magicAccBonus = magicAccBonus + caster:getJobPointValue(dsp.jp.WHM_MAGIC_ACC_BONUS)
 
     -- BLU mag acc merits - nuke acc is handled in bluemagic.lua
     if (skill == dsp.skill.BLUE_MAGIC) then
