@@ -40,7 +40,7 @@ void CJobPoints::LoadJobPoints()
     memset(job_points, 0, sizeof(job_points));
     if (
         Sql_Query(SqlHandle, "SELECT charid, jobid, capacity_points, job_points, job_points_spent, "
-                            "jptype1, jptype2, jptype3, jptype4, jptype5, jptype6, jptype7, jptype8, jptype9, jptype10 "
+                            "jptype0, jptype1, jptype2, jptype3, jptype4, jptype5, jptype6, jptype7, jptype8, jptype9 "
                             "FROM char_job_points WHERE charid = %u ORDER BY jobid ASC", jp_PChar->id) != SQL_ERROR
     ){
         for(uint8 i = 0; i < Sql_NumRows(SqlHandle); i++) {

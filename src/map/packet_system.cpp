@@ -6067,13 +6067,13 @@ void SmallPacket0x0BF(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 {
     if (PChar->m_moghouseID)
     {
-        JOBPOINT_TYPE jpid = (JOBPOINT_TYPE)data.ref<uint16>(0x04);
+        JOBPOINT_TYPE jp_type = (JOBPOINT_TYPE)data.ref<uint16>(0x04);
 
-        if (PChar->PJobPoints->IsJobPointExist(jpid))
+        if (PChar->PJobPoints->IsJobPointExist(jp_type))
         {
-            PChar->PJobPoints->RaiseJobPoint(jpid);
+            PChar->PJobPoints->RaiseJobPoint(jp_type);
             PChar->pushPacket(new CMenuJobPointsPacket(PChar));
-            PChar->pushPacket(new CJobPointUpdatePacket(PChar, jpid));
+            PChar->pushPacket(new CJobPointUpdatePacket(PChar, jp_type));
         }
     }
 }
