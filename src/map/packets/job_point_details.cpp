@@ -45,8 +45,8 @@ CJobPointDetailsPacket::CJobPointDetailsPacket(CCharEntity* PChar)
             if(current_type.id != 0) {
                 uint16 offset = JP_DETAIL_PACKET_DATA_OFFSET(i) + (JP_DETAIL_DATA_SIZE * j);
                 ref<uint16>(offset) = current_type.id;
-                ref<uint8>(offset + 2) = JOBPOINTS_NEXT_COST(current_type.value);
-                ref<uint8>(offset + 3) = JOBPOINTS_FORMAT_VALUE(current_type.value);
+                ref<uint8>(offset + 2) = JobPointCost(current_type.value);
+                ref<uint8>(offset + 3) = JobPointValueFormat(current_type.value);
             }
         }
 
