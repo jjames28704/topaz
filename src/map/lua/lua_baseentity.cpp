@@ -4851,7 +4851,7 @@ inline int32 CLuaBaseEntity::getCampaignAllegiance(lua_State *L)
 *  Function: setCampaignAllegiance()
 *  Purpose : Affiliates the player with a particular nation in the past
 *  Example : targ:setCampaignAllegiance(nation)
-*  Notes   :
+*  Notes   :incom
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setCampaignAllegiance(lua_State *L)
@@ -6797,6 +6797,7 @@ inline int32 CLuaBaseEntity::getJobPointValue(lua_State *L)
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
         lua_pushinteger(L, PChar->PJobPoints->GetJobPointValue((uint16)lua_tointeger(L, 1)));
     }
+    return 1;
 }
 
 /************************************************************************
