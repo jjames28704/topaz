@@ -45,6 +45,7 @@
 #include "../instance.h"
 #include "../item_container.h"
 #include "../latent_effect_container.h"
+#include "../job_points.h"
 #include "../map.h"
 #include "../message.h"
 #include "../mob_modifier.h"
@@ -6795,7 +6796,7 @@ inline int32 CLuaBaseEntity::getJobPointValue(lua_State *L)
     else 
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-        lua_pushinteger(L, PChar->PJobPoints->GetJobPointValue((uint16)lua_tointeger(L, 1)));
+        lua_pushinteger(L, PChar->PJobPoints->GetJobPointValue((JOBPOINT_TYPE)lua_tointeger(L, 1)));
     }
     return 1;
 }

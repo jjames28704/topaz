@@ -113,7 +113,7 @@ JobPoints_t* CJobPoints::GetAllJobPoints()
     return job_points;
 }
 
-int8 CJobPoints::GetJobPointValue(JOBPOINT_TYPE jp_type)
+uint8 CJobPoints::GetJobPointValue(JOBPOINT_TYPE jp_type)
 {
     if(IsJobPointExist(jp_type))
     {
