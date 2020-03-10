@@ -115,8 +115,11 @@ JobPoints_t* CJobPoints::GetAllJobPoints()
 
 uint8 CJobPoints::GetJobPointValue(JOBPOINT_TYPE jp_type)
 {
-    if(IsJobPointExist(jp_type))
-    {
+    if(
+            IsJobPointExist(jp_type)
+        &&  jp_PChar->GetMLevel() >= 99
+        &&  JobPointsCategoryByJobId(jp_PChar->GetMJob()) == JobPointsCategoryByJpType(jp_type) 
+    ){
         return GetJobPointType(jp_type)->value;
     }
     return 0;
