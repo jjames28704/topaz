@@ -388,7 +388,7 @@ class CJobPoints
 
         JobPoints_t*    GetAllJobPoints();
 
-        int8    GetJobPointValue(JOBPOINT_TYPE jp_type);
+        uint8    GetJobPointValue(JOBPOINT_TYPE jp_type);
 
     private:
         CCharEntity*    jp_PChar;
