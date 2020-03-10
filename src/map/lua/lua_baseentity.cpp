@@ -6961,6 +6961,28 @@ inline int32 CLuaBaseEntity::getMeritCount(lua_State *L)
 }
 
 /************************************************************************
+*  Function: getJobPointValue()
+*  Purpose : Returns the current value a specific job point
+*  Example : player:getJobPointValue(JP_MIGHTY_STRIKES_EFFECT)
+*  Notes   :
+************************************************************************/
+inline int32 CLuaBaseEntity::getJobPointValue(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    
+    if (m_PBaseEntity->objtype != TYPE_PC)
+    {
+        lua_pushinteger(L, 0);
+    }
+    else 
+    {
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+        lua_pushinteger(L, PChar->PJobPoints->GetJobPointValue((uint16)lua_tointeger(L, 1)));
+    }
+}
+
+/************************************************************************
 *  Function: setMerits()
 *  Purpose : Sets the merit points for a player to a specified amount
 *  Example : player:setMerits(30)
