@@ -36,8 +36,8 @@ CJobPointUpdatePacket::CJobPointUpdatePacket(CCharEntity* PChar, JOBPOINT_TYPE j
 
 	JobPointType_t* jobpoint = PChar->PJobPoints->GetJobPointType(jp_type);
   ref<uint16>(0x04) = jobpoint->id;
-	ref<uint8>(0x06)  = JOBPOINTS_NEXT_COST(jobpoint->value);
-	ref<uint8>(0x07)  = JOBPOINTS_FORMAT_VALUE(jobpoint->value);
+	ref<uint8>(0x06)  = JobPointCost(jobpoint->value);
+	ref<uint8>(0x07)  = JobPointValueFormat(jobpoint->value);
 }
 
 // [2019-09-03 20:04:13]

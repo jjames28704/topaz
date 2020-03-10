@@ -46,7 +46,7 @@ void CJobPoints::LoadJobPoints()
         for(uint8 i = 0; i < Sql_NumRows(SqlHandle); i++) {
             if(Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
                 uint32 jobid = Sql_GetUIntData(SqlHandle, 1);
-                uint16 job_category = JOBPOINTS_CATEGORY_BY_JOBID(jobid);
+                uint16 job_category = JobPointsCategoryByJobId(jobid);
                 JobPoints_t current_job = {}; 
                 current_job.jobid = jobid;
                 current_job.job_category = job_category;
@@ -68,8 +68,8 @@ void CJobPoints::LoadJobPoints()
 bool CJobPoints::IsJobPointExist(JOBPOINT_TYPE jp_type)
 {
     if((int16)jp_type < JOBPOINTS_CATEGORY_START) return false;
-    if((JOBPOINTS_CATEGORY_BY_JPTYPE(jp_type) - 1) > JOBPOINTS_CATEGORY_COUNT) return false;
-    if(JOBPOINTS_JPTYPE_INDEX(jp_type) > JOBPOINTS_JPTYPE_PER_CATEGORY) return false;
+    if((JobPointsCategoryByJpType(jp_type) - 1) > JOBPOINTS_CATEGORY_COUNT) return false;
+    if(JobPointTypeIndex(jp_type) > JOBPOINTS_JPTYPE_PER_CATEGORY) return false;
 
     return true;
 }
@@ -77,7 +77,7 @@ bool CJobPoints::IsJobPointExist(JOBPOINT_TYPE jp_type)
 JobPoints_t* CJobPoints::GetJobPointsByType(JOBPOINT_TYPE jp_type) {
     if (IsJobPointExist(jp_type))
     {
-        return &job_points[JOBPOINTS_CATEGORY_BY_JPTYPE(jp_type)];
+        return &job_points[JobPointsCategoryByJpType(jp_type)];
     }
     return nullptr;
 }
@@ -86,7 +86,7 @@ JobPointType_t* CJobPoints::GetJobPointType(JOBPOINT_TYPE jp_type)
 {
     if (IsJobPointExist(jp_type))
     {
-        return &job_points[JOBPOINTS_CATEGORY_BY_JPTYPE(jp_type)].job_point_types[JOBPOINTS_JPTYPE_INDEX(jp_type)];
+        return &job_points[JobPointsCategoryByJpType(jp_type)].job_point_types[JobPointTypeIndex(jp_type)];
     }
     return nullptr;
 }
@@ -96,14 +96,14 @@ void CJobPoints::RaiseJobPoint(JOBPOINT_TYPE jp_type)
     JobPoints_t* job = GetJobPointsByType(jp_type);
     JobPointType_t* job_point = GetJobPointType(jp_type);
 
-    uint8 cost = JOBPOINTS_NEXT_COST(job_point->value);
+    uint8 cost = JobPointCost(job_point->value);
     if(cost != 0 && job->job_points >= cost) 
     {
         job->job_points -= cost;
         job->job_points_spent += cost;
         job_point->value += 1;
         Sql_Query(SqlHandle, "UPDATE char_job_points SET jptype%u='%u', job_points='%u', job_points_spent='%u' WHERE charid='%u' AND jobid='%u'", 
-            JOBPOINTS_JPTYPE_INDEX(job_point->id), job_point->value, job->job_points, job->job_points_spent, jp_PChar->id, job->jobid);
+            JobPointTypeIndex(job_point->id), job_point->value, job->job_points, job->job_points_spent, jp_PChar->id, job->jobid);
     }
 
 }
