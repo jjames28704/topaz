@@ -349,7 +349,7 @@ end
 
 function doEnspell(caster, target, spell, effect)
     if effect == tpz.effect.BLOOD_WEAPON then
-        target:addStatusEffect(dsp.effect.BLOOD_WEAPON, 1, 0, 30)
+        target:addStatusEffect(tpz.effect.BLOOD_WEAPON, 1, 0, 30)
         return
     end
 
@@ -466,9 +466,11 @@ function getCureFinal(caster, spell, basecure, minCure, isBlueMagic)
         dayWeatherBonus = 1.4
     end
 
-    local final = math.floor(math.floor(math.floor(math.floor(basecure) * potency) * dayWeatherBonus) * rapture) * dSeal
-    return final
-end
+    local final = math.floor(math.floor(math.floor(math.floor(basecure) * potency) * dayWeatherBonus) * rapture) * dSeal;
+
+    --whm job point afflatus solace
+    return final;
+end;
 
 function getCureAsNukeFinal(caster,spell,power,divisor,constant,basepower)
     return getCureFinal(caster,spell,power,divisor,constant,basepower)
@@ -770,6 +772,9 @@ function getSpellBonusAcc(caster, target, spell, params)
     --blm job point: macc bonus +1
     magicAccBonus = magicAccBonus + caster:getJobPointValue(tpz.jp.BLM_MAGIC_ACC_BONUS)
 
+    --whm job point: macc bonus +1
+    magicAccBonus = magicAccBonus + caster:getJobPointValue(tpz.jp.WHM_MAGIC_ACC_BONUS)
+
     -- BLU mag acc merits - nuke acc is handled in bluemagic.lua
     if (skill == tpz.skill.BLUE_MAGIC) then
         magicAccBonus = magicAccBonus + caster:getMerit(tpz.merit.MAGICAL_ACCURACY)
@@ -927,7 +932,7 @@ function calculateMagicBurst(caster, spell, target, params)
     end
 
     -- blm job point: magic burst damage
-    modburst = modburst + (caster:getJobPointValue(dsp.jp.MAGIC_BURST_DMG_BONUS)/100)
+    modburst = modburst + (caster:getJobPointValue(tpz.jp.MAGIC_BURST_DMG_BONUS)/100)
 
     -- Cap bonuses from first multiplier at 40% or 1.4
     if (modburst > 1.4) then
@@ -1064,7 +1069,7 @@ function addBonuses(caster, spell, target, dmg, params)
         mab = mab + caster:getJobPointValue(tpz.jp.RDM_MAGIC_ATK_BONUS);
         mab = mab + caster:getJobPointValue(tpz.jp.GEO_MAGIC_ATK_BONUS);
 
-        mabbonus = (100 + mab) / (100 + target:getMod(dsp.mod.MDEF) + mdefBarBonus);
+        mabbonus = (100 + mab) / (100 + target:getMod(tpz.mod.MDEF) + mdefBarBonus);
     end
 
     if (mabbonus < 0) then
@@ -1530,13 +1535,13 @@ function calculateDuration(duration, magicSkill, spellGroup, caster, target, use
 
         -- rdm job point: enhancing duration +1 second
         duration = duration + caster:getJobPointValue(tpz.jp.ENHANCING_DURATION)
-    elseif magicSkill == dsp.skill.ENFEEBLING_MAGIC then -- Enfeebling Magic
-        if caster:hasStatusEffect(dsp.effect.SABOTEUR) then
+    elseif magicSkill == tpz.skill.ENFEEBLING_MAGIC then -- Enfeebling Magic
+        if caster:hasStatusEffect(tpz.effect.SABOTEUR) then
             duration = duration * 2
         end
 
         -- After Saboteur according to bg-wiki
-        duration = duration + caster:getMerit(dsp.merit.ENFEEBLING_MAGIC_DURATION)
+        duration = duration + caster:getMerit(tpz.merit.ENFEEBLING_MAGIC_DURATION)
 
         -- rdm job point: enfeebling magic duration +1 second
         duration = duration + caster:getJobPointValue(tpz.jp.ENFEEBLE_DURATION)

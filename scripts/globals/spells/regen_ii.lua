@@ -18,6 +18,7 @@ function onSpellCast(caster, target, spell)
 
     local duration = calculateDuration(60 + caster:getMod(tpz.mod.REGEN_DURATION), spell:getSkillType(), spell:getSpellGroup(), caster, target)
     duration = calculateDurationForLvl(duration, 44, target:getMainLvl())
+    duration = duration + (caster:getJobPointValue(dsp.jp.REGEN_DURATION) * 3)
 
     if target:addStatusEffect(tpz.effect.REGEN, hp, 0, duration) then
         spell:setMsg(tpz.msg.basic.MAGIC_GAIN_EFFECT)
