@@ -2080,28 +2080,28 @@ local JPCATEGORY_RUN      = 0x2C0
 dsp.jp = {
     
     --WAR
-    MIGHTY_STRIKES_EFFECT    = JPCATEGORY_WAR + 0x00, --p.acc +2
-    BRAZEN_RUSH_EFFECT       = JPCATEGORY_WAR + 0x01, --p.atk +4
-    BERSERK_EFFECT           = JPCATEGORY_WAR + 0x02, --p.atk +2
-    DEFENDER_EFFECT          = JPCATEGORY_WAR + 0x03, --p.def +3
-    WARCRY_EFFECT            = JPCATEGORY_WAR + 0x04, --p.atk +3
-    AGGRESSOR_EFFECT         = JPCATEGORY_WAR + 0x05, --p.acc +1
-    RETALIATION_EFFECT       = JPCATEGORY_WAR + 0x06, --retaliation chance +1
-    RESTRAINT_EFFECT         = JPCATEGORY_WAR + 0x07, --time to max ws bonus -2%
-    BLOOD_RAGE_EFFECT        = JPCATEGORY_WAR + 0x08, --crit. hit rate +1
-    DOUBLE_ATTACK_EFFECT     = JPCATEGORY_WAR + 0x09, --double attack p.atk +1
+    MIGHTY_STRIKES_EFFECT    = JPCATEGORY_WAR + 0x00, --O p.acc +2
+    BRAZEN_RUSH_EFFECT       = JPCATEGORY_WAR + 0x01, --X p.atk +4
+    BERSERK_EFFECT           = JPCATEGORY_WAR + 0x02, --O p.atk +2
+    DEFENDER_EFFECT          = JPCATEGORY_WAR + 0x03, --O p.def +3
+    WARCRY_EFFECT            = JPCATEGORY_WAR + 0x04, --O p.atk +3
+    AGGRESSOR_EFFECT         = JPCATEGORY_WAR + 0x05, --O p.acc +1
+    RETALIATION_EFFECT       = JPCATEGORY_WAR + 0x06, --X retaliation chance +1
+    RESTRAINT_EFFECT         = JPCATEGORY_WAR + 0x07, --X time to max ws bonus -2%
+    BLOOD_RAGE_EFFECT        = JPCATEGORY_WAR + 0x08, --X crit. hit rate +1
+    DOUBLE_ATTACK_EFFECT     = JPCATEGORY_WAR + 0x09, --X double attack p.atk +1
 
     --MNK
-    HUNDRED_FIRTS_EFFECT     = JPCATEGORY_MNK + 0x00, --p.acc +2
-    INNER_STRENGTH_EFFECT    = JPCATEGORY_MNK + 0x01, --hp recovered +2%
-    DODGE_EFFECT             = JPCATEGORY_MNK + 0x02, --evasion +2
-    FOCUS_EFFECT             = JPCATEGORY_MNK + 0x03, --accuracy +1
-    CHAKRA_EFFECT            = JPCATEGORY_MNK + 0x04, --hp recovered from use +10
-    COUNTERSTANCE_EFFECT     = JPCATEGORY_MNK + 0x05, --DEX +2
-    FOOTWORK_EFFECT          = JPCATEGORY_MNK + 0x06, --kick attack dmg +1
-    PERFECT_COUNTER_EFFECT   = JPCATEGORY_MNK + 0x07, --VIT bonus +1
-    IMPETUS_EFFECT           = JPCATEGORY_MNK + 0x08, --maximum p.atk +2
-    KICK_ATTACKS_EFFECT      = JPCATEGORY_MNK + 0x09, --kick attacks atk +2 acc +1
+    HUNDRED_FISTS_EFFECT     = JPCATEGORY_MNK + 0x00, --O p.acc +2
+    INNER_STRENGTH_EFFECT    = JPCATEGORY_MNK + 0x01, --X hp recovered +2%
+    DODGE_EFFECT             = JPCATEGORY_MNK + 0x02, --O evasion +2
+    FOCUS_EFFECT             = JPCATEGORY_MNK + 0x03, --O accuracy +1
+    CHAKRA_EFFECT            = JPCATEGORY_MNK + 0x04, --O hp recovered from use +10
+    COUNTERSTANCE_EFFECT     = JPCATEGORY_MNK + 0x05, --O DEX +2
+    FOOTWORK_EFFECT          = JPCATEGORY_MNK + 0x06, --O kick attack dmg +1
+    PERFECT_COUNTER_EFFECT   = JPCATEGORY_MNK + 0x07, --O VIT bonus +1
+    IMPETUS_EFFECT           = JPCATEGORY_MNK + 0x08, --X maximum p.atk +2
+    KICK_ATTACKS_EFFECT      = JPCATEGORY_MNK + 0x09, --X kick attacks atk +2 acc +1
 
     --WHM
     BENEDICTION_EFFECT       = JPCATEGORY_WHM + 0x00, --X mp recovered +1%
@@ -2140,10 +2140,10 @@ dsp.jp = {
     ENHANCING_DURATION       = JPCATEGORY_RDM + 0x09, --O dur. +1s
 
     --THF
-    PERFECT_DODGE_EFFECT     = JPCATEGORY_THF + 0x00, --m.eva +3
-    LARCENY_EFFECT           = JPCATEGORY_THF + 0x01, --dur. +1s
-    SNEAK_ATTACK_EFFECT      = JPCATEGORY_THF + 0x02, --DEX bonus +1%
-    TRICK_ATTACK_EFFECT      = JPCATEGORY_THF + 0x03, --AGI bonus +1%
+    PERFECT_DODGE_EFFECT     = JPCATEGORY_THF + 0x00, --O m.eva +3
+    LARCENY_EFFECT           = JPCATEGORY_THF + 0x01, --X dur. +1s
+    SNEAK_ATTACK_EFFECT      = JPCATEGORY_THF + 0x02, --O DEX bonus +1%
+    TRICK_ATTACK_EFFECT      = JPCATEGORY_THF + 0x03, --O AGI bonus +1%
     STEAL_RECAST             = JPCATEGORY_THF + 0x04, --recast -2s
     MUG_EFFECT               = JPCATEGORY_THF + 0x05, --drain HP == 5% (DEX + AGI)
     DESPOIL_EFFECT           = JPCATEGORY_THF + 0x06, --drain 2% tp

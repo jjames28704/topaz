@@ -7,12 +7,14 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(tpz.mod.ACC,effect:getPower())
+   local jp_value = target:getJobPointValue(tpz.jp.FOCUS_EFFECT)
+   target:addMod(tpz.mod.ACC,effect:getPower() + jp_value)
 end
 
 function onEffectTick(target,effect)
 end
 
 function onEffectLose(target,effect)
-   target:delMod(tpz.mod.ACC,effect:getPower())
+   local jp_value = target:getJobPointValue(tpz.jp.FOCUS_EFFECT)
+   target:delMod(tpz.mod.ACC,effect:getPower() + jp_value)
 end
