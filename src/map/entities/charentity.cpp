@@ -78,7 +78,7 @@
 #include "../packets/char_job_extra.h"
 #include "../packets/status_effects.h"
 #include "../mobskill.h"
-
+#include "../job_points.h"
 
 CCharEntity::CCharEntity()
 {
