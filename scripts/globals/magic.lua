@@ -775,6 +775,11 @@ function getSpellBonusAcc(caster, target, spell, params)
     --whm job point: macc bonus +1
     magicAccBonus = magicAccBonus + caster:getJobPointValue(tpz.jp.WHM_MAGIC_ACC_BONUS)
 
+    --ninja job point
+    if(skill == tpz.skill.NINJUTSU) then
+        magicAccBonus = magicAccBonus + caster:getJobPointValue(tpz.jp.NINJITSU_ACC_BONUS)
+    end
+
     -- BLU mag acc merits - nuke acc is handled in bluemagic.lua
     if (skill == tpz.skill.BLUE_MAGIC) then
         magicAccBonus = magicAccBonus + caster:getMerit(tpz.merit.MAGICAL_ACCURACY)
@@ -1463,13 +1468,15 @@ function doNuke(caster, target, spell, params)
             else -- san nuke spell, also has ids 1 more than their corresponding ni spell
                 ninSkillBonus = 100 + math.floor((caster:getSkillLevel(tpz.skill.NINJUTSU) - 275)/2)
             end
-            ninSkillBonus = utils.clamp(ninSkillBonus, 100, 200) -- bonus caps at +100%, and does not go negative
-            dmg = dmg * ninSkillBonus/100
+            ninSkillBonus = utils.clamp(ninSkillBonus, 100, 200); -- bonus caps at +100%, and does not go negative
+            dmg = dmg + (caster:getJobPointValue(tpz.jp.ELEM_NINJITSU_EFFECT) * 2)
+            dmg = dmg * ninSkillBonus/100;
         end
         -- boost with Futae
         if (caster:hasStatusEffect(tpz.effect.FUTAE)) then
-            dmg = math.floor(dmg * 1.50)
-            caster:delStatusEffect(tpz.effect.FUTAE)
+            dmg = dmg + (caster:getJobPointValue(tpz.jp.FUTAE_EFECT) * 5)
+            dmg = math.floor(dmg * 1.50);
+            caster:delStatusEffect(tpz.effect.FUTAE);
         end
     end
 

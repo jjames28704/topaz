@@ -214,7 +214,7 @@ enum JOBPOINT_TYPE : uint16
     JP_MIJIN_GAUKURE_EFFECT     = JPCATEGORY_NIN + 0x00, //dmg +3%
     JP_MIKAGE_EFFECT            = JPCATEGORY_NIN + 0x01, //p.atk +3
     JP_YONIN_EFFECT             = JPCATEGORY_NIN + 0x02, //p.eva +2
-    JP_ININ_EFFECT              = JPCATEGORY_NIN + 0x03, //p.acc +1
+    JP_INNIN_EFFECT              = JPCATEGORY_NIN + 0x03, //p.acc +1
     JP_NINJITSU_ACC_BONUS       = JPCATEGORY_NIN + 0x04, //ninjitsu acc +1
     JP_NINJITSU_CAST_TIME_BONUS = JPCATEGORY_NIN + 0x05, //casting time -1%
     JP_FUTAE_EFFECT             = JPCATEGORY_NIN + 0x06, //m.dmg +5

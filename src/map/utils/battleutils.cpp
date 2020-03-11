@@ -4339,7 +4339,9 @@ namespace battleutils
         if (PAttacker->objtype == TYPE_MOB &&
              PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ISSEKIGAN)) {
             // Issekigan is Known to Grant 300 CE per parry, but unknown how it effects VE (per bgwiki). So VE is left alone for now.
-            static_cast<CMobEntity*>(PAttacker)->PEnmityContainer->UpdateEnmity(PDefender, 300, 0, false);
+            // JP is known to give 10 VE per point
+            uint16 jp_bonus = ((CCharEntity*)PDefender)->PJobPoints->GetJobPointValue(JP_ISSEKIGAN_EFFECT) * 10;
+            static_cast<CMobEntity*>(PAttacker)->PEnmityContainer->UpdateEnmity(PDefender, 300, 0 + jp_bonus, false);
         }
     }
 
@@ -5178,6 +5180,13 @@ namespace battleutils
             }
             uint16 songcasting = PEntity->getMod(Mod::SONG_SPELLCASTING_TIME);
             cast = (uint32)(cast * (1.0f - ((songcasting > 50 ? 50 : songcasting) / 100.0f)));
+        }
+        else if(PSpell->getSpellGroup() == SPELLGROUP_NINJUTSU) 
+        {
+            if(PEntity->objtype == TYPE_PC) {
+                uint8 jp_value = ((CCharEntity*)PEntity)->PJobPoints->GetJobPointValue(JP_NINJITSU_CAST_TIME_BONUS);
+                cast = (uint32)(cast * (1.0f - (0.03f * jp_value)));
+            }
         }
 
         int16 fastCast = std::clamp<int16>(PEntity->getMod(Mod::FASTCAST), -100, 50);
