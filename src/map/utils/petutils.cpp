@@ -45,6 +45,7 @@ This file is part of DarkStar-server source code.
 #include "../enmity_container.h"
 #include "../items/item_weapon.h"
 #include "../zone_instance.h"
+#include "../job_points.h"
 
 #include "../ai/ai_container.h"
 #include "../ai/controllers/mob_controller.h"
@@ -1787,6 +1788,13 @@ namespace petutils
         //Set D evasion and def
         PPet->setModifier(Mod::EVA, battleutils::GetMaxSkill(SKILL_HAND_TO_HAND, JOB_WAR, PPet->GetMLevel()));
         PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(SKILL_HAND_TO_HAND, JOB_WAR, PPet->GetMLevel()));
+        //JP Max HP
+        if (PMaster->objtype == TYPE_PC) {
+            uint8 jp_value = ((CCharEntity*)PMaster)->PJobPoints->GetJobPointValue(JP_WYVERN_MAX_HP_BONUS);
+            if (jp_value > 0) {
+                PPet->addModifier(Mod::HP, jp_value * 10);
+            }
+        }
 
         if (finalize)
             FinalizePetStatistics(PMaster, PPet);

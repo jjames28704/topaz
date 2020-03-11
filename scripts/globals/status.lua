@@ -2235,16 +2235,16 @@ dsp.jp = {
     TACTICAL_PARRY_EFFECT    = JPCATEGORY_NIN + 0x09, --X counter when parry +1%
 
     --DRG
-    SPIRIT_SURGE_EFFECT      = JPCATEGORY_DRG + 0x00, --Weapon DMG +1
-    FLY_HIGH_EFFECT          = JPCATEGORY_DRG + 0x01, --all jump p.atk +5
-    ANCIENT_CIRCLE_EFFECT    = JPCATEGORY_DRG + 0x02, --dmg taken -1
-    JUMP_EFFECT              = JPCATEGORY_DRG + 0x03, --jump/spirit jump p.atk +3
-    SPIRIT_LINK_EFFECT       = JPCATEGORY_DRG + 0x04, --hp consumption -1%
-    WYVERN_MAX_HP_BONUS      = JPCATEGORY_DRG + 0x05, --wyvern max hp +10
-    DRAGON_BREAKER_DURATION  = JPCATEGORY_DRG + 0x06, --dur. +1s
-    WYVERN_BREATH_EFFECT     = JPCATEGORY_DRG + 0x07, --breath effect +10
-    HIGH_JUMP_EFFECT         = JPCATEGORY_DRG + 0x08, --high jump/soul jump atk +3
-    WYVERN_ATTR_BONUS        = JPCATEGORY_DRG + 0x09, --wyvern p.atk/p.def +2
+    SPIRIT_SURGE_EFFECT      = JPCATEGORY_DRG + 0x00, --O Weapon DMG +1
+    FLY_HIGH_EFFECT          = JPCATEGORY_DRG + 0x01, --X all jump p.atk +5
+    ANCIENT_CIRCLE_EFFECT    = JPCATEGORY_DRG + 0x02, --X dmg taken -1
+    JUMP_EFFECT              = JPCATEGORY_DRG + 0x03, --X jump/spirit jump p.atk +3 -- missing spirit jump
+    SPIRIT_LINK_EFFECT       = JPCATEGORY_DRG + 0x04, --O hp consumption -1%
+    WYVERN_MAX_HP_BONUS      = JPCATEGORY_DRG + 0x05, --O wyvern max hp +10
+    DRAGON_BREAKER_DURATION  = JPCATEGORY_DRG + 0x06, --X dur. +1s
+    WYVERN_BREATH_EFFECT     = JPCATEGORY_DRG + 0x07, --X breath effect +10
+    HIGH_JUMP_EFFECT         = JPCATEGORY_DRG + 0x08, --O high jump/soul jump atk +3
+    WYVERN_ATTR_BONUS        = JPCATEGORY_DRG + 0x09, --X player p.atk/p.def +2 when wyvern boosted
 
     --SMN
     ASTRAL_FLOW_EFFECT       = JPCATEGORY_SMN + 0x00, --all pet attr. +5
