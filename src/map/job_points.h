@@ -24,6 +24,7 @@
 #ifndef _CJOBPOINTS_H
 #define _CJOBPOINTS_H
 
+#include "ability.h"
 #include "../common/cbasetypes.h"
 #include "./entities/battleentity.h"
 
@@ -405,7 +406,7 @@ class CJobPoints
         /**
          * Calculate the bonus recast reduction from Job Points
          */
-        uint8   GetRecastReduction(uint16 ability_id);
+        uint8   GetRecastReduction(ABILITY ability_id);
 
     private:
         CCharEntity*    jp_PChar;
