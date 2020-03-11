@@ -2197,10 +2197,10 @@ dsp.jp = {
     TENUTO_EFFECT            = JPCATEGORY_BRD + 0x06, --X song dur. +1s
     LULLABY_DURATION         = JPCATEGORY_BRD + 0x07, --O lullaby dur. +1
     MARCATO_EFFECT           = JPCATEGORY_BRD + 0x08, --X song dur. +1s
-    REQUIEM_EFFECT           = JPCATEGORY_BRD + 0x09, --dot dmg +3
+    REQUIEM_EFFECT           = JPCATEGORY_BRD + 0x09, --O dot dmg +3
 
     --RNG
-    EAGLE_EYE_SHOT_EFFECT    = JPCATEGORY_RNG + 0x00, --dmg +3%
+    EAGLE_EYE_SHOT_EFFECT    = JPCATEGORY_RNG + 0x00, --O dmg +3%
     OVERKILL_EFFECT          = JPCATEGORY_RNG + 0x01, --emnity -1
     SHARPSHOT_EFFECT         = JPCATEGORY_RNG + 0x02, --r.atk +2
     CAMOUFLAGE_EFFECT        = JPCATEGORY_RNG + 0x03, --crit. hit rate +1%
