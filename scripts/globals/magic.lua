@@ -764,7 +764,7 @@ function getSpellBonusAcc(caster, target, spell, params)
     end
 
     --rdm job point: during saboteur, enfeebling macc +2
-    if (skill = tpz.skill.ENFEEBLING_MAGIC and caster:hasStatusEffect(tpz.effect.SABOTEUR)) then
+    if (skill == tpz.skill.ENFEEBLING_MAGIC and caster:hasStatusEffect(tpz.effect.SABOTEUR)) then
         local jp_value = caster:getJobPointValue(tpz.jp.SABOTEUR_EFFECT)
         magicAccBonus = magicAccBonus + (jp_value * 2)
     end
