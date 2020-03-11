@@ -73,6 +73,7 @@
 #include "../ai/states/magic_state.h"
 #include "../utils/petutils.h"
 #include "zoneutils.h"
+#include "../job_points.h"
 
 
 /************************************************************************
@@ -938,7 +939,15 @@ namespace battleutils
                 Action->additionalEffect = SUBEFFECT_HP_DRAIN;
                 Action->addEffectMessage = 161;
 
-                Action->addEffectParam = PAttacker->addHP(Action->param);
+                // 2% additional per job point
+                uint32 absorbed = Action->param;
+                if (PAttacker->objtype == TYPE_PC) {
+                    absorbed += (uint32)floor(
+                        absorbed * 0.02f * static_cast<CCharEntity*>(PAttacker)->PJobPoints->GetJobPointValue(JP_BLOOD_WEAPON_EFFECT)
+                    );
+                }
+
+                Action->addEffectParam = PAttacker->addHP(absorbed);
 
                 if (PChar != nullptr) {
                     PChar->updatemask |= UPDATE_HP;
