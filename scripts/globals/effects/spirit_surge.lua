@@ -19,6 +19,9 @@ function onEffectGain(target, effect)
 
     -- The dragoon gets 25% Haste (see http://wiki.bluegartr.com/bg/Job_Ability_Haste for haste calculation)
     target:addMod(tpz.mod.HASTE_ABILITY, 2500)
+
+    -- DMG + 1 * JP
+    target:addMod(tpz.mod.MAIN_DMG_RATING, target:getJobPointValue(tpz.jp.SPIRIT_SURGE_EFFECT))
 end
 
 function onEffectTick(target, effect)
@@ -36,4 +39,6 @@ function onEffectLose(target, effect)
 
     -- The dragoon loses 25% Haste
     target:delMod(tpz.mod.HASTE_ABILITY, 2500)
+
+    target:delMod(tpz.mod.MAIN_DMG_RATING, target:getJobPointValue(tpz.jp.SPIRIT_SURGE_EFFECT))
 end
