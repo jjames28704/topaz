@@ -125,10 +125,10 @@ uint8 CJobPoints::GetJobPointValue(JOBPOINT_TYPE jp_type)
     return 0;
 }
 
-namespace jobpointutils
+uint8 CJobPoints::GetRecastReduction(uint16 ability_id)
 {
-    void LoadJobPointsList()
-    {
-
-    };
+    switch(ability_id) {
+        JP_ABILITY_RECAST::SNEAK:
+            return jp_PChar->GetMJob() == JOBTYPE::JOB_THF ? GetJobPointValue(JOBPOINT_TYPE::JP_STEAL_RECAST) * 2 : 0;
+    }
 }

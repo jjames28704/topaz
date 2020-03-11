@@ -78,7 +78,7 @@ enum JOBPOINT_TYPE : uint16
     JP_DOUBLE_ATTACK_EFFECT     = JPCATEGORY_WAR + 0x09, //double attack p.atk +1
 
     //MNK
-    JP_HUNDRED_FIRTS_EFFECT     = JPCATEGORY_MNK + 0x00, //p.acc +2
+    JP_HUNDRED_FISTS_EFFECT     = JPCATEGORY_MNK + 0x00, //p.acc +2
     JP_INNER_STRENGTH_EFFECT    = JPCATEGORY_MNK + 0x01, //hp recovered +2%
     JP_DODGE_EFFECT             = JPCATEGORY_MNK + 0x02, //evasion +2
     JP_FOCUS_EFFECT             = JPCATEGORY_MNK + 0x03, //accuracy +1
@@ -330,6 +330,13 @@ enum JOBPOINT_TYPE : uint16
     JP_GAMBIT_DURATION          = JPCATEGORY_RUN + 0x09, //dur +1s
 };
 
+/**
+ * Abilities recast modified by Job Points Effects
+ */
+enum JP_ABILITY_RECAST : uint16 {
+    SNEAK = 28
+};
+
 #define JOBPOINTS_CATEGORY_COUNT 22
 #define JOBPOINTS_CATEGORY_START 0x020
 #define JOBPOINTS_JPTYPE_COUNT 220
@@ -394,13 +401,14 @@ class CJobPoints
          */
         uint8    GetJobPointValue(JOBPOINT_TYPE jp_type);
 
+        /**
+         * Calculate the bonus recast reduction from Job Points
+         */
+        uint8   GetRecastReduction(uint16 ability_id);
+
     private:
         CCharEntity*    jp_PChar;
         JobPoints_t     job_points[MAX_JOBTYPE];
 };
-
-namespace jobpointutils {
-    void    LoadJobPointsList();
-}
 
 #endif
