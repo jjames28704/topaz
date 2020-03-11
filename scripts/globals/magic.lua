@@ -610,6 +610,11 @@ function getSpellBonusAcc(caster, target, spell, params)
     --whm job point: macc bonus +1
     magicAccBonus = magicAccBonus + caster:getJobPointValue(dsp.jp.WHM_MAGIC_ACC_BONUS)
 
+    --ninja job point
+    if(skill == dsp.skill.NINJUTSU) then
+        magicAccBonus = magicAccBonus + caster:getJobPointValue(dsp.jp.NINJITSU_ACC_BONUS)
+    end
+
     -- BLU mag acc merits - nuke acc is handled in bluemagic.lua
     if (skill == dsp.skill.BLUE_MAGIC) then
         magicAccBonus = magicAccBonus + caster:getMerit(dsp.merit.MAGICAL_ACCURACY);
@@ -1309,10 +1314,12 @@ function doNuke(caster, target, spell, params)
                 ninSkillBonus = 100 + math.floor((caster:getSkillLevel(dsp.skill.NINJUTSU) - 275)/2);
             end
             ninSkillBonus = utils.clamp(ninSkillBonus, 100, 200); -- bonus caps at +100%, and does not go negative
+            dmg = dmg + (caster:getJobPointValue(dsp.jp.ELEM_NINJITSU_EFFECT) * 2)
             dmg = dmg * ninSkillBonus/100;
         end
         -- boost with Futae
         if (caster:hasStatusEffect(dsp.effect.FUTAE)) then
+            dmg = dmg + (caster:getJobPointValue(dsp.jp.FUTAE_EFECT) * 5)
             dmg = math.floor(dmg * 1.50);
             caster:delStatusEffect(dsp.effect.FUTAE);
         end

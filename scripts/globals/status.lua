@@ -2200,39 +2200,39 @@ dsp.jp = {
 
     --RNG
     EAGLE_EYE_SHOT_EFFECT    = JPCATEGORY_RNG + 0x00, --O dmg +3%
-    OVERKILL_EFFECT          = JPCATEGORY_RNG + 0x01, --emnity -1
-    SHARPSHOT_EFFECT         = JPCATEGORY_RNG + 0x02, --r.atk +2
-    CAMOUFLAGE_EFFECT        = JPCATEGORY_RNG + 0x03, --crit. hit rate +1%
-    BARRAGE_EFFECT           = JPCATEGORY_RNG + 0x04, --r.atk +3
-    SHADOWBIND_DURATION      = JPCATEGORY_RNG + 0x05, --dur. +1s
-    VELOCITY_SHOT_EFFECT     = JPCATEGORY_RNG + 0x06, --r.atk +2
-    DOUBLE_SHOT_EFFECT       = JPCATEGORY_RNG + 0x07, --chance +1%
-    DECOY_SHOT_EFFECT        = JPCATEGORY_RNG + 0x08, --max emnity vol. +15, cum. +5
-    UNLIMITED_SHOT_EFFECT    = JPCATEGORY_RNG + 0x09, --emnity -2
+    OVERKILL_EFFECT          = JPCATEGORY_RNG + 0x01, --X emnity -1
+    SHARPSHOT_EFFECT         = JPCATEGORY_RNG + 0x02, --O r.atk +2
+    CAMOUFLAGE_EFFECT        = JPCATEGORY_RNG + 0x03, --O crit. hit rate +1%
+    BARRAGE_EFFECT           = JPCATEGORY_RNG + 0x04, --O r.atk +3
+    SHADOWBIND_DURATION      = JPCATEGORY_RNG + 0x05, --O dur. +1s
+    VELOCITY_SHOT_EFFECT     = JPCATEGORY_RNG + 0x06, --O r.atk +2
+    DOUBLE_SHOT_EFFECT       = JPCATEGORY_RNG + 0x07, --O chance +1%
+    DECOY_SHOT_EFFECT        = JPCATEGORY_RNG + 0x08, --X max emnity vol. +15, cum. +5
+    UNLIMITED_SHOT_EFFECT    = JPCATEGORY_RNG + 0x09, --O emnity -2
 
     --SAM
-    MEIKYO_SHISUI_EFFECT     = JPCATEGORY_SAM + 0x00, --sc dmg +2%
-    YAEGASUMI_EFFECT         = JPCATEGORY_SAM + 0x01, --tp bonus +30
-    WARDING_CIRCLE_EFFECT    = JPCATEGORY_SAM + 0x02, --dmg taken -1
-    HASSO_EFFECT             = JPCATEGORY_SAM + 0x03, --STR +1
-    MEDITATE_EFFECT          = JPCATEGORY_SAM + 0x04, --tp +5 per tick
-    SEIGAN_EFFECT            = JPCATEGORY_SAM + 0x05, --p.def +3
-    KONZEN_ITTAI_EFFECT      = JPCATEGORY_SAM + 0x06, --sc dmg +1%
-    HAMANOHA_DURATION        = JPCATEGORY_SAM + 0x07, --dur. +1s
-    HAGAKURE_EFFECT          = JPCATEGORY_SAM + 0x08, --tp bonus +10
-    ZANSHIN_EFFECT           = JPCATEGORY_SAM + 0x09, --zanshin follow-ups p.atk +2
+    MEIKYO_SHISUI_EFFECT     = JPCATEGORY_SAM + 0x00, --O sc dmg +2%
+    YAEGASUMI_EFFECT         = JPCATEGORY_SAM + 0x01, --X tp bonus +30
+    WARDING_CIRCLE_EFFECT    = JPCATEGORY_SAM + 0x02, --X dmg taken -1
+    HASSO_EFFECT             = JPCATEGORY_SAM + 0x03, --O STR +1
+    MEDITATE_EFFECT          = JPCATEGORY_SAM + 0x04, --O tp +5 per tick
+    SEIGAN_EFFECT            = JPCATEGORY_SAM + 0x05, --O p.def +3
+    KONZEN_ITTAI_EFFECT      = JPCATEGORY_SAM + 0x06, --X sc dmg +1%
+    HAMANOHA_DURATION        = JPCATEGORY_SAM + 0x07, --X dur. +1s
+    HAGAKURE_EFFECT          = JPCATEGORY_SAM + 0x08, --O tp bonus +10
+    ZANSHIN_EFFECT           = JPCATEGORY_SAM + 0x09, --X zanshin follow-ups p.atk +2
 
     --NIN
-    MIJIN_GAUKURE_EFFECT     = JPCATEGORY_NIN + 0x00, --dmg +3%
-    MIKAGE_EFFECT            = JPCATEGORY_NIN + 0x01, --p.atk +3
-    YONIN_EFFECT             = JPCATEGORY_NIN + 0x02, --p.eva +2
-    ININ_EFFECT              = JPCATEGORY_NIN + 0x03, --p.acc +1
-    NINJITSU_ACC_BONUS       = JPCATEGORY_NIN + 0x04, --ninjitsu acc +1
-    NINJITSU_CAST_TIME_BONUS = JPCATEGORY_NIN + 0x05, --casting time -1%
-    FUTAE_EFFECT             = JPCATEGORY_NIN + 0x06, --m.dmg +5
-    ELEM_NINJITSU_EFFECT     = JPCATEGORY_NIN + 0x07, --m.dmg +2
-    ISSEKIGAN_EFFECT         = JPCATEGORY_NIN + 0x08, --vol. emnity +10
-    TACTICAL_PARRY_EFFECT    = JPCATEGORY_NIN + 0x09, --counter when parry +1%
+    MIJIN_GAUKURE_EFFECT     = JPCATEGORY_NIN + 0x00, --O dmg +3%
+    MIKAGE_EFFECT            = JPCATEGORY_NIN + 0x01, --O p.atk +3
+    YONIN_EFFECT             = JPCATEGORY_NIN + 0x02, --O p.eva +2
+    INNIN_EFFECT             = JPCATEGORY_NIN + 0x03, --O p.acc +1
+    NINJITSU_ACC_BONUS       = JPCATEGORY_NIN + 0x04, --O ninjitsu acc +1
+    NINJITSU_CAST_TIME_BONUS = JPCATEGORY_NIN + 0x05, --O casting time -1%
+    FUTAE_EFFECT             = JPCATEGORY_NIN + 0x06, --O m.dmg +5
+    ELEM_NINJITSU_EFFECT     = JPCATEGORY_NIN + 0x07, --O m.dmg +2
+    ISSEKIGAN_EFFECT         = JPCATEGORY_NIN + 0x08, --O vol. emnity +10
+    TACTICAL_PARRY_EFFECT    = JPCATEGORY_NIN + 0x09, --X counter when parry +1%
 
     --DRG
     SPIRIT_SURGE_EFFECT      = JPCATEGORY_DRG + 0x00, --Weapon DMG +1
