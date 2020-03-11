@@ -331,10 +331,11 @@ enum JOBPOINT_TYPE : uint16
 };
 
 /**
- * Abilities recast modified by Job Points Effects
+ * Abilities modified by 
  */
-enum JP_ABILITY_RECAST : uint16 {
-    SNEAK = 28
+enum JP_MODIFICATIONS : uint16 
+{
+    JP_STEAL_ID = 28
 };
 
 #define JOBPOINTS_CATEGORY_COUNT 22
