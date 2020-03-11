@@ -2176,27 +2176,27 @@ dsp.jp = {
     ENDARK_EFFECT            = JPCATEGORY_DRK + 0x09, --O enspell dmg, p.atk, p.acc +1
 
     --BST
-    FAMILIAR_EFFECT          = JPCATEGORY_BST + 0x00, --all pet attr. +3
-    UNLEASH_EFFECT           = JPCATEGORY_BST + 0x01, --sp.atk dmg +2%
-    PET_ACC_BONUS            = JPCATEGORY_BST + 0x02, --pet p.acc +1
-    CHARM_SUCCESS_RATE       = JPCATEGORY_BST + 0x03, --success rate +1%
-    REWARD_EFFECT            = JPCATEGORY_BST + 0x04, --pet hp recov. +1%
-    PET_ATK_SPD_BONUS        = JPCATEGORY_BST + 0x05, --pet atk spd +1%
-    READY_EFFECT             = JPCATEGORY_BST + 0x06, --pet sp.ability dmg +1%
-    SPUR_EFFECT              = JPCATEGORY_BST + 0x07, --pet p.atk +3
-    RUN_WILD_DURATION        = JPCATEGORY_BST + 0x08, --dur. +2s
-    PET_EMNITY_BONUS         = JPCATEGORY_BST + 0x09, --emnity +1
+    FAMILIAR_EFFECT          = JPCATEGORY_BST + 0x00, --X all pet attr. +3
+    UNLEASH_EFFECT           = JPCATEGORY_BST + 0x01, --X sp.atk dmg +2%
+    PET_ACC_BONUS            = JPCATEGORY_BST + 0x02, --X pet p.acc +1
+    CHARM_SUCCESS_RATE       = JPCATEGORY_BST + 0x03, --X success rate +1%
+    REWARD_EFFECT            = JPCATEGORY_BST + 0x04, --X pet hp recov. +1%
+    PET_ATK_SPD_BONUS        = JPCATEGORY_BST + 0x05, --X pet atk spd +1%
+    READY_EFFECT             = JPCATEGORY_BST + 0x06, --X pet sp.ability dmg +1%
+    SPUR_EFFECT              = JPCATEGORY_BST + 0x07, --X pet p.atk +3
+    RUN_WILD_DURATION        = JPCATEGORY_BST + 0x08, --X dur. +2s
+    PET_EMNITY_BONUS         = JPCATEGORY_BST + 0x09, --X emnity +1
 
     --BRD
-    SOUL_VOICE_EFFECT        = JPCATEGORY_BRD + 0x00, --casting time -2%
-    CLARION_CALL_EFFECT      = JPCATEGORY_BRD + 0x01, --effect dur. +2s
-    MINNE_EFFECT             = JPCATEGORY_BRD + 0x02, --p.def +1
-    MINUET_EFFECT            = JPCATEGORY_BRD + 0x03, --p.atk +1
-    PIANISSIMO_EFFECT        = JPCATEGORY_BRD + 0x04, --casting time -2%
-    SONG_ACC_BONUS           = JPCATEGORY_BRD + 0x05, --song acc +1
-    TENUTO_EFFECT            = JPCATEGORY_BRD + 0x06, --song dur. +1s
-    LULLABY_DURATION         = JPCATEGORY_BRD + 0x07, --lullaby dur. +1
-    MARCATO_EFFECT           = JPCATEGORY_BRD + 0x08, --song dur. +1s
+    SOUL_VOICE_EFFECT        = JPCATEGORY_BRD + 0x00, --O casting time -2%
+    CLARION_CALL_EFFECT      = JPCATEGORY_BRD + 0x01, --X effect dur. +2s
+    MINNE_EFFECT             = JPCATEGORY_BRD + 0x02, --O p.def +1
+    MINUET_EFFECT            = JPCATEGORY_BRD + 0x03, --O p.atk +1
+    PIANISSIMO_EFFECT        = JPCATEGORY_BRD + 0x04, --O casting time -2%
+    SONG_ACC_BONUS           = JPCATEGORY_BRD + 0x05, --X song acc +1
+    TENUTO_EFFECT            = JPCATEGORY_BRD + 0x06, --X song dur. +1s
+    LULLABY_DURATION         = JPCATEGORY_BRD + 0x07, --O lullaby dur. +1
+    MARCATO_EFFECT           = JPCATEGORY_BRD + 0x08, --X song dur. +1s
     REQUIEM_EFFECT           = JPCATEGORY_BRD + 0x09, --dot dmg +3
 
     --RNG
