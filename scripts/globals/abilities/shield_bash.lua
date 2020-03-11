@@ -45,7 +45,7 @@ function onUseAbility(player, target, ability)
     end
 
     -- JP Modifier +10 per JP
-    damage += jp_value * 10
+    damage = damage + jp_value * 10
 
     -- Calculate stun proc chance
     chance = chance + (player:getMainLvl() - target:getMainLvl()) * 5
