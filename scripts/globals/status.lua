@@ -2151,16 +2151,16 @@ dsp.jp = {
     TRIPLE_ATTACK_EFFECT     = JPCATEGORY_THF + 0x09, --X p.atk +1
 
     --PLD
-    INVINCIBLE_EFFECT        = JPCATEGORY_PLD + 0x00, --emnity +100
-    INTERVENE_EFFECT         = JPCATEGORY_PLD + 0x01, --dmg +2%
-    HOLY_CIRCLE_EFFECT       = JPCATEGORY_PLD + 0x02, --dmg taken -1
-    SENTINEL_EFFECT          = JPCATEGORY_PLD + 0x03, --emnity +1
-    SHIELD_BASH_EFFECT       = JPCATEGORY_PLD + 0x04, --dmg +10
-    COVER_DURATION           = JPCATEGORY_PLD + 0x05, --dur. +1s
-    DIVINE_EMBLEM_EFFECT     = JPCATEGORY_PLD + 0x06, --m.dmg +2
-    SEPULCHER_DURATION       = JPCATEGORY_PLD + 0x07, --dur. +1s
-    PALISADE_EFFECT          = JPCATEGORY_PLD + 0x08, --block chance +1%
-    ENLIGHT_EFFECT           = JPCATEGORY_PLD + 0x09, --ae.dmg +1 p.acc +1
+    INVINCIBLE_EFFECT        = JPCATEGORY_PLD + 0x00, --O emnity +100
+    INTERVENE_EFFECT         = JPCATEGORY_PLD + 0x01, --X dmg +2%
+    HOLY_CIRCLE_EFFECT       = JPCATEGORY_PLD + 0x02, --X dmg taken -1
+    SENTINEL_EFFECT          = JPCATEGORY_PLD + 0x03, --O emnity +1
+    SHIELD_BASH_EFFECT       = JPCATEGORY_PLD + 0x04, --O dmg +10
+    COVER_DURATION           = JPCATEGORY_PLD + 0x05, --X dur. +1s
+    DIVINE_EMBLEM_EFFECT     = JPCATEGORY_PLD + 0x06, --X m.dmg +2
+    SEPULCHER_DURATION       = JPCATEGORY_PLD + 0x07, --X dur. +1s
+    PALISADE_EFFECT          = JPCATEGORY_PLD + 0x08, --X block chance +1%
+    ENLIGHT_EFFECT           = JPCATEGORY_PLD + 0x09, --O ae.dmg +1 p.acc +1
 
     --DRK
     BLOOD_WEAPON_EFFECT      = JPCATEGORY_DRK + 0x00, --hp absorb +2%
