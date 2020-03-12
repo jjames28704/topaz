@@ -216,11 +216,18 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
 end;
 
 function BlueFinalAdjustments(caster, target, spell, dmg, params)
+    local multiplier = BLUE_MAGIC
+    
+    -- +1 DMG for each level
+    if (caster:hasStatusEffect(dsp.effect.AZURE_LORE)) {
+        multiplier = multiplier + (0.01 * caster:getJobPointValue(AZURE_LORE_EFFECT))
+    }
+
     if (dmg < 0) then
         dmg = 0
     end
 
-    dmg = dmg * BLUE_POWER
+    dmg = dmg * multiplier
 
     dmg = dmg - target:getMod(dsp.mod.PHALANX)
     if (dmg < 0) then
