@@ -2260,16 +2260,16 @@ dsp.jp = {
     BLOOD_PACT_DMG_BONUS     = JPCATEGORY_SMN + 0x09, --O BPR/BPW dmg +5
 
     --BLU
-    AZURE_LORE_EFFECT        = JPCATEGORY_BLU + 0x00, --dmg +1
-    UNBRIDLED_WISDOM_EFFECT  = JPCATEGORY_BLU + 0x01, --conserve mp +3
+    AZURE_LORE_EFFECT        = JPCATEGORY_BLU + 0x00, --O dmg +1 --needs verification
+    UNBRIDLED_WISDOM_EFFECT  = JPCATEGORY_BLU + 0x01, --X conserve mp +3
     BLUE_MAGIC_POINT_BONUS   = JPCATEGORY_BLU + 0x02, --blue magic points +1
-    BURST_AFFINITY_BONUS     = JPCATEGORY_BLU + 0x03, --dmg +2
-    CHAIN_AFFINITY_EFFECT    = JPCATEGORY_BLU + 0x04, --sc dmg +1%
-    BLUE_PHYS_AE_ACC_BONUS   = JPCATEGORY_BLU + 0x05, --phys. add. effect acc +1
-    UNBRIDLED_LRN_EFFECT     = JPCATEGORY_BLU + 0x06, --dmg +1%
-    UNBRIDLED_LRN_EFFECT_II  = JPCATEGORY_BLU + 0x07, --party enhancing dur. +1%
-    EFFLUX_EFFECT            = JPCATEGORY_BLU + 0x08, --tp bonus +10
-    BLU_MAGIC_ACC_BONUS      = JPCATEGORY_BLU + 0x09, --m.acc +1
+    BURST_AFFINITY_BONUS     = JPCATEGORY_BLU + 0x03, --X dmg +2
+    CHAIN_AFFINITY_EFFECT    = JPCATEGORY_BLU + 0x04, --X sc dmg +1%
+    BLUE_PHYS_AE_ACC_BONUS   = JPCATEGORY_BLU + 0x05, --X phys. add. effect acc +1
+    UNBRIDLED_LRN_EFFECT     = JPCATEGORY_BLU + 0x06, --X dmg +1%
+    UNBRIDLED_LRN_EFFECT_II  = JPCATEGORY_BLU + 0x07, --X party enhancing dur. +1%
+    EFFLUX_EFFECT            = JPCATEGORY_BLU + 0x08, --X tp bonus +10
+    BLU_MAGIC_ACC_BONUS      = JPCATEGORY_BLU + 0x09, --X m.acc +1
 
     --COR
     WILD_CARD_EFFECT         = JPCATEGORY_COR + 0x00, --probability of reset +1%
