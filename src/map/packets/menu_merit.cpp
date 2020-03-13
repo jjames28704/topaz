@@ -31,45 +31,43 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 {
 	this->type = 0x63;
 
-	memset(data + 4, 0, sizeof(PACKET_SIZE - 4));
-
-	this->size = 0x08;
-
-	ref<uint8>(0x04) = 0x02;
-	ref<uint8>(0x06) = 0x0C;
-
-    ref<uint16>(0x08) = PChar->PMeritPoints->GetLimitPoints();
-    ref<uint8>(0x0A) = PChar->PMeritPoints->GetMeritPoints();
-
-	uint8 flag = 0x00;
+	uint16 meritFlags = 0x0000;
 
 	if (PChar->jobs.job[PChar->GetMJob()] >= 75 && charutils::hasKeyItem(PChar, 606))			// keyitem Limit Breaker
 	{
-		flag |= 0x20;
+		// set merit points enabled flag
+		meritFlags |= 0x2000;
+
 		if (PChar->MeritMode)
 		{
-			flag |= 0x80;
+			//set merit mode flag
+			meritFlags |= 0x8000;
 		}
 	}
 
-	//capped EXP
-	if ((PChar->jobs.job[PChar->GetMJob()] >= PChar->jobs.genkai && PChar->jobs.exp[PChar->GetMJob()] == charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1)
+	if ((PChar->jobs.job[PChar->GetMJob()] >= PChar->jobs.genkai && PChar->jobs.exp[PChar->GetMJob()] == charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1) 
 		|| PChar->MeritMode)
 	{
-		flag |= 0x40;
+		// set capped exp flag
+		meritFlags |= 0x4000;
 	}
 
-	ref<uint8>(0x0B) = flag;
-    ref<uint8>(0x0C) = map_config.max_merit_points + PChar->PMeritPoints->GetMeritValue(MERIT_MAX_MERIT, PChar);
+	uint8 addlBluPoints = std::clamp<uint8>(blueutils::GetTotalBlueMagicPoints(PChar), 0, 80) - 55;
+	uint8 meritPoints = PChar->PMeritPoints->GetMeritPoints();
+	uint16 bluPoints = (addlBluPoints) << 7;
+	uint16 pointsData = meritFlags + bluPoints + meritPoints;
+	
 
-    PChar->pushPacket(new CBasicPacket(*this));
-
-	// BLU points (uint16 @ (0x08 + 2) >> 7 & 0x3F)
-	uint16 points = std::clamp<uint16>(blueutils::GetTotalBlueMagicPoints(PChar), 0, 80) - 55;
+	// ver 30200217_0 first packet
+	
 	this->size = 0x10;
+	
 	memset(data + 4, 0, sizeof(PACKET_SIZE - 4));
+	
 	ref<uint8>(0x04) = 0x02;
-	ref<uint16>(0x0A) = (uint16)((points | 0xC0) << 7);
+	ref<uint8>(0x06) = 0x0C;	
+	ref<uint16>(0x0A) = pointsData;
+        ref<uint8>(0x0C) = map_config.max_merit_points + PChar->PMeritPoints->GetMeritValue(MERIT_MAX_MERIT, PChar);
 
 	PChar->pushPacket(new CBasicPacket(*this));
 
