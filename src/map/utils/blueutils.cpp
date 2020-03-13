@@ -38,6 +38,7 @@
 #include "blueutils.h"
 #include "../party.h"
 #include "../merit.h"
+#include "../job_points.h"
 #include "../modifier.h"
 #include "../spell.h"
 #include "../blue_spell.h"
