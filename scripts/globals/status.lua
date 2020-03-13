@@ -2261,7 +2261,7 @@ dsp.jp = {
     --BLU
     AZURE_LORE_EFFECT        = JPCATEGORY_BLU + 0x00, --O dmg +1 --needs verification
     UNBRIDLED_WISDOM_EFFECT  = JPCATEGORY_BLU + 0x01, --X conserve mp +3
-    BLUE_MAGIC_POINT_BONUS   = JPCATEGORY_BLU + 0x02, --blue magic points +1
+    BLUE_MAGIC_POINT_BONUS   = JPCATEGORY_BLU + 0x02, --O blue magic points +1
     BURST_AFFINITY_BONUS     = JPCATEGORY_BLU + 0x03, --X dmg +2
     CHAIN_AFFINITY_EFFECT    = JPCATEGORY_BLU + 0x04, --X sc dmg +1%
     BLUE_PHYS_AE_ACC_BONUS   = JPCATEGORY_BLU + 0x05, --X phys. add. effect acc +1
