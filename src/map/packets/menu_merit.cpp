@@ -18,18 +18,30 @@
 
 ===========================================================================
 */
-
 #include "../../common/socket.h"
 
 #include "menu_merit.h"
 
 #include "../entities/charentity.h"
 #include "../utils/charutils.h"
+#include "../utils/blueutils.h"
 
 
 CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 {
 	this->type = 0x63;
+
+	// BLU points (uint16 @ (0x08 + 2) >> 7 & 0x3F)
+	uint16 points = std::clamp<uint16>(blueutils::GetTotalBlueMagicPoints(PChar), 0, 80) - 55;
+	this->size = 0x10;
+	memset(data + 4, 0, sizeof(PACKET_SIZE - 4));
+	ref<uint8>(0x04) = 0x02;
+	ref<uint16>(0x0A) = (uint16)((points | 0xC0) << 7);
+
+	PChar->pushPacket(new CBasicPacket(*this));
+
+	memset(data + 4, 0, sizeof(PACKET_SIZE - 4));
+
 	this->size = 0x08;
 
 	ref<uint8>(0x04) = 0x02;
