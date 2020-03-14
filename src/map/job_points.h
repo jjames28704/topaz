@@ -62,14 +62,15 @@ enum JOBPOINT_CATEGORY : uint16
 /************************************************************************
 *                                                                       *
 * Bonuses for each job point                                            *
+* Matches client order in the menu. 0x2 and 0x1 are swapped.            *
 *                                                                       *
 ************************************************************************/
 enum JOBPOINT_TYPE : uint16
 {
     //WAR
     JP_MIGHTY_STRIKES_EFFECT    = JPCATEGORY_WAR + 0x00, //p.acc +2
-    JP_BRAZEN_RUSH_EFFECT       = JPCATEGORY_WAR + 0x01, //p.atk +4
-    JP_BERSERK_EFFECT           = JPCATEGORY_WAR + 0x02, //p.atk +2
+    JP_BRAZEN_RUSH_EFFECT       = JPCATEGORY_WAR + 0x02, //p.atk +4
+    JP_BERSERK_EFFECT           = JPCATEGORY_WAR + 0x01, //p.atk +2
     JP_DEFENDER_EFFECT          = JPCATEGORY_WAR + 0x03, //p.def +3
     JP_WARCRY_EFFECT            = JPCATEGORY_WAR + 0x04, //p.atk +3
     JP_AGGRESSOR_EFFECT         = JPCATEGORY_WAR + 0x05, //p.acc +1
@@ -80,8 +81,8 @@ enum JOBPOINT_TYPE : uint16
 
     //MNK
     JP_HUNDRED_FISTS_EFFECT     = JPCATEGORY_MNK + 0x00, //p.acc +2
-    JP_INNER_STRENGTH_EFFECT    = JPCATEGORY_MNK + 0x01, //hp recovered +2%
-    JP_DODGE_EFFECT             = JPCATEGORY_MNK + 0x02, //evasion +2
+    JP_INNER_STRENGTH_EFFECT    = JPCATEGORY_MNK + 0x02, //hp recovered +2%
+    JP_DODGE_EFFECT             = JPCATEGORY_MNK + 0x01, //evasion +2
     JP_FOCUS_EFFECT             = JPCATEGORY_MNK + 0x03, //accuracy +1
     JP_CHAKRA_EFFECT            = JPCATEGORY_MNK + 0x04, //hp recovered from use +10
     JP_COUNTERSTANCE_EFFECT     = JPCATEGORY_MNK + 0x05, //DEX +2
@@ -92,8 +93,8 @@ enum JOBPOINT_TYPE : uint16
 
     //WHM
     JP_BENEDICTION_EFFECT       = JPCATEGORY_WHM + 0x00, //mp recovered +1%
-    JP_ASYLUM_EFFECT            = JPCATEGORY_WHM + 0x01, //m.eva +4
-    JP_DIVINE_SEAL_EFFECT       = JPCATEGORY_WHM + 0x02, //reduce emnity from use +3
+    JP_ASYLUM_EFFECT            = JPCATEGORY_WHM + 0x02, //m.eva +4
+    JP_DIVINE_SEAL_EFFECT       = JPCATEGORY_WHM + 0x01, //reduce emnity from use +3
     JP_WHM_MAGIC_ACC_BONUS      = JPCATEGORY_WHM + 0x03, //m.acc +1
     JP_AFFLATUS_SOLACE_EFFECT   = JPCATEGORY_WHM + 0x04, //cure potency +2 (not %)
     JP_AFFLATUS_MISERY_EFFECT   = JPCATEGORY_WHM + 0x05, //banish +2 m.dmg, miss => acc +1 dmg +1
@@ -104,8 +105,8 @@ enum JOBPOINT_TYPE : uint16
 
     //BLM
     JP_MANAFONT_EFFECT          = JPCATEGORY_BLM + 0x00, //elemental m.dmg +2
-    JP_SUBTLE_SORCERY_EFFECT    = JPCATEGORY_BLM + 0x01, //spellcasting time -1%
-    JP_ELEMENTAL_SEAL_EFFECT    = JPCATEGORY_BLM + 0x02, //elemental magic emnity -3
+    JP_SUBTLE_SORCERY_EFFECT    = JPCATEGORY_BLM + 0x02, //spellcasting time -1%
+    JP_ELEMENTAL_SEAL_EFFECT    = JPCATEGORY_BLM + 0x01, //elemental magic emnity -3
     JP_MAGIC_BURST_DMG_BONUS    = JPCATEGORY_BLM + 0x03, //magic burst dmg +1%
     JP_MANA_WALL_EFFECT         = JPCATEGORY_BLM + 0x04, //mp consumed -1%
     JP_BLM_MAGIC_ACC_BONUS      = JPCATEGORY_BLM + 0x05, //m.acc +1
@@ -116,8 +117,8 @@ enum JOBPOINT_TYPE : uint16
 
     //RDM
     JP_CHAINSPELL_EFFECT        = JPCATEGORY_RDM + 0x00, //elem. m.dmg +2
-    JP_STYMIE_EFFECT            = JPCATEGORY_RDM + 0x01, //effect dur. +1s
-    JP_CONVERT_EFFECT           = JPCATEGORY_RDM + 0x02, //HP consumed -1%
+    JP_STYMIE_EFFECT            = JPCATEGORY_RDM + 0x02, //effect dur. +1s
+    JP_CONVERT_EFFECT           = JPCATEGORY_RDM + 0x01, //HP consumed -1%
     JP_RDM_MAGIC_ACC_BONUS      = JPCATEGORY_RDM + 0x03, //m.acc +1
     JP_COMPOSURE_EFFECT         = JPCATEGORY_RDM + 0x04, //p.acc +1
     JP_RDM_MAGIC_ATK_BONUS      = JPCATEGORY_RDM + 0x05, //MAB +1
@@ -128,8 +129,8 @@ enum JOBPOINT_TYPE : uint16
 
     //THF
     JP_PERFECT_DODGE_EFFECT     = JPCATEGORY_THF + 0x00, //m.eva +3
-    JP_LARCENY_EFFECT           = JPCATEGORY_THF + 0x01, //dur. +1s
-    JP_SNEAK_ATTACK_EFFECT      = JPCATEGORY_THF + 0x02, //DEX bonus +1%
+    JP_LARCENY_EFFECT           = JPCATEGORY_THF + 0x02, //dur. +1s
+    JP_SNEAK_ATTACK_EFFECT      = JPCATEGORY_THF + 0x01, //DEX bonus +1%
     JP_TRICK_ATTACK_EFFECT      = JPCATEGORY_THF + 0x03, //AGI bonus +1%
     JP_STEAL_RECAST             = JPCATEGORY_THF + 0x04, //recast -2s
     JP_MUG_EFFECT               = JPCATEGORY_THF + 0x05, //drain HP == 5% (DEX + AGI)
@@ -140,8 +141,8 @@ enum JOBPOINT_TYPE : uint16
 
     //PLD
     JP_INVINCIBLE_EFFECT        = JPCATEGORY_PLD + 0x00, //emnity +100
-    JP_INTERVENE_EFFECT         = JPCATEGORY_PLD + 0x01, //dmg +2%
-    JP_HOLY_CIRCLE_EFFECT       = JPCATEGORY_PLD + 0x02, //dmg taken -1
+    JP_INTERVENE_EFFECT         = JPCATEGORY_PLD + 0x02, //dmg +2%
+    JP_HOLY_CIRCLE_EFFECT       = JPCATEGORY_PLD + 0x01, //dmg taken -1
     JP_SENTINEL_EFFECT          = JPCATEGORY_PLD + 0x03, //emnity +1
     JP_SHIELD_BASH_EFFECT       = JPCATEGORY_PLD + 0x04, //dmg +10
     JP_COVER_DURATION           = JPCATEGORY_PLD + 0x05, //dur. +1s
@@ -152,8 +153,8 @@ enum JOBPOINT_TYPE : uint16
 
     //DRK
     JP_BLOOD_WEAPON_EFFECT      = JPCATEGORY_DRK + 0x00, //hp absorb +2%
-    JP_SOUL_ENSLAVEMENT_EFFECT  = JPCATEGORY_DRK + 0x01, //tp absorb +1%
-    JP_ARCANE_CIRCLE_EFFECT     = JPCATEGORY_DRK + 0x02, //dmg taken -1
+    JP_SOUL_ENSLAVEMENT_EFFECT  = JPCATEGORY_DRK + 0x02, //tp absorb +1%
+    JP_ARCANE_CIRCLE_EFFECT     = JPCATEGORY_DRK + 0x01, //dmg taken -1
     JP_LAST_RESORT_EFFECT       = JPCATEGORY_DRK + 0x03, //p.atk +2
     JP_SOULEATER_DURATION       = JPCATEGORY_DRK + 0x04, //dur. +1s
     JP_WEAPON_BASH_EFFECT       = JPCATEGORY_DRK + 0x05, //dmg +10
@@ -164,8 +165,8 @@ enum JOBPOINT_TYPE : uint16
 
     //BST
     JP_FAMILIAR_EFFECT          = JPCATEGORY_BST + 0x00, //all pet attr. +3
-    JP_UNLEASH_EFFECT           = JPCATEGORY_BST + 0x01, //sp.atk dmg +2%
-    JP_PET_ACC_BONUS            = JPCATEGORY_BST + 0x02, //pet p.acc +1
+    JP_UNLEASH_EFFECT           = JPCATEGORY_BST + 0x02, //sp.atk dmg +2%
+    JP_PET_ACC_BONUS            = JPCATEGORY_BST + 0x01, //pet p.acc +1
     JP_CHARM_SUCCESS_RATE       = JPCATEGORY_BST + 0x03, //success rate +1%
     JP_REWARD_EFFECT            = JPCATEGORY_BST + 0x04, //pet hp recov. +1%
     JP_PET_ATK_SPD_BONUS        = JPCATEGORY_BST + 0x05, //pet atk spd +1%
@@ -176,8 +177,8 @@ enum JOBPOINT_TYPE : uint16
 
     //BRD
     JP_SOUL_VOICE_EFFECT        = JPCATEGORY_BRD + 0x00, //casting time -2%
-    JP_CLARION_CALL_EFFECT      = JPCATEGORY_BRD + 0x01, //effect dur. +2s
-    JP_MINNE_EFFECT             = JPCATEGORY_BRD + 0x02, //p.def +1
+    JP_CLARION_CALL_EFFECT      = JPCATEGORY_BRD + 0x02, //effect dur. +2s
+    JP_MINNE_EFFECT             = JPCATEGORY_BRD + 0x01, //p.def +1
     JP_MINUET_EFFECT            = JPCATEGORY_BRD + 0x03, //p.atk +1
     JP_PIANISSIMO_EFFECT        = JPCATEGORY_BRD + 0x04, //casting time -2%
     JP_SONG_ACC_BONUS           = JPCATEGORY_BRD + 0x05, //song acc +1
@@ -188,8 +189,8 @@ enum JOBPOINT_TYPE : uint16
 
     //RNG
     JP_EAGLE_EYE_SHOT_EFFECT    = JPCATEGORY_RNG + 0x00, //dmg +3%
-    JP_OVERKILL_EFFECT          = JPCATEGORY_RNG + 0x01, //emnity -1
-    JP_SHARPSHOT_EFFECT         = JPCATEGORY_RNG + 0x02, //r.atk +2
+    JP_OVERKILL_EFFECT          = JPCATEGORY_RNG + 0x02, //emnity -1
+    JP_SHARPSHOT_EFFECT         = JPCATEGORY_RNG + 0x01, //r.atk +2
     JP_CAMOUFLAGE_EFFECT        = JPCATEGORY_RNG + 0x03, //crit. hit rate +1%
     JP_BARRAGE_EFFECT           = JPCATEGORY_RNG + 0x04, //r.atk +3
     JP_SHADOWBIND_DURATION      = JPCATEGORY_RNG + 0x05, //dur. +1s
@@ -200,8 +201,8 @@ enum JOBPOINT_TYPE : uint16
 
     //SAM
     JP_MEIKYO_SHISUI_EFFECT     = JPCATEGORY_SAM + 0x00, //sc dmg +2%
-    JP_YAEGASUMI_EFFECT         = JPCATEGORY_SAM + 0x01, //tp bonus +30
-    JP_WARDING_CIRCLE_EFFECT    = JPCATEGORY_SAM + 0x02, //dmg taken -1
+    JP_YAEGASUMI_EFFECT         = JPCATEGORY_SAM + 0x02, //tp bonus +30
+    JP_WARDING_CIRCLE_EFFECT    = JPCATEGORY_SAM + 0x01, //dmg taken -1
     JP_HASSO_EFFECT             = JPCATEGORY_SAM + 0x03, //STR +1
     JP_MEDITATE_EFFECT          = JPCATEGORY_SAM + 0x04, //tp +5 per tick
     JP_SEIGAN_EFFECT            = JPCATEGORY_SAM + 0x05, //p.def +3
@@ -212,9 +213,9 @@ enum JOBPOINT_TYPE : uint16
 
     //NIN
     JP_MIJIN_GAUKURE_EFFECT     = JPCATEGORY_NIN + 0x00, //dmg +3%
-    JP_MIKAGE_EFFECT            = JPCATEGORY_NIN + 0x01, //p.atk +3
-    JP_YONIN_EFFECT             = JPCATEGORY_NIN + 0x02, //p.eva +2
-    JP_INNIN_EFFECT              = JPCATEGORY_NIN + 0x03, //p.acc +1
+    JP_MIKAGE_EFFECT            = JPCATEGORY_NIN + 0x02, //p.atk +3
+    JP_YONIN_EFFECT             = JPCATEGORY_NIN + 0x01, //p.eva +2
+    JP_INNIN_EFFECT             = JPCATEGORY_NIN + 0x03, //p.acc +1
     JP_NINJITSU_ACC_BONUS       = JPCATEGORY_NIN + 0x04, //ninjitsu acc +1
     JP_NINJITSU_CAST_TIME_BONUS = JPCATEGORY_NIN + 0x05, //casting time -1%
     JP_FUTAE_EFFECT             = JPCATEGORY_NIN + 0x06, //m.dmg +5
@@ -224,8 +225,8 @@ enum JOBPOINT_TYPE : uint16
 
     //DRG
     JP_SPIRIT_SURGE_EFFECT      = JPCATEGORY_DRG + 0x00, //Weapon DMG +1
-    JP_FLY_HIGH_EFFECT          = JPCATEGORY_DRG + 0x01, //all jump p.atk +5
-    JP_ANCIENT_CIRCLE_EFFECT    = JPCATEGORY_DRG + 0x02, //dmg taken -1
+    JP_FLY_HIGH_EFFECT          = JPCATEGORY_DRG + 0x02, //all jump p.atk +5
+    JP_ANCIENT_CIRCLE_EFFECT    = JPCATEGORY_DRG + 0x01, //dmg taken -1
     JP_JUMP_EFFECT              = JPCATEGORY_DRG + 0x03, //jump/spirit jump p.atk +3
     JP_SPIRIT_LINK_EFFECT       = JPCATEGORY_DRG + 0x04, //hp consumption -1%
     JP_WYVERN_MAX_HP_BONUS      = JPCATEGORY_DRG + 0x05, //wyvern max hp +10
@@ -236,8 +237,8 @@ enum JOBPOINT_TYPE : uint16
 
     //SMN
     JP_ASTRAL_FLOW_EFFECT       = JPCATEGORY_SMN + 0x00, //all pet attr. +5
-    JP_ASTRAL_CONDUIT_EFFECT    = JPCATEGORY_SMN + 0x01, //BPR: dmg +1% BPW: duration +1%
-    JP_SUMMON_ACC_BONUS         = JPCATEGORY_SMN + 0x02, //pet p.acc +1
+    JP_ASTRAL_CONDUIT_EFFECT    = JPCATEGORY_SMN + 0x02, //BPR: dmg +1% BPW: duration +1%
+    JP_SUMMON_ACC_BONUS         = JPCATEGORY_SMN + 0x01, //pet p.acc +1
     JP_SUMMON_MAGIC_ACC_BONUS   = JPCATEGORY_SMN + 0x03, //pet m.acc +1
     JP_ELEMENTAL_SIPHON_EFFECT  = JPCATEGORY_SMN + 0x04, //mp recov. +3
     JP_SUMMON_PHYS_ATK_BONUS    = JPCATEGORY_SMN + 0x05, //pet p.atk +2
@@ -248,8 +249,8 @@ enum JOBPOINT_TYPE : uint16
 
     //BLU
     JP_AZURE_LORE_EFFECT        = JPCATEGORY_BLU + 0x00, //dmg +1
-    JP_UNBRIDLED_WISDOM_EFFECT  = JPCATEGORY_BLU + 0x01, //conserve mp +3
-    JP_BLUE_MAGIC_POINT_BONUS   = JPCATEGORY_BLU + 0x02, //blue magic points +1
+    JP_UNBRIDLED_WISDOM_EFFECT  = JPCATEGORY_BLU + 0x02, //conserve mp +3
+    JP_BLUE_MAGIC_POINT_BONUS   = JPCATEGORY_BLU + 0x01, //blue magic points +1
     JP_BURST_AFFINITY_BONUS     = JPCATEGORY_BLU + 0x03, //dmg +2
     JP_CHAIN_AFFINITY_EFFECT    = JPCATEGORY_BLU + 0x04, //sc dmg +1%
     JP_BLUE_PHYS_AE_ACC_BONUS   = JPCATEGORY_BLU + 0x05, //phys. add. effect acc +1
@@ -260,8 +261,8 @@ enum JOBPOINT_TYPE : uint16
 
     //COR
     JP_WILD_CARD_EFFECT         = JPCATEGORY_COR + 0x00, //probability of reset +1%
-    JP_CUTTING_CARDS_EFFECT     = JPCATEGORY_COR + 0x01, //recast of party abil. -1%
-    JP_PHANTOM_ROLL_DURATION    = JPCATEGORY_COR + 0x02, //dur. +2s
+    JP_CUTTING_CARDS_EFFECT     = JPCATEGORY_COR + 0x02, //recast of party abil. -1%
+    JP_PHANTOM_ROLL_DURATION    = JPCATEGORY_COR + 0x01, //dur. +2s
     JP_BUST_EVASION             = JPCATEGORY_COR + 0x03, //bust chance -1%
     JP_QUICK_DRAW_EFFECT        = JPCATEGORY_COR + 0x04, //m.dmg +2
     JP_AMMO_CONSUMPTION         = JPCATEGORY_COR + 0x05, //no ammo chance +1%
@@ -272,8 +273,8 @@ enum JOBPOINT_TYPE : uint16
 
     //PUP
     JP_OVERDRIVE_EFFECT         = JPCATEGORY_PUP + 0x00, //all pet attr. +5
-    JP_HEADY_ARTIFICE_EFFECT    = JPCATEGORY_PUP + 0x01, //increase head effects (see wiki)
-    JP_AUTOMATON_HP_MP_BONUS    = JPCATEGORY_PUP + 0x02, //pet hp+10, mp+5
+    JP_HEADY_ARTIFICE_EFFECT    = JPCATEGORY_PUP + 0x02, //increase head effects (see wiki)
+    JP_AUTOMATON_HP_MP_BONUS    = JPCATEGORY_PUP + 0x01, //pet hp+10, mp+5
     JP_ACTIVATE_EFFECT          = JPCATEGORY_PUP + 0x03, //burden -1
     JP_REPAIR_EFFECT            = JPCATEGORY_PUP + 0x04, //mp hot based on oil (see wiki)
     JP_DEUS_EX_AUTOMATA_RECAST  = JPCATEGORY_PUP + 0x05, //recast -1s
@@ -284,8 +285,8 @@ enum JOBPOINT_TYPE : uint16
 
     //DNC
     JP_TRANCE_EFFECT            = JPCATEGORY_DNC + 0x00, //tp +100
-    JP_GRAND_PAS_EFFECT         = JPCATEGORY_DNC + 0x01, //dmg +1
-    JP_STEP_DURATION            = JPCATEGORY_DNC + 0x02, //dur. +1s
+    JP_GRAND_PAS_EFFECT         = JPCATEGORY_DNC + 0x02, //dmg +1
+    JP_STEP_DURATION            = JPCATEGORY_DNC + 0x01, //dur. +1s
     JP_WALTZ_DURATION           = JPCATEGORY_DNC + 0x03, //dur. +2s
     JP_WALTZ_POTENCY_BONUS      = JPCATEGORY_DNC + 0x04, //waltz potency +2 (not %)
     JP_JIG_DURATION             = JPCATEGORY_DNC + 0x05, //dur. +1s
@@ -296,8 +297,8 @@ enum JOBPOINT_TYPE : uint16
 
     //SCH
     JP_TABULA_RASA_EFFECT       = JPCATEGORY_SCH + 0x00, //mp recov. +2%
-    JP_CAPER_EMMISSARIUS_EFFECT = JPCATEGORY_SCH + 0x01, //hp recov. +2%
-    JP_LIGHT_ARTS_EFFECT        = JPCATEGORY_SCH + 0x02, //dur. +3s
+    JP_CAPER_EMMISSARIUS_EFFECT = JPCATEGORY_SCH + 0x02, //hp recov. +2%
+    JP_LIGHT_ARTS_EFFECT        = JPCATEGORY_SCH + 0x01, //dur. +3s
     JP_DARK_ARTS_EFFECT         = JPCATEGORY_SCH + 0x03, //dur. +3s
     JP_STRATEGEM_EFFECT_I       = JPCATEGORY_SCH + 0x04, //m.acc +1
     JP_STRATEGEM_EFFECT_II      = JPCATEGORY_SCH + 0x05, //cast time -1%
@@ -308,8 +309,8 @@ enum JOBPOINT_TYPE : uint16
 
     //GEO
     JP_BOLSTER_EFFECT           = JPCATEGORY_GEO + 0x00, //luopan hp +3% perp. -1mp
-    JP_WIDENED_COMPASS_EFFECT   = JPCATEGORY_GEO + 0x01, //cast time -3%
-    JP_LIFE_CYCLE_EFFECT        = JPCATEGORY_GEO + 0x02, //luopan hp recov. +1%
+    JP_WIDENED_COMPASS_EFFECT   = JPCATEGORY_GEO + 0x02, //cast time -3%
+    JP_LIFE_CYCLE_EFFECT        = JPCATEGORY_GEO + 0x01, //luopan hp recov. +1%
     JP_BLAZE_OF_GLORY_EFFECT    = JPCATEGORY_GEO + 0x03, //luopan init. hp +1%
     JP_GEO_MAGIC_ATK_BONUS      = JPCATEGORY_GEO + 0x04, //m.att bonus +1
     JP_GEO_MAGIC_ACC_BONUS      = JPCATEGORY_GEO + 0x05, //m.acc +1
@@ -320,8 +321,8 @@ enum JOBPOINT_TYPE : uint16
 
     //RUN
     JP_ELEMENTAL_SFORZO_EFFECT  = JPCATEGORY_RUN + 0x00, //dmg absorb +2%
-    JP_ODYLLIC_SUBTER_EFFECT    = JPCATEGORY_RUN + 0x01, //enemy m.att bonus -2
-    JP_RUNE_ENCHANTMENT_EFFECT  = JPCATEGORY_RUN + 0x02, //rune resist +1
+    JP_ODYLLIC_SUBTER_EFFECT    = JPCATEGORY_RUN + 0x02, //enemy m.att bonus -2
+    JP_RUNE_ENCHANTMENT_EFFECT  = JPCATEGORY_RUN + 0x01, //rune resist +1
     JP_VALLATION_DURATION       = JPCATEGORY_RUN + 0x03, //dur. +1s
     JP_SWORDPLAY_EFFECT         = JPCATEGORY_RUN + 0x04, //max p.acc/p.eva +2
     JP_SWIPE_EFFECT             = JPCATEGORY_RUN + 0x05, //swipe/lunge dmg (skill) +1%

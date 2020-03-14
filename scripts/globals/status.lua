@@ -2081,8 +2081,8 @@ dsp.jp = {
     
     --WAR
     MIGHTY_STRIKES_EFFECT    = JPCATEGORY_WAR + 0x00, --O p.acc +2
-    BRAZEN_RUSH_EFFECT       = JPCATEGORY_WAR + 0x01, --X p.atk +4
-    BERSERK_EFFECT           = JPCATEGORY_WAR + 0x02, --O p.atk +2
+    BRAZEN_RUSH_EFFECT       = JPCATEGORY_WAR + 0x02, --X p.atk +4
+    BERSERK_EFFECT           = JPCATEGORY_WAR + 0x01 --O p.atk +2
     DEFENDER_EFFECT          = JPCATEGORY_WAR + 0x03, --O p.def +3
     WARCRY_EFFECT            = JPCATEGORY_WAR + 0x04, --O p.atk +3
     AGGRESSOR_EFFECT         = JPCATEGORY_WAR + 0x05, --O p.acc +1
@@ -2093,8 +2093,8 @@ dsp.jp = {
 
     --MNK
     HUNDRED_FISTS_EFFECT     = JPCATEGORY_MNK + 0x00, --O p.acc +2
-    INNER_STRENGTH_EFFECT    = JPCATEGORY_MNK + 0x01, --X hp recovered +2%
-    DODGE_EFFECT             = JPCATEGORY_MNK + 0x02, --O evasion +2
+    INNER_STRENGTH_EFFECT    = JPCATEGORY_MNK + 0x02, --X hp recovered +2%
+    DODGE_EFFECT             = JPCATEGORY_MNK + 0x01, --O evasion +2
     FOCUS_EFFECT             = JPCATEGORY_MNK + 0x03, --O accuracy +1
     CHAKRA_EFFECT            = JPCATEGORY_MNK + 0x04, --O hp recovered from use +10
     COUNTERSTANCE_EFFECT     = JPCATEGORY_MNK + 0x05, --O DEX +2
@@ -2105,8 +2105,8 @@ dsp.jp = {
 
     --WHM
     BENEDICTION_EFFECT       = JPCATEGORY_WHM + 0x00, --X mp recovered +1%
-    ASYLUM_EFFECT            = JPCATEGORY_WHM + 0x01, --X m.eva +4
-    DIVINE_SEAL_EFFECT       = JPCATEGORY_WHM + 0x02, --X reduce emnity from use +3
+    ASYLUM_EFFECT            = JPCATEGORY_WHM + 0x02, --X m.eva +4
+    DIVINE_SEAL_EFFECT       = JPCATEGORY_WHM + 0x01, --X reduce emnity from use +3
     WHM_MAGIC_ACC_BONUS      = JPCATEGORY_WHM + 0x03, --O m.acc +1
     AFFLATUS_SOLACE_EFFECT   = JPCATEGORY_WHM + 0x04, --X cure potency +2 (not %) ||||I DON'T KNOW WHAT THIS MEANS||||
     AFFLATUS_MISERY_EFFECT   = JPCATEGORY_WHM + 0x05, --X banish +2 m.dmg, miss => acc +1 dmg +1
@@ -2117,8 +2117,8 @@ dsp.jp = {
 
     --BLM
     MANAFONT_EFFECT          = JPCATEGORY_BLM + 0x00, --O elemental m.dmg +2
-    SUBTLE_SORCERY_EFFECT    = JPCATEGORY_BLM + 0x01, --X spellcasting time -1%
-    ELEMENTAL_SEAL_EFFECT    = JPCATEGORY_BLM + 0x02, --X elemental magic emnity -3
+    SUBTLE_SORCERY_EFFECT    = JPCATEGORY_BLM + 0x02, --X spellcasting time -1%
+    ELEMENTAL_SEAL_EFFECT    = JPCATEGORY_BLM + 0x01, --X elemental magic emnity -3
     MAGIC_BURST_DMG_BONUS    = JPCATEGORY_BLM + 0x03, --O magic burst dmg +1%
     MANA_WALL_EFFECT         = JPCATEGORY_BLM + 0x04, --X mp consumed -1%
     BLM_MAGIC_ACC_BONUS      = JPCATEGORY_BLM + 0x05, --O m.acc +1
@@ -2129,8 +2129,8 @@ dsp.jp = {
 
     --RDM
     CHAINSPELL_EFFECT        = JPCATEGORY_RDM + 0x00, --O elem. m.dmg +2
-    STYMIE_EFFECT            = JPCATEGORY_RDM + 0x01, --O effect dur. +1s
-    CONVERT_EFFECT           = JPCATEGORY_RDM + 0x02, --O HP consumed -1%
+    STYMIE_EFFECT            = JPCATEGORY_RDM + 0x02, --O effect dur. +1s
+    CONVERT_EFFECT           = JPCATEGORY_RDM + 0x01, --O HP consumed -1%
     RDM_MAGIC_ACC_BONUS      = JPCATEGORY_RDM + 0x03, --O m.acc +1
     COMPOSURE_EFFECT         = JPCATEGORY_RDM + 0x04, --O p.acc +1
     RDM_MAGIC_ATK_BONUS      = JPCATEGORY_RDM + 0x05, --O MAB +1
@@ -2141,8 +2141,8 @@ dsp.jp = {
 
     --THF
     PERFECT_DODGE_EFFECT     = JPCATEGORY_THF + 0x00, --O m.eva +3
-    LARCENY_EFFECT           = JPCATEGORY_THF + 0x01, --X dur. +1s
-    SNEAK_ATTACK_EFFECT      = JPCATEGORY_THF + 0x02, --O DEX bonus +1%
+    LARCENY_EFFECT           = JPCATEGORY_THF + 0x02, --X dur. +1s
+    SNEAK_ATTACK_EFFECT      = JPCATEGORY_THF + 0x01, --O DEX bonus +1%
     TRICK_ATTACK_EFFECT      = JPCATEGORY_THF + 0x03, --O AGI bonus +1%
     STEAL_RECAST             = JPCATEGORY_THF + 0x04, --O recast -2s
     MUG_EFFECT               = JPCATEGORY_THF + 0x05, --X drain HP == 5% (DEX + AGI)
@@ -2153,8 +2153,8 @@ dsp.jp = {
 
     --PLD
     INVINCIBLE_EFFECT        = JPCATEGORY_PLD + 0x00, --O emnity +100
-    INTERVENE_EFFECT         = JPCATEGORY_PLD + 0x01, --X dmg +2%
-    HOLY_CIRCLE_EFFECT       = JPCATEGORY_PLD + 0x02, --X dmg taken -1
+    INTERVENE_EFFECT         = JPCATEGORY_PLD + 0x02, --X dmg +2%
+    HOLY_CIRCLE_EFFECT       = JPCATEGORY_PLD + 0x01, --X dmg taken -1
     SENTINEL_EFFECT          = JPCATEGORY_PLD + 0x03, --O emnity +1
     SHIELD_BASH_EFFECT       = JPCATEGORY_PLD + 0x04, --O dmg +10
     COVER_DURATION           = JPCATEGORY_PLD + 0x05, --X dur. +1s
@@ -2165,8 +2165,8 @@ dsp.jp = {
 
     --DRK
     BLOOD_WEAPON_EFFECT      = JPCATEGORY_DRK + 0x00, --O hp absorb +2%
-    SOUL_ENSLAVEMENT_EFFECT  = JPCATEGORY_DRK + 0x01, --X tp absorb +1%
-    ARCANE_CIRCLE_EFFECT     = JPCATEGORY_DRK + 0x02, --X dmg taken -1
+    SOUL_ENSLAVEMENT_EFFECT  = JPCATEGORY_DRK + 0x02, --X tp absorb +1%
+    ARCANE_CIRCLE_EFFECT     = JPCATEGORY_DRK + 0x01, --X dmg taken -1
     LAST_RESORT_EFFECT       = JPCATEGORY_DRK + 0x03, --O p.atk +2
     SOULEATER_DURATION       = JPCATEGORY_DRK + 0x04, --O dur. +1s
     WEAPON_BASH_EFFECT       = JPCATEGORY_DRK + 0x05, --O dmg +10
@@ -2177,8 +2177,8 @@ dsp.jp = {
 
     --BST
     FAMILIAR_EFFECT          = JPCATEGORY_BST + 0x00, --X all pet attr. +3
-    UNLEASH_EFFECT           = JPCATEGORY_BST + 0x01, --X sp.atk dmg +2%
-    PET_ACC_BONUS            = JPCATEGORY_BST + 0x02, --X pet p.acc +1
+    UNLEASH_EFFECT           = JPCATEGORY_BST + 0x02, --X sp.atk dmg +2%
+    PET_ACC_BONUS            = JPCATEGORY_BST + 0x01, --X pet p.acc +1
     CHARM_SUCCESS_RATE       = JPCATEGORY_BST + 0x03, --X success rate +1%
     REWARD_EFFECT            = JPCATEGORY_BST + 0x04, --X pet hp recov. +1%
     PET_ATK_SPD_BONUS        = JPCATEGORY_BST + 0x05, --X pet atk spd +1%
@@ -2189,8 +2189,8 @@ dsp.jp = {
 
     --BRD
     SOUL_VOICE_EFFECT        = JPCATEGORY_BRD + 0x00, --O casting time -2%
-    CLARION_CALL_EFFECT      = JPCATEGORY_BRD + 0x01, --X effect dur. +2s
-    MINNE_EFFECT             = JPCATEGORY_BRD + 0x02, --O p.def +1
+    CLARION_CALL_EFFECT      = JPCATEGORY_BRD + 0x02, --X effect dur. +2s
+    MINNE_EFFECT             = JPCATEGORY_BRD + 0x01, --O p.def +1
     MINUET_EFFECT            = JPCATEGORY_BRD + 0x03, --O p.atk +1
     PIANISSIMO_EFFECT        = JPCATEGORY_BRD + 0x04, --O casting time -2%
     SONG_ACC_BONUS           = JPCATEGORY_BRD + 0x05, --X song acc +1
@@ -2201,8 +2201,8 @@ dsp.jp = {
 
     --RNG
     EAGLE_EYE_SHOT_EFFECT    = JPCATEGORY_RNG + 0x00, --O dmg +3%
-    OVERKILL_EFFECT          = JPCATEGORY_RNG + 0x01, --X emnity -1
-    SHARPSHOT_EFFECT         = JPCATEGORY_RNG + 0x02, --O r.atk +2
+    OVERKILL_EFFECT          = JPCATEGORY_RNG + 0x02, --X emnity -1
+    SHARPSHOT_EFFECT         = JPCATEGORY_RNG + 0x01, --O r.atk +2
     CAMOUFLAGE_EFFECT        = JPCATEGORY_RNG + 0x03, --O crit. hit rate +1%
     BARRAGE_EFFECT           = JPCATEGORY_RNG + 0x04, --O r.atk +3
     SHADOWBIND_DURATION      = JPCATEGORY_RNG + 0x05, --O dur. +1s
@@ -2213,8 +2213,8 @@ dsp.jp = {
 
     --SAM
     MEIKYO_SHISUI_EFFECT     = JPCATEGORY_SAM + 0x00, --O sc dmg +2%
-    YAEGASUMI_EFFECT         = JPCATEGORY_SAM + 0x01, --X tp bonus +30
-    WARDING_CIRCLE_EFFECT    = JPCATEGORY_SAM + 0x02, --X dmg taken -1
+    YAEGASUMI_EFFECT         = JPCATEGORY_SAM + 0x02, --X tp bonus +30
+    WARDING_CIRCLE_EFFECT    = JPCATEGORY_SAM + 0x01, --X dmg taken -1
     HASSO_EFFECT             = JPCATEGORY_SAM + 0x03, --O STR +1
     MEDITATE_EFFECT          = JPCATEGORY_SAM + 0x04, --O tp +5 per tick
     SEIGAN_EFFECT            = JPCATEGORY_SAM + 0x05, --O p.def +3
@@ -2225,8 +2225,8 @@ dsp.jp = {
 
     --NIN
     MIJIN_GAUKURE_EFFECT     = JPCATEGORY_NIN + 0x00, --O dmg +3%
-    MIKAGE_EFFECT            = JPCATEGORY_NIN + 0x01, --O p.atk +3
-    YONIN_EFFECT             = JPCATEGORY_NIN + 0x02, --O p.eva +2
+    MIKAGE_EFFECT            = JPCATEGORY_NIN + 0x02, --O p.atk +3
+    YONIN_EFFECT             = JPCATEGORY_NIN + 0x01, --O p.eva +2
     INNIN_EFFECT             = JPCATEGORY_NIN + 0x03, --O p.acc +1
     NINJITSU_ACC_BONUS       = JPCATEGORY_NIN + 0x04, --O ninjitsu acc +1
     NINJITSU_CAST_TIME_BONUS = JPCATEGORY_NIN + 0x05, --O casting time -1%
@@ -2237,8 +2237,8 @@ dsp.jp = {
 
     --DRG
     SPIRIT_SURGE_EFFECT      = JPCATEGORY_DRG + 0x00, --O Weapon DMG +1
-    FLY_HIGH_EFFECT          = JPCATEGORY_DRG + 0x01, --X all jump p.atk +5
-    ANCIENT_CIRCLE_EFFECT    = JPCATEGORY_DRG + 0x02, --X dmg taken -1
+    FLY_HIGH_EFFECT          = JPCATEGORY_DRG + 0x02, --X all jump p.atk +5
+    ANCIENT_CIRCLE_EFFECT    = JPCATEGORY_DRG + 0x01, --X dmg taken -1
     JUMP_EFFECT              = JPCATEGORY_DRG + 0x03, --X jump/spirit jump p.atk +3 -- missing spirit jump
     SPIRIT_LINK_EFFECT       = JPCATEGORY_DRG + 0x04, --O hp consumption -1%
     WYVERN_MAX_HP_BONUS      = JPCATEGORY_DRG + 0x05, --O wyvern max hp +10
@@ -2249,8 +2249,8 @@ dsp.jp = {
 
     --SMN
     ASTRAL_FLOW_EFFECT       = JPCATEGORY_SMN + 0x00, --O all pet attr. +5
-    ASTRAL_CONDUIT_EFFECT    = JPCATEGORY_SMN + 0x01, --X BPR: dmg +1% BPW: duration +1%
-    SUMMON_ACC_BONUS         = JPCATEGORY_SMN + 0x02, --O pet p.acc +1
+    ASTRAL_CONDUIT_EFFECT    = JPCATEGORY_SMN + 0x02, --X BPR: dmg +1% BPW: duration +1%
+    SUMMON_ACC_BONUS         = JPCATEGORY_SMN + 0x01, --O pet p.acc +1
     SUMMON_MAGIC_ACC_BONUS   = JPCATEGORY_SMN + 0x03, --O pet m.acc +1
     ELEMENTAL_SIPHON_EFFECT  = JPCATEGORY_SMN + 0x04, --O mp recov. +3
     SUMMON_PHYS_ATK_BONUS    = JPCATEGORY_SMN + 0x05, --O pet p.atk +2
@@ -2261,8 +2261,8 @@ dsp.jp = {
 
     --BLU
     AZURE_LORE_EFFECT        = JPCATEGORY_BLU + 0x00, --O dmg +1 --needs verification
-    UNBRIDLED_WISDOM_EFFECT  = JPCATEGORY_BLU + 0x01, --X conserve mp +3
-    BLUE_MAGIC_POINT_BONUS   = JPCATEGORY_BLU + 0x02, --O blue magic points +1
+    UNBRIDLED_WISDOM_EFFECT  = JPCATEGORY_BLU + 0x02, --X conserve mp +3
+    BLUE_MAGIC_POINT_BONUS   = JPCATEGORY_BLU + 0x01, --O blue magic points +1
     BURST_AFFINITY_BONUS     = JPCATEGORY_BLU + 0x03, --X dmg +2
     CHAIN_AFFINITY_EFFECT    = JPCATEGORY_BLU + 0x04, --X sc dmg +1%
     BLUE_PHYS_AE_ACC_BONUS   = JPCATEGORY_BLU + 0x05, --X phys. add. effect acc +1
@@ -2273,8 +2273,8 @@ dsp.jp = {
 
     --COR
     WILD_CARD_EFFECT         = JPCATEGORY_COR + 0x00, --probability of reset +1%
-    CUTTING_CARDS_EFFECT     = JPCATEGORY_COR + 0x01, --recast of party abil. -1%
-    PHANTOM_ROLL_DURATION    = JPCATEGORY_COR + 0x02, --dur. +2s
+    CUTTING_CARDS_EFFECT     = JPCATEGORY_COR + 0x02, --recast of party abil. -1%
+    PHANTOM_ROLL_DURATION    = JPCATEGORY_COR + 0x01, --dur. +2s
     BUST_EVASION             = JPCATEGORY_COR + 0x03, --bust chance -1%
     QUICK_DRAW_EFFECT        = JPCATEGORY_COR + 0x04, --m.dmg +2
     AMMO_CONSUMPTION         = JPCATEGORY_COR + 0x05, --no ammo chance +1%
@@ -2285,8 +2285,8 @@ dsp.jp = {
 
     --PUP
     OVERDRIVE_EFFECT         = JPCATEGORY_PUP + 0x00, --all pet attr. +5
-    HEADY_ARTIFICE_EFFECT    = JPCATEGORY_PUP + 0x01, --increase head effects (see wiki)
-    AUTOMATON_HP_MP_BONUS    = JPCATEGORY_PUP + 0x02, --pet hp+10, mp+5
+    HEADY_ARTIFICE_EFFECT    = JPCATEGORY_PUP + 0x02, --increase head effects (see wiki)
+    AUTOMATON_HP_MP_BONUS    = JPCATEGORY_PUP + 0x01, --pet hp+10, mp+5
     ACTIVATE_EFFECT          = JPCATEGORY_PUP + 0x03, --burden -1
     REPAIR_EFFECT            = JPCATEGORY_PUP + 0x04, --mp hot based on oil (see wiki)
     DEUS_EX_AUTOMATA_RECAST  = JPCATEGORY_PUP + 0x05, --recast -1s
@@ -2297,8 +2297,8 @@ dsp.jp = {
 
     --DNC
     TRANCE_EFFECT            = JPCATEGORY_DNC + 0x00, --tp +100
-    GRAND_PAS_EFFECT         = JPCATEGORY_DNC + 0x01, --dmg +1
-    STEP_DURATION            = JPCATEGORY_DNC + 0x02, --dur. +1s
+    GRAND_PAS_EFFECT         = JPCATEGORY_DNC + 0x02, --dmg +1
+    STEP_DURATION            = JPCATEGORY_DNC + 0x01, --dur. +1s
     WALTZ_DURATION           = JPCATEGORY_DNC + 0x03, --dur. +2s
     WALTZ_POTENCY_BONUS      = JPCATEGORY_DNC + 0x04, --waltz potency +2 (not %)
     JIG_DURATION             = JPCATEGORY_DNC + 0x05, --dur. +1s
@@ -2309,8 +2309,8 @@ dsp.jp = {
 
     --SCH
     TABULA_RASA_EFFECT       = JPCATEGORY_SCH + 0x00, --mp recov. +2%
-    CAPER_EMMISSARIUS_EFFECT = JPCATEGORY_SCH + 0x01, --hp recov. +2%
-    LIGHT_ARTS_EFFECT        = JPCATEGORY_SCH + 0x02, --dur. +3s
+    CAPER_EMMISSARIUS_EFFECT = JPCATEGORY_SCH + 0x02, --hp recov. +2%
+    LIGHT_ARTS_EFFECT        = JPCATEGORY_SCH + 0x01, --dur. +3s
     DARK_ARTS_EFFECT         = JPCATEGORY_SCH + 0x03, --dur. +3s
     STRATEGEM_EFFECT_I       = JPCATEGORY_SCH + 0x04, --m.acc +1
     STRATEGEM_EFFECT_II      = JPCATEGORY_SCH + 0x05, --cast time -1%
@@ -2321,8 +2321,8 @@ dsp.jp = {
 
     --GEO
     BOLSTER_EFFECT           = JPCATEGORY_GEO + 0x00, --luopan hp +3% perp. -1mp
-    WIDENED_COMPASS_EFFECT   = JPCATEGORY_GEO + 0x01, --cast time -3%
-    LIFE_CYCLE_EFFECT        = JPCATEGORY_GEO + 0x02, --luopan hp recov. +1%
+    WIDENED_COMPASS_EFFECT   = JPCATEGORY_GEO + 0x02, --cast time -3%
+    LIFE_CYCLE_EFFECT        = JPCATEGORY_GEO + 0x01, --luopan hp recov. +1%
     BLAZE_OF_GLORY_EFFECT    = JPCATEGORY_GEO + 0x03, --luopan init. hp +1%
     GEO_MAGIC_ATK_BONUS      = JPCATEGORY_GEO + 0x04, --m.att bonus +1
     GEO_MAGIC_ACC_BONUS      = JPCATEGORY_GEO + 0x05, --m.acc +1
@@ -2333,8 +2333,8 @@ dsp.jp = {
 
     --RUN
     ELEMENTAL_SFORZO_EFFECT  = JPCATEGORY_RUN + 0x00, --dmg absorb +2%
-    ODYLLIC_SUBTER_EFFECT    = JPCATEGORY_RUN + 0x01, --enemy m.att bonus -2
-    RUNE_ENCHANTMENT_EFFECT  = JPCATEGORY_RUN + 0x02, --rune resist +1
+    ODYLLIC_SUBTER_EFFECT    = JPCATEGORY_RUN + 0x02, --enemy m.att bonus -2
+    RUNE_ENCHANTMENT_EFFECT  = JPCATEGORY_RUN + 0x01, --rune resist +1
     VALLATION_DURATION       = JPCATEGORY_RUN + 0x03, --dur. +1s
     SWORDPLAY_EFFECT         = JPCATEGORY_RUN + 0x04, --max p.acc/p.eva +2
     SWIPE_EFFECT             = JPCATEGORY_RUN + 0x05, --swipe/lunge dmg (skill) +1%
