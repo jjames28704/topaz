@@ -87,18 +87,13 @@ void CAbilityState::ApplyEnmity()
         {
             CMobEntity* mob = (CMobEntity*)PTarget;
 
-            //JP Effect for Invincible
-            uint32 bonus_ve = (
-                m_PEntity->objtype == TYPE_PC && m_PAbility->getID() == ABILITY_INVINCIBLE
-            ) ? static_cast<CCharEntity*>(m_PEntity)->PJobPoints->GetJobPointValue(JP_INVINCIBLE_EFFECT) * 100 : 0;
-
             if (!mob->CalledForHelp())
             {
                 mob->m_OwnerID.id = m_PEntity->id;
                 mob->m_OwnerID.targid = m_PEntity->targid;
             }
             mob->updatemask |= UPDATE_STATUS;
-            mob->PEnmityContainer->UpdateEnmity(m_PEntity, m_PAbility->getCE(), m_PAbility->getVE() + bonus_ve, false, m_PAbility->getID() == ABILITY_CHARM);
+            mob->PEnmityContainer->UpdateEnmity(m_PEntity, m_PAbility->getCE(), m_PAbility->getVE(), false, m_PAbility->getID() == ABILITY_CHARM);
             if (mob->m_HiPCLvl < m_PEntity->GetMLevel())
                 mob->m_HiPCLvl = m_PEntity->GetMLevel();
         }

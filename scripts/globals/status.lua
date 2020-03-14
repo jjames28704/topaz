@@ -2081,7 +2081,7 @@ dsp.jp = {
     --WAR
     MIGHTY_STRIKES_EFFECT    = JPCATEGORY_WAR + 0x00, --O p.acc +2
     BRAZEN_RUSH_EFFECT       = JPCATEGORY_WAR + 0x02, --X p.atk +4
-    BERSERK_EFFECT           = JPCATEGORY_WAR + 0x01 --O p.atk +2
+    BERSERK_EFFECT           = JPCATEGORY_WAR + 0x01, --O p.atk +2
     DEFENDER_EFFECT          = JPCATEGORY_WAR + 0x03, --O p.def +3
     WARCRY_EFFECT            = JPCATEGORY_WAR + 0x04, --O p.atk +3
     AGGRESSOR_EFFECT         = JPCATEGORY_WAR + 0x05, --O p.acc +1
@@ -2271,28 +2271,28 @@ dsp.jp = {
     BLU_MAGIC_ACC_BONUS      = JPCATEGORY_BLU + 0x09, --X m.acc +1
 
     --COR
-    WILD_CARD_EFFECT         = JPCATEGORY_COR + 0x00, --probability of reset +1%
-    CUTTING_CARDS_EFFECT     = JPCATEGORY_COR + 0x02, --recast of party abil. -1%
-    PHANTOM_ROLL_DURATION    = JPCATEGORY_COR + 0x01, --dur. +2s
-    BUST_EVASION             = JPCATEGORY_COR + 0x03, --bust chance -1%
-    QUICK_DRAW_EFFECT        = JPCATEGORY_COR + 0x04, --m.dmg +2
-    AMMO_CONSUMPTION         = JPCATEGORY_COR + 0x05, --no ammo chance +1%
-    RANDOM_DEAL_EFFECT       = JPCATEGORY_COR + 0x06, --2 abil random deal +2%
-    COR_RANGED_ACC_BONUS     = JPCATEGORY_COR + 0x07, --r.acc +1
-    TRIPLE_SHOT_EFFECT       = JPCATEGORY_COR + 0x08, --triple shot chance +1%
-    OPTIMAL_RANGE_BONUS      = JPCATEGORY_COR + 0x09, --sweet spot dmg +1
+    WILD_CARD_EFFECT         = JPCATEGORY_COR + 0x00, --O probability of reset +1%
+    CUTTING_CARDS_EFFECT     = JPCATEGORY_COR + 0x02, --X recast of party abil. -1%
+    PHANTOM_ROLL_DURATION    = JPCATEGORY_COR + 0x01, --O dur. +2s
+    BUST_EVASION             = JPCATEGORY_COR + 0x03, --X bust chance -1%
+    QUICK_DRAW_EFFECT        = JPCATEGORY_COR + 0x04, --X m.dmg +2
+    AMMO_CONSUMPTION         = JPCATEGORY_COR + 0x05, --O no ammo chance +1%
+    RANDOM_DEAL_EFFECT       = JPCATEGORY_COR + 0x06, --X 2 abil random deal +2%
+    COR_RANGED_ACC_BONUS     = JPCATEGORY_COR + 0x07, --X r.acc +1
+    TRIPLE_SHOT_EFFECT       = JPCATEGORY_COR + 0x08, --X triple shot chance +1%
+    OPTIMAL_RANGE_BONUS      = JPCATEGORY_COR + 0x09, --X sweet spot dmg +1
 
     --PUP
-    OVERDRIVE_EFFECT         = JPCATEGORY_PUP + 0x00, --all pet attr. +5
-    HEADY_ARTIFICE_EFFECT    = JPCATEGORY_PUP + 0x02, --increase head effects (see wiki)
-    AUTOMATON_HP_MP_BONUS    = JPCATEGORY_PUP + 0x01, --pet hp+10, mp+5
-    ACTIVATE_EFFECT          = JPCATEGORY_PUP + 0x03, --burden -1
-    REPAIR_EFFECT            = JPCATEGORY_PUP + 0x04, --mp hot based on oil (see wiki)
-    DEUS_EX_AUTOMATA_RECAST  = JPCATEGORY_PUP + 0x05, --recast -1s
-    TACTICAL_SWITCH_BONUS    = JPCATEGORY_PUP + 0x06, --tp +20
-    COOLDOWN_EFFECT          = JPCATEGORY_PUP + 0x07, --burden -1
-    DEACTIVATE_EFFECT        = JPCATEGORY_PUP + 0x08, --hp require. -1%
-    PUP_MARTIAL_ARTS_EFFECT  = JPCATEGORY_PUP + 0x09, --delay -2
+    OVERDRIVE_EFFECT         = JPCATEGORY_PUP + 0x00, --O all pet attr. +5
+    HEADY_ARTIFICE_EFFECT    = JPCATEGORY_PUP + 0x02, --X increase head effects (see wiki)
+    AUTOMATON_HP_MP_BONUS    = JPCATEGORY_PUP + 0x01, --O pet hp+10, mp+5
+    ACTIVATE_EFFECT          = JPCATEGORY_PUP + 0x03, --O burden -1
+    REPAIR_EFFECT            = JPCATEGORY_PUP + 0x04, --O mp hot based on oil (see wiki)
+    DEUS_EX_AUTOMATA_RECAST  = JPCATEGORY_PUP + 0x05, --O recast -1s
+    TACTICAL_SWITCH_BONUS    = JPCATEGORY_PUP + 0x06, --X tp +20
+    COOLDOWN_EFFECT          = JPCATEGORY_PUP + 0x07, --O burden -1
+    DEACTIVATE_EFFECT        = JPCATEGORY_PUP + 0x08, --X hp require. -1%
+    PUP_MARTIAL_ARTS_EFFECT  = JPCATEGORY_PUP + 0x09, --X delay -2
 
     --DNC
     TRANCE_EFFECT            = JPCATEGORY_DNC + 0x00, --tp +100

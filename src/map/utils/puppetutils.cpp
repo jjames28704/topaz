@@ -28,6 +28,7 @@
 #include "charutils.h"
 #include "itemutils.h"
 #include "zoneutils.h"
+#include "../job_points.h"
 #include "../status_effect_container.h"
 #include "../entities/automatonentity.h"
 #include "../packets/char_job_extra.h"
@@ -104,6 +105,9 @@ void LoadAutomaton(CCharEntity* PChar)
             for (int i = 0; i < 12; i++)
                 if (tempEquip.Attachments[i] != 198 && tempEquip.Attachments[i] != 206)
                     setAttachment(PChar, i, tempEquip.Attachments[i]);
+
+            // Set burden based on JP
+            PChar->PAutomaton->setBurden(30 - PChar->PJobPoints->GetJobPointValue(JP_ACTIVATE_EFFECT));
 
             PChar->PAutomaton->UpdateHealth();
             PChar->PAutomaton->health.hp = PChar->PAutomaton->GetMaxHP();
