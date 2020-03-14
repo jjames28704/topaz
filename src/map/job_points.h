@@ -404,11 +404,6 @@ class CJobPoints
          */
         uint8    GetJobPointValue(JOBPOINT_TYPE jp_type);
 
-        /**
-         * Calculate the bonus recast reduction from Job Points
-         */
-        uint8   GetRecastReduction(ABILITY ability_id);
-
     private:
         CCharEntity*    jp_PChar;
         JobPoints_t     job_points[MAX_JOBTYPE];

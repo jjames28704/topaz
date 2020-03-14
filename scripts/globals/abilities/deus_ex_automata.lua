@@ -29,4 +29,6 @@ function onUseAbility(player,target,ability)
         pet:setHP(math.max(pet:getHP() * percent, 1))
         pet:setMP(pet:getMP() * percent)
     end
+    local jp_value = player:getJobPointValue(tpz.jp.DEUS_EX_AUTOMATA_RECAST)
+    ability:setRecast(ability:getRecast() - jp_value)
 end

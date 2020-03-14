@@ -21,6 +21,12 @@ function onAbilityCheck(player, target, ability)
     end
 end
 
-function onUseAbility(player, target, ability)
-    tpz.pet.spawnPet(player, tpz.pet.id.AUTOMATON)
+function onUseAbility(player,target,ability)
+    player:spawnPet(tpz.pet.id.AUTOMATON)
+    local pet = player:getPet()
+    if pet then
+        local jp_value = player:getJobPointValue(tpz.jp.ACTIVATE_EFFECT)
+        pet:addMod(tpz.mod.HP, jp_value * 10)
+        pet:addMod(tpz.mod.MP, jp_value * 11)
+    end
 end

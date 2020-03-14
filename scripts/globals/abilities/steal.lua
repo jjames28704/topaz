@@ -97,6 +97,10 @@ function onUseAbility(player,target,ability,action)
         end
     end
 
+    -- JP Recase Reduction
+    local jp_value = player:getJobPointValue(tpz.jp.STEAL_RECAST)
+    ability:setRecast(ability:getRecast() - 2 * jp_value)
+    
     return stolen
 end
 

@@ -962,9 +962,6 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             meritRecastReduction = PMeritPoints->GetMeritValue((MERIT_TYPE)PAbility->getMeritModID(), this);
         }
 
-        // get any job point recast reduction
-        meritRecastReduction += this->PJobPoints->GetRecastReduction((ABILITY)PAbility->getID());
-
         auto charge = ability::GetCharge(this, PAbility->getRecastId());
         if (charge && PAbility->getID() != ABILITY_SIC)
         {

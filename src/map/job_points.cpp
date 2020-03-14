@@ -124,13 +124,3 @@ uint8 CJobPoints::GetJobPointValue(JOBPOINT_TYPE jp_type)
     }
     return 0;
 }
-
-uint8 CJobPoints::GetRecastReduction(ABILITY ability_id)
-{
-    switch(ability_id) {
-        case ABILITY_STEAL:
-            return GetJobPointValue(JP_STEAL_RECAST) * 2;
-    }
-
-    return 0;
-}
