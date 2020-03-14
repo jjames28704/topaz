@@ -10,11 +10,11 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
+    local jp_value = player:getJobPointValue(dsp.jp.INVINCIBLE_EFFECT)
+    ability:setVE(ability:getVE() + 100 * jp_value)
     return 0,0
 end
 
 function onUseAbility(player,target,ability)
-    local jp_value = player:getJobPointValue(dsp.jp.INVINCIBLE_EFFECT)
-    ability:setVE(ability:getVE() + 100 * jp_value)
     player:addStatusEffect(dsp.effect.INVINCIBLE,1,0,30)
 end

@@ -35,6 +35,9 @@ function onAbilityCheck(player,target,ability)
     if (player:getFreeSlotsCount() == 0) then
         return dsp.msg.basic.FULL_INVENTORY,0
     else
+        -- JP Recase Reduction
+        local jp_value = player:getJobPointValue(dsp.jp.STEAL_RECAST)
+        ability:setRecast(ability:getRecast() - 2 * jp_value)
         return 0,0
     end
 end
@@ -96,10 +99,6 @@ function onUseAbility(player,target,ability,action)
             end
         end
     end
-
-    -- JP Recase Reduction
-    local jp_value = player:getJobPointValue(dsp.jp.STEAL_RECAST)
-    ability:setRecast(ability:getRecast() - 2 * jp_value)
     
     return stolen
 end

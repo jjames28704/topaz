@@ -21,7 +21,6 @@
 ===========================================================================
 */
 #include "../../common/socket.h"
-
 #include "menu_merit.h"
 
 #include "../entities/charentity.h"
@@ -45,20 +44,19 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 			//set merit mode flag
 			meritFlags |= 0x8000;
 		}
+
+		if ((PChar->jobs.job[PChar->GetMJob()] >= PChar->jobs.genkai && PChar->jobs.exp[PChar->GetMJob()] == charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1) 
+			|| PChar->MeritMode)
+		{
+			// set capped exp flag
+			meritFlags |= 0x4000;
+		}
 	}
 
-	if ((PChar->jobs.job[PChar->GetMJob()] >= PChar->jobs.genkai && PChar->jobs.exp[PChar->GetMJob()] == charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1) 
-		|| PChar->MeritMode)
-	{
-		// set capped exp flag
-		meritFlags |= 0x4000;
-	}
-
-	uint8 addlBluPoints = std::clamp<uint8>(blueutils::GetTotalBlueMagicPoints(PChar), 0, 80) - 55;
+	uint8 addlBluPoints = std::clamp<uint8>(blueutils::GetTotalBlueMagicPoints(PChar) - 55, 0, 25);
 	uint8 meritPoints = PChar->PMeritPoints->GetMeritPoints();
 	uint16 bluPoints = (addlBluPoints) << 7;
 	uint16 pointsData = meritFlags + bluPoints + meritPoints;
-	
 
 	// ver 30200217_0 first packet
 	
