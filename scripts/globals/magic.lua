@@ -449,6 +449,15 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
 
     magicacc = magicacc + caster:getMerit(dsp.merit.NIN_MAGIC_ACCURACY)
 
+    -- JP accuracy bonus
+    if (caster:getMainJob() == dsp.job.SCH) then
+        if (caster:hasStatusEffect(dsp.effect.LIGHT_ARTS) and caster:hasStatusEffect(dsp.effect.PENURY) then
+            magicacc = magicacc + caster:getJobPointValue(dsp.jp.STRATEGEM_EFFECT_I)
+        else if (caster:hasStatusEffect(dsp.effect.DARK_ARTS) and caster:hasStatusEffect(dsp.effect.PARSIMONY)) then
+            magicacc = magicacc + caster:getJobPointValue(dsp.jp.STRATEGEM_EFFECT_I)
+        end
+    end
+
     -- Base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
     local magiceva = target:getMod(dsp.mod.MEVA) + resMod;
 
@@ -918,6 +927,17 @@ function addBonuses(caster, spell, target, dmg, params)
 
     dmg = math.floor(dmg * mabbonus);
 
+    -- JP MDMG Bonus for SCH
+    if (caster:getMainJob() == dsp.job.SCH) then
+        local jp_value = caster:getJobPointValue(dsp.jp.STRATEGEM_EFFECT_III) * 2
+        local group = spell:getSpellGroup()
+        if (group == dsp.magic.spellGroup.WHITE and caster:hasStatusEffect(dsp.effect.RAPTURE)) then
+            dmg = dmg + jp_value
+        else if (group == dsp.magic.spellGroup.BLACK and caster:hasStatusEffect(dsp.effect.EBULLIENCE)) then
+            dmg = dmg + jp_vaule
+        end
+    end
+
     if (caster:hasStatusEffect(dsp.effect.EBULLIENCE)) then
         dmg = dmg * (1.2 + caster:getMod(dsp.mod.EBULLIENCE_AMOUNT)/100);
         caster:delStatusEffectSilent(dsp.effect.EBULLIENCE);
@@ -1080,6 +1100,12 @@ function getHelixDuration(caster)
     elseif (casterLevel <= 99) then
         duration = 90;
     end
+
+    if (caster:hasStatusEffect(dsp.effect.DARK_ARTS)) then
+        local jp_value = caster:getJobPointValue(dsp.jp.DARK_ARTS_EFFECT)
+        duration = duration + (2 * jp_value)
+    end
+
     return duration;
 end;
 
