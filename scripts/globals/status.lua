@@ -2296,10 +2296,10 @@ dsp.jp = {
     PUP_MARTIAL_ARTS_EFFECT  = JPCATEGORY_PUP + 0x09, --X delay -2
 
     --DNC
-    TRANCE_EFFECT            = JPCATEGORY_DNC + 0x00, --tp +100
-    GRAND_PAS_EFFECT         = JPCATEGORY_DNC + 0x02, --dmg +1
+    TRANCE_EFFECT            = JPCATEGORY_DNC + 0x00, --O tp +100
+    GRAND_PAS_EFFECT         = JPCATEGORY_DNC + 0x02, --X dmg +1
     STEP_DURATION            = JPCATEGORY_DNC + 0x01, --dur. +1s
-    WALTZ_DURATION           = JPCATEGORY_DNC + 0x03, --dur. +2s
+    SAMBA_DURATION           = JPCATEGORY_DNC + 0x03, --dur. +2s
     WALTZ_POTENCY_BONUS      = JPCATEGORY_DNC + 0x04, --waltz potency +2 (not %)
     JIG_DURATION             = JPCATEGORY_DNC + 0x05, --dur. +1s
     FLOURISH_I_EFFECT        = JPCATEGORY_DNC + 0x06, --effect bonuses (see wiki)
@@ -2320,28 +2320,28 @@ dsp.jp = {
     SUBLIMATION_EFFECT       = JPCATEGORY_SCH + 0x09, --sublimation mp +3%
 
     --GEO
-    BOLSTER_EFFECT           = JPCATEGORY_GEO + 0x00, --luopan hp +3% perp. -1mp
-    WIDENED_COMPASS_EFFECT   = JPCATEGORY_GEO + 0x02, --cast time -3%
-    LIFE_CYCLE_EFFECT        = JPCATEGORY_GEO + 0x01, --luopan hp recov. +1%
-    BLAZE_OF_GLORY_EFFECT    = JPCATEGORY_GEO + 0x03, --luopan init. hp +1%
-    GEO_MAGIC_ATK_BONUS      = JPCATEGORY_GEO + 0x04, --m.att bonus +1
-    GEO_MAGIC_ACC_BONUS      = JPCATEGORY_GEO + 0x05, --m.acc +1
-    DEMATERIALIZE_DURATION   = JPCATEGORY_GEO + 0x06, --dur. +1s
-    THEURGIC_FOCUS_EFFECT    = JPCATEGORY_GEO + 0x07, --m.dmg +3
-    CONCENTRIC_PULSE_EFFECT  = JPCATEGORY_GEO + 0x08, --dmg +1%
-    INDI_SPELL_DURATION      = JPCATEGORY_GEO + 0x09, --indi dur. +2s
+    BOLSTER_EFFECT           = JPCATEGORY_GEO + 0x00, --X luopan hp +3% perp. -1mp
+    WIDENED_COMPASS_EFFECT   = JPCATEGORY_GEO + 0x02, --X cast time -3%
+    LIFE_CYCLE_EFFECT        = JPCATEGORY_GEO + 0x01, --X luopan hp recov. +1%
+    BLAZE_OF_GLORY_EFFECT    = JPCATEGORY_GEO + 0x03, --X luopan init. hp +1%
+    GEO_MAGIC_ATK_BONUS      = JPCATEGORY_GEO + 0x04, --X m.att bonus +1
+    GEO_MAGIC_ACC_BONUS      = JPCATEGORY_GEO + 0x05, --X m.acc +1
+    DEMATERIALIZE_DURATION   = JPCATEGORY_GEO + 0x06, --X dur. +1s
+    THEURGIC_FOCUS_EFFECT    = JPCATEGORY_GEO + 0x07, --X m.dmg +3
+    CONCENTRIC_PULSE_EFFECT  = JPCATEGORY_GEO + 0x08, --X dmg +1%
+    INDI_SPELL_DURATION      = JPCATEGORY_GEO + 0x09, --X indi dur. +2s
 
     --RUN
-    ELEMENTAL_SFORZO_EFFECT  = JPCATEGORY_RUN + 0x00, --dmg absorb +2%
-    ODYLLIC_SUBTER_EFFECT    = JPCATEGORY_RUN + 0x02, --enemy m.att bonus -2
-    RUNE_ENCHANTMENT_EFFECT  = JPCATEGORY_RUN + 0x01, --rune resist +1
-    VALLATION_DURATION       = JPCATEGORY_RUN + 0x03, --dur. +1s
-    SWORDPLAY_EFFECT         = JPCATEGORY_RUN + 0x04, --max p.acc/p.eva +2
-    SWIPE_EFFECT             = JPCATEGORY_RUN + 0x05, --swipe/lunge dmg (skill) +1%
-    EMBOLDEN_EFFECT          = JPCATEGORY_RUN + 0x06, --enhanc. mag effect +1
-    VIVACIOUS_PULSE_EFFECT   = JPCATEGORY_RUN + 0x07, --viv. pulse => hp +1%
-    ONE_FOR_ALL_DURATION     = JPCATEGORY_RUN + 0x08, --dur. +1s
-    GAMBIT_DURATION          = JPCATEGORY_RUN + 0x09, --dur +1s
+    ELEMENTAL_SFORZO_EFFECT  = JPCATEGORY_RUN + 0x00, --X dmg absorb +2%
+    ODYLLIC_SUBTER_EFFECT    = JPCATEGORY_RUN + 0x02, --X enemy m.att bonus -2
+    RUNE_ENCHANTMENT_EFFECT  = JPCATEGORY_RUN + 0x01, --X rune resist +1
+    VALLATION_DURATION       = JPCATEGORY_RUN + 0x03, --X dur. +1s
+    SWORDPLAY_EFFECT         = JPCATEGORY_RUN + 0x04, --X max p.acc/p.eva +2
+    SWIPE_EFFECT             = JPCATEGORY_RUN + 0x05, --X swipe/lunge dmg (skill) +1%
+    EMBOLDEN_EFFECT          = JPCATEGORY_RUN + 0x06, --X enhanc. mag effect +1
+    VIVACIOUS_PULSE_EFFECT   = JPCATEGORY_RUN + 0x07, --X viv. pulse => hp +1%
+    ONE_FOR_ALL_DURATION     = JPCATEGORY_RUN + 0x08, --X dur. +1s
+    GAMBIT_DURATION          = JPCATEGORY_RUN + 0x09, --X dur +1s
 }
 
 ------------------------------------

@@ -1010,6 +1010,7 @@ int32 map_config_default()
     map_config.skillup_bloodpact = true;
     map_config.anticheat_enabled = false;
     map_config.anticheat_jail_disable = false;
+    map_config.max_blu_points = 25;
     return 0;
 }
 
@@ -1366,6 +1367,10 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "anticheat_jail_disable") == 0)
         {
             map_config.anticheat_jail_disable = atoi(w2);
+        }
+        else if (strcmp(w1, "max_blu_points") == 0)
+        {
+            map_config.max_blu_points = atoi(w2);
         }
         else
         {

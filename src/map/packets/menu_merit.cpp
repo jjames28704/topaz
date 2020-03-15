@@ -51,7 +51,7 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 		}
 	}
 
-	uint8 addlBluPoints = std::clamp<uint8>(blueutils::GetTotalBlueMagicPoints(PChar) - 55, 0, 25);
+	uint8 addlBluPoints = std::clamp<uint8>(blueutils::GetTotalBlueMagicPoints(PChar) - 55, 0, map_config.max_blu_points);
 	uint8 meritPoints = PChar->PMeritPoints->GetMeritPoints();
 	uint16 bluPoints = (addlBluPoints) << 7;
 	uint16 pointsData = meritFlags + bluPoints + meritPoints;
