@@ -287,7 +287,7 @@ enum JOBPOINT_TYPE : uint16
     JP_TRANCE_EFFECT            = JPCATEGORY_DNC + 0x00, //tp +100
     JP_GRAND_PAS_EFFECT         = JPCATEGORY_DNC + 0x02, //dmg +1
     JP_STEP_DURATION            = JPCATEGORY_DNC + 0x01, //dur. +1s
-    JP_WALTZ_DURATION           = JPCATEGORY_DNC + 0x03, //dur. +2s
+    JP_SAMBA_DURATION           = JPCATEGORY_DNC + 0x03, //dur. +2s
     JP_WALTZ_POTENCY_BONUS      = JPCATEGORY_DNC + 0x04, //waltz potency +2 (not %)
     JP_JIG_DURATION             = JPCATEGORY_DNC + 0x05, //dur. +1s
     JP_FLOURISH_I_EFFECT        = JPCATEGORY_DNC + 0x06, //effect bonuses (see wiki)
