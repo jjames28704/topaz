@@ -2298,26 +2298,26 @@ dsp.jp = {
     --DNC
     TRANCE_EFFECT            = JPCATEGORY_DNC + 0x00, --O tp +100
     GRAND_PAS_EFFECT         = JPCATEGORY_DNC + 0x02, --X dmg +1
-    STEP_DURATION            = JPCATEGORY_DNC + 0x01, --dur. +1s
-    SAMBA_DURATION           = JPCATEGORY_DNC + 0x03, --dur. +2s
-    WALTZ_POTENCY_BONUS      = JPCATEGORY_DNC + 0x04, --waltz potency +2 (not %)
-    JIG_DURATION             = JPCATEGORY_DNC + 0x05, --dur. +1s
-    FLOURISH_I_EFFECT        = JPCATEGORY_DNC + 0x06, --effect bonuses (see wiki)
-    FLOURISH_II_EFFECT       = JPCATEGORY_DNC + 0x07, --effect bonuses (see wiki)
-    FLOURISH_III_EFFECT      = JPCATEGORY_DNC + 0x08, --CHR bonus +1%
-    CONTRADANCE_EFFECT       = JPCATEGORY_DNC + 0x09, --waltz tp -3%
+    STEP_DURATION            = JPCATEGORY_DNC + 0x01, --X dur. +1s
+    SAMBA_DURATION           = JPCATEGORY_DNC + 0x03, --X dur. +2s
+    WALTZ_POTENCY_BONUS      = JPCATEGORY_DNC + 0x04, --X waltz potency +2 (not %)
+    JIG_DURATION             = JPCATEGORY_DNC + 0x05, --X dur. +1s
+    FLOURISH_I_EFFECT        = JPCATEGORY_DNC + 0x06, --X effect bonuses (see wiki)
+    FLOURISH_II_EFFECT       = JPCATEGORY_DNC + 0x07, --X effect bonuses (see wiki)
+    FLOURISH_III_EFFECT      = JPCATEGORY_DNC + 0x08, --X CHR bonus +1%
+    CONTRADANCE_EFFECT       = JPCATEGORY_DNC + 0x09, --X waltz tp -3%
 
     --SCH
-    TABULA_RASA_EFFECT       = JPCATEGORY_SCH + 0x00, --mp recov. +2%
-    CAPER_EMMISSARIUS_EFFECT = JPCATEGORY_SCH + 0x02, --hp recov. +2%
-    LIGHT_ARTS_EFFECT        = JPCATEGORY_SCH + 0x01, --dur. +3s
-    DARK_ARTS_EFFECT         = JPCATEGORY_SCH + 0x03, --dur. +3s
-    STRATEGEM_EFFECT_I       = JPCATEGORY_SCH + 0x04, --m.acc +1
-    STRATEGEM_EFFECT_II      = JPCATEGORY_SCH + 0x05, --cast time -1%
-    STRATEGEM_EFFECT_III     = JPCATEGORY_SCH + 0x06, --m.dmg +2
-    STRATEGEM_EFFECT_IV      = JPCATEGORY_SCH + 0x07, --recast -2%
-    MODUS_VERITAS_EFFECT     = JPCATEGORY_SCH + 0x08, --dot +3
-    SUBLIMATION_EFFECT       = JPCATEGORY_SCH + 0x09, --sublimation mp +3%
+    TABULA_RASA_EFFECT       = JPCATEGORY_SCH + 0x00, --O mp recov. +2%
+    CAPER_EMMISSARIUS_EFFECT = JPCATEGORY_SCH + 0x02, --X hp recov. +2%
+    LIGHT_ARTS_EFFECT        = JPCATEGORY_SCH + 0x01, --O dur. +3s
+    DARK_ARTS_EFFECT         = JPCATEGORY_SCH + 0x03, --O dur. +3s
+    STRATEGEM_EFFECT_I       = JPCATEGORY_SCH + 0x04, --O m.acc +1
+    STRATEGEM_EFFECT_II      = JPCATEGORY_SCH + 0x05, --O cast time -1%
+    STRATEGEM_EFFECT_III     = JPCATEGORY_SCH + 0x06, --O m.dmg +2
+    STRATEGEM_EFFECT_IV      = JPCATEGORY_SCH + 0x07, --O recast -2%
+    MODUS_VERITAS_EFFECT     = JPCATEGORY_SCH + 0x08, --O dot +3
+    SUBLIMATION_EFFECT       = JPCATEGORY_SCH + 0x09, --O sublimation mp +3%
 
     --GEO
     BOLSTER_EFFECT           = JPCATEGORY_GEO + 0x00, --X luopan hp +3% perp. -1mp

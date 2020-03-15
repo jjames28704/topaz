@@ -5114,6 +5114,11 @@ namespace battleutils
                 {
                     bonus = PEntity->getMod(Mod::ALACRITY_CELERITY_EFFECT);
                 }
+                //Apply JP Bonus
+                if (PEntity->objtype == TYPE_PC) 
+                {
+                    bonus += ((CCharEntity*)PEntity)->PJobPoints->GetJobPointValue(JP_STRATEGEM_EFFECT_II);
+                }
                 cast -= (uint32)(base * ((100 - (50 + bonus)) / 100.0f));
                 applyArts = false;
             }
@@ -5139,6 +5144,11 @@ namespace battleutils
                 if (battleutils::WeatherMatchesElement(battleutils::GetWeather(PEntity, false), (uint8)PSpell->getElement()))
                 {
                     bonus = PEntity->getMod(Mod::ALACRITY_CELERITY_EFFECT);
+                }
+                // Apply JP Bonus
+                if (PEntity->objtype == TYPE_PC) 
+                {
+                    bonus += ((CCharEntity*)PEntity)->PJobPoints->GetJobPointValue(JP_STRATEGEM_EFFECT_II);
                 }
                 cast -= (uint32)(base * ((100 - (50 + bonus)) / 100.0f));
                 applyArts = false;
@@ -5356,7 +5366,11 @@ namespace battleutils
                 {
                     bonus = PEntity->getMod(Mod::ALACRITY_CELERITY_EFFECT);
                 }
-                recast = (int32)(recast * ((50 - bonus) / 100.0f));
+                if (PEntity->objtype == TYPE_PC) {
+                    bonus +=  2 * ((CCharEntity*)PEntity)->PJobPoints->GetJobPointValue(JP_STRATEGEM_EFFECT_IV);
+                }
+                bonus = std::clamp(50 - bonus, 0, 50);
+                recast = (int32)(recast * (bonus / 100.0f));
 
                 applyArts = false;
             }
@@ -5395,7 +5409,11 @@ namespace battleutils
                 {
                     bonus = PEntity->getMod(Mod::ALACRITY_CELERITY_EFFECT);
                 }
-                recast = (int32)(recast * ((50 - bonus) / 100.0f));
+                if (PEntity->objtype == TYPE_PC) {
+                    bonus +=  2 * ((CCharEntity*)PEntity)->PJobPoints->GetJobPointValue(JP_STRATEGEM_EFFECT_IV);
+                }
+                bonus = std::clamp(50 - bonus, 0, 50);
+                recast = (int32)(recast * (bonus / 100.0f));
 
                 applyArts = false;
             }

@@ -25,7 +25,7 @@ function onEffectTick(target,effect)
     local store = effect:getPower() + basemp + bonus
 
     local limit = math.floor((target:getBaseHP() + target:getMod(tpz.mod.HP) + target:getMerit(tpz.merit.MAX_HP)) / 4) +
-        target:getMerit(tpz.merit.MAX_SUBLIMATION)
+        target:getMerit(tpz.merit.MAX_SUBLIMATION) + (3* target:getJobPointValue(tpz.jp.SUBLIMATION_EFFECT))
 
     if not (target:getHPP() < 51 ) then
         if (target:hasStatusEffect(tpz.effect.STONESKIN)) then

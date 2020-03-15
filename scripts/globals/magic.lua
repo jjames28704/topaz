@@ -614,6 +614,15 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
 
     magicacc = magicacc + caster:getMerit(tpz.merit.NIN_MAGIC_ACCURACY)
 
+    -- JP accuracy bonus
+    if (caster:getMainJob() == tpz.job.SCH) then
+        if (caster:hasStatusEffect(tpz.effect.LIGHT_ARTS) and caster:hasStatusEffect(tpz.effect.PENURY) then
+            magicacc = magicacc + caster:getJobPointValue(tpz.jp.STRATEGEM_EFFECT_I)
+        else if (caster:hasStatusEffect(tpz.effect.DARK_ARTS) and caster:hasStatusEffect(tpz.effect.PARSIMONY)) then
+            magicacc = magicacc + caster:getJobPointValue(tpz.jp.STRATEGEM_EFFECT_I)
+        end
+    end
+
     -- Base magic evasion (base magic evasion plus resistances(players), plus elemental defense(mobs)
     local magiceva = target:getMod(tpz.mod.MEVA) + resMod
 
@@ -1081,11 +1090,22 @@ function addBonuses(caster, spell, target, dmg, params)
         mabbonus = 0
     end
 
-    dmg = math.floor(dmg * mabbonus)
+    dmg = math.floor(dmg * mabbonus);
+
+    -- JP MDMG Bonus for SCH
+    if (caster:getMainJob() == tpz.job.SCH) then
+        local jp_value = caster:getJobPointValue(tpz.jp.STRATEGEM_EFFECT_III) * 2
+        local group = spell:getSpellGroup()
+        if (group == tpz.magic.spellGroup.WHITE and caster:hasStatusEffect(tpz.effect.RAPTURE)) then
+            dmg = dmg + jp_value
+        else if (group == tpz.magic.spellGroup.BLACK and caster:hasStatusEffect(tpz.effect.EBULLIENCE)) then
+            dmg = dmg + jp_vaule
+        end
+    end
 
     if (caster:hasStatusEffect(tpz.effect.EBULLIENCE)) then
-        dmg = dmg * (1.2 + caster:getMod(tpz.mod.EBULLIENCE_AMOUNT)/100)
-        caster:delStatusEffectSilent(tpz.effect.EBULLIENCE)
+        dmg = dmg * (1.2 + caster:getMod(tpz.mod.EBULLIENCE_AMOUNT)/100);
+        caster:delStatusEffectSilent(tpz.effect.EBULLIENCE);
     end
 
     dmg = math.floor(dmg)
@@ -1235,8 +1255,14 @@ function getHelixDuration(caster)
     elseif (casterLevel <= 99) then
         duration = 90
     end
-    return duration
-end
+
+    if (caster:hasStatusEffect(tpz.effect.DARK_ARTS)) then
+        local jp_value = caster:getJobPointValue(tpz.jp.DARK_ARTS_EFFECT)
+        duration = duration + (2 * jp_value)
+    end
+
+    return duration;
+end;
 
 function isHelixSpell(spell)
     --Dark Arts will further increase Helix duration, but testing is ongoing.
