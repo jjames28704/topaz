@@ -616,7 +616,7 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
 
     -- JP accuracy bonus
     if (caster:getMainJob() == tpz.job.SCH) then
-        if (caster:hasStatusEffect(tpz.effect.LIGHT_ARTS) and caster:hasStatusEffect(tpz.effect.PENURY) then
+        if (caster:hasStatusEffect(tpz.effect.LIGHT_ARTS) and caster:hasStatusEffect(tpz.effect.PENURY)) then
             magicacc = magicacc + caster:getJobPointValue(tpz.jp.STRATEGEM_EFFECT_I)
         else if (caster:hasStatusEffect(tpz.effect.DARK_ARTS) and caster:hasStatusEffect(tpz.effect.PARSIMONY)) then
             magicacc = magicacc + caster:getJobPointValue(tpz.jp.STRATEGEM_EFFECT_I)
