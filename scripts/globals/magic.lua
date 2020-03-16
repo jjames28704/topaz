@@ -453,7 +453,7 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
     if (caster:getMainJob() == dsp.job.SCH) then
         if (caster:hasStatusEffect(dsp.effect.LIGHT_ARTS) and caster:hasStatusEffect(dsp.effect.PENURY)) then
             magicacc = magicacc + caster:getJobPointValue(dsp.jp.STRATEGEM_EFFECT_I)
-        else if (caster:hasStatusEffect(dsp.effect.DARK_ARTS) and caster:hasStatusEffect(dsp.effect.PARSIMONY)) then
+        elseif (caster:hasStatusEffect(dsp.effect.DARK_ARTS) and caster:hasStatusEffect(dsp.effect.PARSIMONY)) then
             magicacc = magicacc + caster:getJobPointValue(dsp.jp.STRATEGEM_EFFECT_I)
         end
     end
