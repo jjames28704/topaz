@@ -933,7 +933,7 @@ function addBonuses(caster, spell, target, dmg, params)
         local group = spell:getSpellGroup()
         if (group == dsp.magic.spellGroup.WHITE and caster:hasStatusEffect(dsp.effect.RAPTURE)) then
             dmg = dmg + jp_value
-        else if (group == dsp.magic.spellGroup.BLACK and caster:hasStatusEffect(dsp.effect.EBULLIENCE)) then
+        elseif (group == dsp.magic.spellGroup.BLACK and caster:hasStatusEffect(dsp.effect.EBULLIENCE)) then
             dmg = dmg + jp_vaule
         end
     end
