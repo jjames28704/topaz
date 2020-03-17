@@ -775,7 +775,6 @@ namespace charutils
         PChar->PMeritPoints = new CMeritPoints(PChar);
         PChar->PMeritPoints->SetMeritPoints(meritPoints);
         PChar->PMeritPoints->SetLimitPoints(limitPoints);
-
         PChar->PJobPoints = new CJobPoints(PChar);
 
         fmtQuery =
@@ -805,6 +804,7 @@ namespace charutils
         BuildingCharSkillsTable(PChar);
         BuildingCharAbilityTable(PChar);
         BuildingCharTraitsTable(PChar);
+        jobpointutils::AddGiftMods(PChar);
 
         PChar->animation = (HP == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
 

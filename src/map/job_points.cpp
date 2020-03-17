@@ -108,6 +108,11 @@ void CJobPoints::RaiseJobPoint(JOBPOINT_TYPE jp_type)
 
 }
 
+uint16 CJobPoints::GetJobPointsSpent()
+{
+    return job_points[jp_PChar->GetMJob()].job_points_spent;
+}
+
 JobPoints_t* CJobPoints::GetAllJobPoints()
 {
     return job_points;
@@ -123,4 +128,41 @@ uint8 CJobPoints::GetJobPointValue(JOBPOINT_TYPE jp_type)
         return GetJobPointType(jp_type)->value;
     }
     return 0;
+}
+
+namespace jobpointutils 
+{
+    std::vector<JobPointGifts_t> jp_gifts[MAX_JOBTYPE] = {};
+
+    void LoadGifts()
+    {
+        if (Sql_Query(SqlHandle, "SELECT jobid, jp_needed, modid, value FROM job_point_gifts ORDER BY jp_needed ASC") != SQL_ERROR)
+        {
+            while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                JobPointGifts_t gift = {};
+
+                uint8 jobid = Sql_GetUIntData(SqlHandle, 0);
+                gift.jp_needed = Sql_GetUIntData(SqlHandle, 1);
+                gift.modid = Sql_GetUIntData(SqlHandle, 2);
+                gift.value = Sql_GetUIntData(SqlHandle, 3);
+
+                jp_gifts[jobid].push_back(gift);
+            }
+        }
+    }
+
+    void AddGiftMods(CCharEntity* PChar)
+    {
+        uint16 current_jp = PChar->PJobPoints->GetJobPointsSpent();
+        uint8 jobid = static_cast<uint8>(PChar->GetMJob());
+
+        for(auto&& gift : jp_gifts[jobid])
+        {
+            if(gift.jp_needed > current_jp) break;
+
+            PChar->addModifier(static_cast<Mod>(gift.modid), gift.value);
+            ShowDebug("===\nAdded Mod\nchar: %d\njob %d\nmod %d\nvalue %d\njp_needed %d\n", PChar->id, jobid, gift.modid, gift.value, gift.jp_needed);
+        }
+    }
 }
