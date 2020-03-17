@@ -24,6 +24,8 @@
 #ifndef _CJOBPOINTS_H
 #define _CJOBPOINTS_H
 
+#include <vector>
+
 #include "ability.h"
 #include "../common/cbasetypes.h"
 #include "./entities/battleentity.h"
@@ -376,6 +378,13 @@ struct JobPoints_t
     JobPointType_t job_point_types[JOBPOINTS_JPTYPE_PER_CATEGORY];
 };
 
+struct JobPointGifts_t
+{
+    uint16 jp_needed;
+    uint16 modid;
+    int16  value;
+};
+
 /************************************************************************
 *                                                                       *
 *                                                                       *
@@ -398,6 +407,8 @@ class CJobPoints
 
         JobPoints_t*    GetAllJobPoints();
 
+        uint16 GetJobPointsSpent();
+
         /**
          * Returns the level of a given job point type. Will return 0 if the type doesn't match the
          * player's main job or if their main job is not 99
@@ -408,5 +419,12 @@ class CJobPoints
         CCharEntity*    jp_PChar;
         JobPoints_t     job_points[MAX_JOBTYPE];
 };
+
+namespace jobpointutils
+{
+    void LoadGifts();
+    void AddGiftMods(CCharEntity* PChar);
+    extern std::vector<JobPointGifts_t> jp_gifts[MAX_JOBTYPE];
+}
 
 #endif
