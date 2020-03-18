@@ -426,7 +426,6 @@ namespace jobpointutils
 {
     void LoadGifts();
     void AddGiftMods(CCharEntity* PChar);
-    void DelGiftMods(CCharEntity* PChar);
     extern std::vector<JobPointGifts_t> jp_gifts[MAX_JOBTYPE];
 }
 
