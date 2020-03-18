@@ -5244,6 +5244,7 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
     puppetutils::LoadAutomaton(PChar);
     charutils::SetStyleLock(PChar, false);
     luautils::CheckForGearSet(PChar); // check for gear set on gear change
+    jobpointutils::AddGiftMods(PChar);
     charutils::BuildingCharSkillsTable(PChar);
     charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);
@@ -5444,6 +5445,7 @@ inline int32 CLuaBaseEntity::setLevel(lua_State *L)
         blueutils::ValidateBlueSpells(PChar);
         charutils::CalculateStats(PChar);
         charutils::CheckValidEquipment(PChar);
+        jobpointutils::AddGiftMods(PChar);
         charutils::BuildingCharSkillsTable(PChar);
         charutils::BuildingCharAbilityTable(PChar);
         charutils::BuildingCharTraitsTable(PChar);
@@ -5492,6 +5494,7 @@ inline int32 CLuaBaseEntity::setsLevel(lua_State *L)
     PChar->jobs.exp[PChar->GetSJob()] = charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetSJob()]) - 1;
 
     charutils::SetStyleLock(PChar, false);
+    jobpointutils::AddGiftMods(PChar);
     charutils::BuildingCharSkillsTable(PChar);
     charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);
@@ -5588,6 +5591,7 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
             if (PChar->status != STATUS_DISAPPEAR)
             {
                 blueutils::ValidateBlueSpells(PChar);
+                jobpointutils::AddGiftMods(PChar);
                 charutils::BuildingCharSkillsTable(PChar);
                 charutils::CalculateStats(PChar);
                 charutils::BuildingCharTraitsTable(PChar);
@@ -8152,6 +8156,7 @@ inline int32 CLuaBaseEntity::setSkillLevel(lua_State *L)
     PChar->RealSkills.skill[SkillID] = SkillAmount;
     PChar->WorkingSkills.skill[SkillID] = (SkillAmount / 10) * 0x20 + PChar->WorkingSkills.rank[SkillID];
 
+    jobpointutils::AddGiftMods(PChar);
     charutils::BuildingCharSkillsTable(PChar);
     charutils::CheckWeaponSkill(PChar, SkillID);
     charutils::SaveCharSkills(PChar, SkillID);
@@ -8224,6 +8229,7 @@ inline int32 CLuaBaseEntity::setSkillRank(lua_State *L)
     PChar->RealSkills.rank[skillID] = newrank;
     //PChar->RealSkills.skill[skillID] += 1;
 
+    jobpointutils::AddGiftMods(PChar);
     charutils::BuildingCharSkillsTable(PChar);
     charutils::SaveCharSkills(PChar, skillID);
     PChar->pushPacket(new CCharSkillsPacket(PChar));
@@ -9984,6 +9990,7 @@ int32 CLuaBaseEntity::recalculateStats(lua_State* L)
     if (m_PBaseEntity->objtype == TYPE_PC)
     {
         auto PChar {static_cast<CCharEntity*>(m_PBaseEntity)};
+        jobpointutils::AddGiftMods(PChar);
         charutils::BuildingCharSkillsTable(PChar);
         charutils::CalculateStats(PChar);
         charutils::CheckValidEquipment(PChar);
