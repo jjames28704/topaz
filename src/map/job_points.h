@@ -27,6 +27,7 @@
 #include <vector>
 
 #include "ability.h"
+#include "modifier.h"
 #include "../common/cbasetypes.h"
 #include "./entities/battleentity.h"
 
@@ -414,6 +415,7 @@ class CJobPoints
          * player's main job or if their main job is not 99
          */
         uint8    GetJobPointValue(JOBPOINT_TYPE jp_type);
+        std::vector<CModifier> current_gifts;
 
     private:
         CCharEntity*    jp_PChar;
@@ -424,6 +426,7 @@ namespace jobpointutils
 {
     void LoadGifts();
     void AddGiftMods(CCharEntity* PChar);
+    void DelGiftMods(CCharEntity* PChar);
     extern std::vector<JobPointGifts_t> jp_gifts[MAX_JOBTYPE];
 }
 

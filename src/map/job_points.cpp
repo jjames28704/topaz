@@ -104,8 +104,9 @@ void CJobPoints::RaiseJobPoint(JOBPOINT_TYPE jp_type)
         job_point->value += 1;
         Sql_Query(SqlHandle, "UPDATE char_job_points SET jptype%u='%u', job_points='%u', job_points_spent='%u' WHERE charid='%u' AND jobid='%u'", 
             JobPointTypeIndex(job_point->id), job_point->value, job->job_points, job->job_points_spent, jp_PChar->id, job->jobid);
-    }
 
+        jobpointutils::AddGiftMods(jp_PChar);
+    }
 }
 
 uint16 CJobPoints::GetJobPointsSpent()
@@ -157,12 +158,22 @@ namespace jobpointutils
         uint16 current_jp = PChar->PJobPoints->GetJobPointsSpent();
         uint8 jobid = static_cast<uint8>(PChar->GetMJob());
 
+        auto* current_gifts = &PChar->PJobPoints->current_gifts;
+        if (current_gifts->empty() != true)
+        {
+            PChar->delModifiers(current_gifts);
+            ShowDebug("Clearing current gifts");
+            current_gifts->clear();
+        }
+
         for(auto&& gift : jp_gifts[jobid])
         {
-            if(gift.jp_needed > current_jp) break;
+            if(gift.jp_needed > current_jp || PChar->GetMLevel() < 99) break;
 
-            PChar->addModifier(static_cast<Mod>(gift.modid), gift.value);
-            ShowDebug("===\nAdded Mod\nchar: %d\njob %d\nmod %d\nvalue %d\njp_needed %d\n", PChar->id, jobid, gift.modid, gift.value, gift.jp_needed);
+            current_gifts->push_back(CModifier(static_cast<Mod>(gift.modid), gift.value));
+            ShowDebug("Current JP: %d, Gift: %d %d %d\n", current_jp, gift.jp_needed, gift.modid, gift.value);
         }
+
+        PChar->addModifiers(current_gifts);
     }
 }
