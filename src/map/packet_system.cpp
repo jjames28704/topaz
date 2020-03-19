@@ -6135,6 +6135,19 @@ void SmallPacket0x0BF(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 }
 
 /************************************************************************
+*                                                                        *
+*  Set Job Master Display                                                *
+*                                                                        *
+************************************************************************/
+void SmallPacket0x11B(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    bool jobmasterdisp = data.ref<uint8>(0x04) > 0;
+    PChar->m_jobmasterdisp = jobmasterdisp;
+    charutils::SaveJobMasterDisp(PChar);
+    PChar->pushPacket(new CCharUpdatePacket(PChar));
+}
+
+/************************************************************************
 *                                                                       *
 *  Packet Array Initialization                                          *
 *                                                                       *
@@ -6252,6 +6265,7 @@ void PacketParserInitialize()
     PacketSize[0x113] = 0x06; PacketParser[0x113] = &SmallPacket0x113;
     PacketSize[0x114] = 0x00; PacketParser[0x114] = &SmallPacket0x114;
     PacketSize[0x115] = 0x02; PacketParser[0x115] = &SmallPacket0x115;
+    PacketSize[0x11B] = 0x04; PacketParser[0x11B] = &SmallPacket0x11B;
 }
 
 /************************************************************************

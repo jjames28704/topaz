@@ -781,7 +781,8 @@ namespace charutils
             "SELECT "
             "gmlevel, "    // 0
             "mentor, "     // 1
-            "nnameflags "  // 2
+            "nnameflags, "  // 2
+            "jobmasterdisp " // 3
             "FROM chars "
             "WHERE charid = %u;";
 
@@ -794,6 +795,7 @@ namespace charutils
             PChar->m_GMlevel = (uint8)Sql_GetUIntData(SqlHandle, 0);
             PChar->m_mentorUnlocked = Sql_GetUIntData(SqlHandle, 1) > 0;
             PChar->menuConfigFlags.flags = (uint32)Sql_GetUIntData(SqlHandle, 2);
+            PChar->m_jobmasterdisp = Sql_GetUIntData(SqlHandle, 3) > 0;
         }
 
         charutils::LoadInventory(PChar);
@@ -4209,6 +4211,13 @@ namespace charutils
         const char* Query = "UPDATE %s SET %s %u WHERE charid = %u;";
 
         Sql_Query(SqlHandle, Query, "chars", "mentor =", PChar->m_mentorUnlocked, PChar->id);
+    }
+
+    void SaveJobMasterDisp(CCharEntity* PChar)
+    {
+        const char* Query = "UPDATE %s SET %s %u WHERE charid = %u;";
+
+        Sql_Query(SqlHandle, Query, "chars", "jobmasterdisp =", PChar->m_jobmasterdisp, PChar->id);
     }
 
     /************************************************************************
