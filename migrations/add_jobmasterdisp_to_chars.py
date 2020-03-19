@@ -8,13 +8,12 @@ def check_preconditions(cur):
     return
 
 def needs_to_run(cur):
-    # Ensure homepoint bitmasks exist in char_vars
-    cur.execute("SHOW COLUMNS FROM chars LIKE 'jobmasterdisp'")
+    cur.execute("SHOW COLUMNS FROM `chars` LIKE 'jobmasterdisp'")
 
     if not cur.fetchone():
-        return False
+        return True
 
-    return True
+    return False
 
 def migrate(cur, db):
 
