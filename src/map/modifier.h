@@ -314,7 +314,9 @@ enum class Mod
     COUNTERSTANCE_EFFECT      = 543, // Counterstance effect in percents
     DODGE_EFFECT              = 552, // Dodge effect in percents
     FOCUS_EFFECT              = 561, // Focus effect in percents
-    COUNTER_DAMAGE            = 959, // Increases damage from counterattacks by n%
+    COUNTER_DAMAGE_PERCENT    = 959, // Increases damage from counterattacks by a percentage
+    COUNTER_DAMAGE            = 993, // Increases damage from coutnerattacks
+    COUNTER_BASE_WPN_DMG      = 994, // Increases Counter base weapon damage
 
     // White Mage
     AFFLATUS_SOLACE           = 293, // Pool of HP accumulated during Afflatus Solace
@@ -829,9 +831,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 993
-    // SPARE = 994
     // SPARE = 995
+    // SPARE = 996
+    // SPARE = 997
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
