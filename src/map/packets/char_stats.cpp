@@ -36,8 +36,8 @@ CCharStatsPacket::CCharStatsPacket(CCharEntity * PChar)
 	this->type = 0x61;
 	this->size = 0x30;
 
-    ref<uint32>(0x04) = PChar->GetMaxHP();
-    ref<uint32>(0x08) = PChar->GetMaxMP();
+	ref<uint32>(0x04) = PChar->GetMaxHP();
+	ref<uint32>(0x08) = PChar->GetMaxMP();
 
 	ref<uint8>(0x0C) = PChar->GetMJob();
 	ref<uint8>(0x0D) = PChar->GetMLevel();
@@ -57,7 +57,7 @@ CCharStatsPacket::CCharStatsPacket(CCharEntity * PChar)
 	ref<uint16>(0x2C) = std::clamp<int16>(PChar->getMod(Mod::MND), -999 + PChar->stats.MND, 999 - PChar->stats.MND);
 	ref<uint16>(0x2E) = std::clamp<int16>(PChar->getMod(Mod::CHR), -999 + PChar->stats.CHR, 999 - PChar->stats.CHR);
 
-    ref<uint16>(0x30) = PChar->ATT();
+	ref<uint16>(0x30) = PChar->ATT();
 	ref<uint16>(0x32) = PChar->DEF();
 
 	ref<uint16>(0x34) = PChar->getMod(Mod::FIRERES);
@@ -72,10 +72,10 @@ CCharStatsPacket::CCharStatsPacket(CCharEntity * PChar)
 	ref<uint16>(0x44) = PChar->profile.title;
 	ref<uint8>(0x46) = PChar->profile.rank[PChar->profile.nation];
 	ref<uint16>(0x48) = PChar->profile.rankpoints;
-    ref<uint16>(0x4A) = PChar->profile.home_point.destination;
+	ref<uint16>(0x4A) = PChar->profile.home_point.destination;
 	ref<uint8>(0x50) = PChar->profile.nation;
-    //0x52 = superior level (1 or 2)
-    //0x54 = maximum item level
-    //0x55 = itemlevel over 99
-    //0x56 = main weapon item level
+	ref<uint8>(0x52) = PChar->getMod(Mod::SUPERIOR_LEVEL);
+	//0x54 = maximum item level
+	//0x55 = itemlevel over 99
+	//0x56 = main weapon item level
 }
