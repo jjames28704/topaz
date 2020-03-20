@@ -1582,6 +1582,8 @@ function calculateDuration(duration, magicSkill, spellGroup, caster, target, use
         if (caster:hasStatusEffect(tpz.effect.STYMIE) and target:canGainStatusEffect(effect)) then
             duration = duration + caster:getJobPointValue(tpz.jp.STYMIE_EFFECT)
         end
+    elseif magicSkill == dsp.skill.NINJUTSU then -- Ninjutsu
+        duration = duration + (duration * caster:getMod(dsp.mod.NINJUTSU_DURATION) / 100)
     end
 
     return math.floor(duration)
