@@ -13,7 +13,7 @@ end
 function onSpellCast(caster, target, spell)
     local duration = calculateDuration(60, spell:getSkillType(), spell:getSpellGroup(), caster, target)
     local maxReflectedDamage = target:getMaxHP() * 2
-    local reflectedPercent = 33
+    local reflectedPercent = 33 + target:getMod(dsp.mod.REPRISAL_EFFECT)
     local typeEffect = dsp.effect.REPRISAL
 
     if target:addStatusEffect(typeEffect, reflectedPercent, 0, duration, 0, maxReflectedDamage) then
