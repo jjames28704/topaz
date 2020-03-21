@@ -2654,10 +2654,19 @@ namespace battleutils
             if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO))
             {
                 uint16 zanshin = PEntity->getMod(Mod::ZANSHIN);
-                if (PEntity->objtype == TYPE_PC)
-                    zanshin += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)PEntity);
+                float trueZanshin = std::clamp(0.0f, zanshin * 0.25f, 25.0f);
+                
+                if (PEntity->objtype == TYPE_PC) 
+                {
+                    auto PChar = dynamic_cast<CCharEntity *>(PEntity);
+                    auto zanshinBonus = PChar->getMod(Mod::HASSO_SEIGAN_ZANSHIN_CAP) / 100;
+                    
+                    zanshin += PChar->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)PEntity);
+                    
+                    trueZanshin = std::clamp(0.0f, zanshin * 0.25f, 25.0f + zanshinBonus);
+                }
 
-                if (dsprand::GetRandomNumber(100) < (zanshin / 4))
+                if (dsprand::GetRandomNumber(100) < trueZanshin)
                     num++;
             }
         }
@@ -3670,7 +3679,7 @@ namespace battleutils
         else if (lvl < 75)   shotCount += 5; // 5 shots at lv50
         else if (lvl < 90)   shotCount += 6; // 6 shots at lv75
         else if (lvl >= 90)  shotCount += 7; // 7 shots at lv90 (bg-wiki)
-        shotCount += PChar->getModifier(Mod::BARRAGE_BONUS); // JP Gift shot bonus + Gear Bonus
+        shotCount += PChar->getMod(Mod::BARRAGE_BONUS); // JP Gift shot bonus + Gear Bonus
 
 
         // make sure we have enough ammo for all these shots
