@@ -2049,7 +2049,7 @@ namespace battleutils
             damage = -corrected;
 
         if (PAttacker->objtype == TYPE_PC)
-        {
+                {
             battleutils::ClaimMob(PDefender, PAttacker);
         }
 
@@ -2610,10 +2610,19 @@ namespace battleutils
             if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO))
             {
                 uint16 zanshin = PEntity->getMod(Mod::ZANSHIN);
-                if (PEntity->objtype == TYPE_PC)
-                    zanshin += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)PEntity);
+                float trueZanshin = std::clamp(0.0f, zanshin * 0.25f, 25.0f);
+                
+                if (PEntity->objtype == TYPE_PC) 
+                {
+                    auto PChar = dynamic_cast<CCharEntity *>(PEntity);
+                    auto zanshinBonus = PChar->getMod(Mod::HASSO_SEIGAN_ZANSHIN_CAP) / 100;
+                    
+                    zanshin += PChar->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)PEntity);
+                    
+                    trueZanshin = std::clamp(0.0f, zanshin * 0.25f, 25.0f + zanshinBonus);
+                }
 
-                if (tpzrand::GetRandomNumber(100) < (zanshin / 4))
+                if (tpzrand::GetRandomNumber(100) < trueZanshin)
                     num++;
             }
         }
@@ -2853,8 +2862,8 @@ namespace battleutils
     {
         for (auto& resonance_element : resonance)
         {
-            for (auto& skill_element : skill)
-            {
+        for (auto& skill_element : skill)
+        {
                 if (auto skillchain = skillchain_map.find({ skill_element, resonance_element }); skillchain != skillchain_map.end())
                 {
                     return skillchain->second;
@@ -3614,7 +3623,7 @@ namespace battleutils
         else if (lvl < 75)   shotCount += 5; // 5 shots at lv50
         else if (lvl < 90)   shotCount += 6; // 6 shots at lv75
         else if (lvl >= 90)  shotCount += 7; // 7 shots at lv90 (bg-wiki)
-        shotCount += PChar->getModifier(Mod::BARRAGE_BONUS); // JP Gift shot bonus + Gear Bonus
+        shotCount += PChar->getMod(Mod::BARRAGE_BONUS); // JP Gift shot bonus + Gear Bonus
 
 
         // make sure we have enough ammo for all these shots
@@ -4060,7 +4069,7 @@ namespace battleutils
         {
             CBattleEntity* original = PAttacker;
             if (PAttacker->objtype != TYPE_PC)
-            {
+                {
                 if (PAttacker->PMaster && PAttacker->PMaster->objtype == TYPE_PC)
                 { // claim by master
                     PAttacker = PAttacker->PMaster;
@@ -4090,9 +4099,9 @@ namespace battleutils
                     { // unclaim any other living mobs owned by attacker
                         static_cast<CMobController*>(attacker->PClaimedMob->PAI->GetController())->TapDeclaimTime();
                         attacker->PClaimedMob = nullptr;
-                    }
-                    if (!mob->CalledForHelp())
-                    {
+                }
+                if (!mob->CalledForHelp())
+                {
                         if (battleutils::HasClaim(PAttacker, PDefender))
                         { // mob is currently claimed by your alliance, update ownership
                             mob->m_OwnerID.id = PAttacker->id;
@@ -4107,10 +4116,10 @@ namespace battleutils
                         { // mob is unclaimed
                             if (PDefender->isDead())
                             { // always give rewards on the killing blow
-                                mob->m_OwnerID.id = PAttacker->id;
-                                mob->m_OwnerID.targid = PAttacker->targid;
+                    mob->m_OwnerID.id = PAttacker->id;
+                    mob->m_OwnerID.targid = PAttacker->targid;
                                 return;
-                            }
+                }
                             CBattleEntity* highestClaim = mob->PEnmityContainer->GetHighestEnmity();
                             PAttacker->ForAlliance([&](CBattleEntity* PMember){
                                 if (!highestClaim || highestClaim == PMember || highestClaim == PMember->PPet)
@@ -4119,7 +4128,7 @@ namespace battleutils
                                     mob->m_OwnerID.targid = PAttacker->targid;
                                     if (PDefender->isAlive())
                                     { // ignore killing blow
-                                        mob->updatemask |= UPDATE_STATUS;
+                mob->updatemask |= UPDATE_STATUS;
                                         attacker->PClaimedMob = PDefender;
                                     }
                                 }
@@ -5070,11 +5079,11 @@ namespace battleutils
         bool found = false;
 
         PMaster->ForAlliance([&PTarget, &found](CBattleEntity* PChar){
-            if (PChar->id == PTarget->m_OwnerID.id)
-            {
-                found = true;
-            }
-        });
+                if (PChar->id == PTarget->m_OwnerID.id)
+                {
+                    found = true;
+                }
+                });
 
         return found;
     }
