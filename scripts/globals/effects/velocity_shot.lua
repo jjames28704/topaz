@@ -10,7 +10,7 @@ function onEffectGain(target, effect)
     target:addMod(dsp.mod.ATTP, -15)
     target:addMod(dsp.mod.HASTE_ABILITY, -1500)
     target:addMod(dsp.mod.RATTP, 15)
-    target:addMod(dsp.mod.RANGED_DELAYP, -10)
+    target:addMod(dsp.mod.RANGED_DELAYP, -15 - target:getMod(dsp.mod.VELOCITY_SHOT_DELAY))
 end
 
 function onEffectTick(target, effect)
@@ -22,5 +22,5 @@ function onEffectLose(target, effect)
     target:delMod(dsp.mod.ATTP, -15)
     target:delMod(dsp.mod.HASTE_ABILITY, -1500)
     target:delMod(dsp.mod.RATTP, 15)
-    target:delMod(dsp.mod.RANGED_DELAYP, -10)
+    target:delMod(dsp.mod.RANGED_DELAYP, -15 - target:getMod(dsp.mod.VELOCITY_SHOT_DELAY))
 end
