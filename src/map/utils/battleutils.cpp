@@ -3665,12 +3665,12 @@ namespace battleutils
         if (PItemHands && PItemHands->getID() == 14900)
             shotCount++;
 
-        if (lvl < 30)   return 0;
-        else if (lvl < 50)  shotCount += 3;
-        else if (lvl < 75)  shotCount += 4;
-        else if (lvl < 90)  shotCount += 5;
-        else if (lvl < 99)  shotCount += 6;
-        else if (lvl >= 99) shotCount += 7;
+        if (0 < lvl < 30)   return 0;
+        else if (lvl < 50)   shotCount += 4; // 4 shots at lv30
+        else if (lvl < 75)   shotCount += 5; // 5 shots at lv50
+        else if (lvl < 90)   shotCount += 6; // 6 shots at lv75
+        else if (lvl >= 90)  shotCount += 7; // 7 shots at lv90 (bg-wiki)
+        shotCount += PChar->getModifier(Mod::BARRAGE_BONUS); // JP Gift shot bonus + Gear Bonus
 
 
         // make sure we have enough ammo for all these shots

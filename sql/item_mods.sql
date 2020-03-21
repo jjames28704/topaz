@@ -12243,6 +12243,7 @@ INSERT INTO `item_mods` VALUES (13971,2,10);
 INSERT INTO `item_mods` VALUES (13971,9,3);
 INSERT INTO `item_mods` VALUES (13971,61,10);
 INSERT INTO `item_mods` VALUES (13971,425,10);
+INSERT INTO `item_mods` VALUES (13971,976,1); -- Barrage +1
 INSERT INTO `item_mods` VALUES (13972,1,15);
 INSERT INTO `item_mods` VALUES (13972,2,15);
 INSERT INTO `item_mods` VALUES (13972,9,4);
@@ -15343,6 +15344,7 @@ INSERT INTO `item_mods` VALUES (14900,2,10);
 INSERT INTO `item_mods` VALUES (14900,9,6);
 INSERT INTO `item_mods` VALUES (14900,11,6);
 INSERT INTO `item_mods` VALUES (14900,425,10);
+INSERT INTO `item_mods` VALUES (14900,976,1); -- Barrage +1
 INSERT INTO `item_mods` VALUES (14901,1,21);
 INSERT INTO `item_mods` VALUES (14901,2,15);
 INSERT INTO `item_mods` VALUES (14901,8,7);
@@ -20715,6 +20717,7 @@ INSERT INTO `item_mods` VALUES (17270,26,10);
 INSERT INTO `item_mods` VALUES (17272,24,7);
 INSERT INTO `item_mods` VALUES (17273,11,5);     -- phineus_gun AGI+5
 INSERT INTO `item_mods` VALUES (17273,359,1);    -- Rapid Shot+1
+INSERT INTO `item_mods` VALUES (17273,976,1);    -- Barrage +1
 INSERT INTO `item_mods` VALUES (17275,26,9);
 INSERT INTO `item_mods` VALUES (17275,379,13);
 INSERT INTO `item_mods` VALUES (17276,26,-6);
@@ -26215,6 +26218,7 @@ INSERT INTO `item_mods` VALUES (21311,24,30);    -- Quelling Bolt (iLvl 119) Ran
 INSERT INTO `item_mods` VALUES (21311,26,30);    -- Ranged Accuracy+30
 INSERT INTO `item_mods` VALUES (21311,28,30);    -- Magic Attack Bonus+30
 INSERT INTO `item_mods` VALUES (21311,30,20);    -- Magic Accuracy+30
+INSERT INTO `item_mods` VALUES (21311,976,1);    -- Barrage +1
 INSERT INTO `item_mods` VALUES (21314,26,15);     -- Abrasion Bolt (iLvl 117): Ranged Accuracy +15
 INSERT INTO `item_mods` VALUES (21314,431,1);     -- Additional effect: Weakens defense
 INSERT INTO `item_mods` VALUES (21318,24,5);
@@ -46566,6 +46570,7 @@ INSERT INTO `item_mods` VALUES (27953,31,25);
 INSERT INTO `item_mods` VALUES (27953,68,11);
 INSERT INTO `item_mods` VALUES (27953,384,400);
 INSERT INTO `item_mods` VALUES (27953,425,6);
+INSERT INTO `item_mods` VALUES (27953,976,2); -- Barrage +2
 INSERT INTO `item_mods` VALUES (27954,1,74);
 INSERT INTO `item_mods` VALUES (27954,2,12);
 INSERT INTO `item_mods` VALUES (27954,8,12);
@@ -46892,6 +46897,7 @@ INSERT INTO `item_mods` VALUES (27974,31,37);
 INSERT INTO `item_mods` VALUES (27974,68,24);
 INSERT INTO `item_mods` VALUES (27974,384,500);
 INSERT INTO `item_mods` VALUES (27974,425,12);
+INSERT INTO `item_mods` VALUES (27974,976,2); -- Barrage +2
 INSERT INTO `item_mods` VALUES (27975,1,103);
 INSERT INTO `item_mods` VALUES (27975,2,27);
 INSERT INTO `item_mods` VALUES (27975,8,14);
