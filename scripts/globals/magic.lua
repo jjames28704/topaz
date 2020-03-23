@@ -379,14 +379,34 @@ function getCurePower(caster,isBlueMagic)
     local MND = caster:getStat(tpz.mod.MND)
     local VIT = caster:getStat(tpz.mod.VIT)
     local skill = caster:getSkillLevel(tpz.skill.HEALING_MAGIC)
-    local power = math.floor(MND/2) + math.floor(VIT/4) + skill
-    return power
-end
+
+    if isBlueMagic then
+        local bluStatBonus = 1
+        if caster:getMod(tpz.mod.BLUE_MAGIC_ATTR_POTENCY) then
+            bluStatBonus = 1 + (caster:getMod(tpz.mod.BLUE_MAGIC_ATTR_POTENCY) / 100)
+        end
+        MND = MND * bluStatBonus
+        VIT = VIT * bluStatBonus
+    end
+
+    local power = math.floor(MND/2) + math.floor(VIT/4) + skill;
+    return power;
+end;
 function getCurePowerOld(caster)
     local MND = caster:getStat(tpz.mod.MND)
     local VIT = caster:getStat(tpz.mod.VIT)
-    local skill = caster:getSkillLevel(tpz.skill.HEALING_MAGIC) -- it's healing magic skill for the BLU cures as well
-    local power = ((3 * MND) + VIT + (3 * math.floor(skill/5)))
+    local skill = caster:getSkillLevel(tpz.skill.HEALING_MAGIC); -- it's healing magic skill for the BLU cures as well
+
+    if isBlueMagic then
+        local bluStatBonus = 1
+        if caster:getMod(tpz.mod.BLUE_MAGIC_ATTR_POTENCY) then
+            bluStatBonus = 1 + (caster:getMod(tpz.mod.BLUE_MAGIC_ATTR_POTENCY) / 100)
+        end
+        MND = MND * bluStatBonus
+        VIT = VIT * bluStatBonus
+    end
+
+    local power = ((3 * MND) + VIT + (3 * math.floor(skill/5)));
     return power
 end
 function getBaseCure(power,divisor,constant,basepower)
@@ -1582,8 +1602,8 @@ function calculateDuration(duration, magicSkill, spellGroup, caster, target, use
         if (caster:hasStatusEffect(tpz.effect.STYMIE) and target:canGainStatusEffect(effect)) then
             duration = duration + caster:getJobPointValue(tpz.jp.STYMIE_EFFECT)
         end
-    elseif magicSkill == dsp.skill.NINJUTSU then -- Ninjutsu
-        duration = duration + (duration * caster:getMod(dsp.mod.NINJUTSU_DURATION) / 100)
+    elseif magicSkill == tpz.skill.NINJUTSU then -- Ninjutsu
+        duration = duration + (duration * caster:getMod(tpz.mod.NINJUTSU_DURATION) / 100)
     end
 
     return math.floor(duration)

@@ -72,9 +72,14 @@ function BluePhysicalSpell(caster, target, spell, params)
         D = params.duppercap
     end
 
-    -- print("D val is ".. D)
-
-    local fStr = BluefSTR(caster:getStat(tpz.mod.STR) - target:getStat(tpz.mod.VIT))
+    -- print("D val is ".. D);
+    
+    local bluStatBonus = 1;
+    if caster:getMod(tpz.mod.BLUE_MAGIC_ATTR_POTENCY) then
+        bluStatBonus = 1 + (caster:getMod(tpz.mod.BLUE_MAGIC_ATTR_POTENCY) / 100);
+    end
+    
+    local fStr = BluefSTR((caster:getStat(tpz.mod.STR) * bluStatBonus) - target:getStat(tpz.mod.VIT))
     if (fStr > 22) then
         fStr = 22 -- TODO: Smite of Rage doesn't have this cap applied.
     end
@@ -182,17 +187,23 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
         end
     end
 
-    local statBonus = 0
-    local dStat = 0 -- Please make sure to add an additional stat check if there is to be a spell that uses neither INT, MND, or CHR. None currently exist.
+    local statBonus = 0;
+    local dStat = 0; -- Please make sure to add an additional stat check if there is to be a spell that uses neither INT, MND, or CHR. None currently exist.
+
+    local bluStatBonus = 1;
+    if caster:getMod(tpz.mod.BLUE_MAGIC_ATTR_POTENCY) then
+        bluStatBonus = 1 + (caster:getMod(tpz.mod.BLUE_MAGIC_ATTR_POTENCY) / 100);
+    end
+
     if (statMod == INT_BASED) then -- Stat mod is INT
-        dStat = caster:getStat(tpz.mod.INT) - target:getStat(tpz.mod.INT)
-        statBonus = (dStat)* params.tMultiplier
+        dStat = (caster:getStat(tpz.mod.INT) * bluStatBonus) - target:getStat(tpz.mod.INT)
+        statBonus = (dStat)* params.tMultiplier;
     elseif (statMod == CHR_BASED) then -- Stat mod is CHR
-        dStat = caster:getStat(tpz.mod.CHR) - target:getStat(tpz.mod.CHR)
-        statBonus = (dStat)* params.tMultiplier
+        dStat = (caster:getStat(tpz.mod.CHR) * bluStatBonus) - target:getStat(tpz.mod.CHR)
+        statBonus = (dStat)* params.tMultiplier;
     elseif (statMod == MND_BASED) then -- Stat mod is MND
-        dStat = caster:getStat(tpz.mod.MND) - target:getStat(tpz.mod.MND)
-        statBonus = (dStat)* params.tMultiplier
+        dStat = (caster:getStat(tpz.mod.MND) * bluStatBonus) - target:getStat(tpz.mod.MND)
+        statBonus = (dStat)* params.tMultiplier;
     end
 
     D =(((D + ST) * params.multiplier * convergenceBonus) + statBonus)
@@ -219,7 +230,7 @@ function BlueFinalAdjustments(caster, target, spell, dmg, params)
     local multiplier = BLUE_MAGIC
     
     -- +1 DMG for each level
-    if (caster:hasStatusEffect(dsp.effect.AZURE_LORE)) {
+    if (caster:hasStatusEffect(tpz.effect.AZURE_LORE)) {
         multiplier = multiplier + (0.01 * caster:getJobPointValue(AZURE_LORE_EFFECT))
     }
 
@@ -250,10 +261,21 @@ end
 ------------------------------
 
 function BlueGetWsc(attacker, params)
-    wsc = (attacker:getStat(tpz.mod.STR) * params.str_wsc + attacker:getStat(tpz.mod.DEX) * params.dex_wsc +
-         attacker:getStat(tpz.mod.VIT) * params.vit_wsc + attacker:getStat(tpz.mod.AGI) * params.agi_wsc +
-         attacker:getStat(tpz.mod.INT) * params.int_wsc + attacker:getStat(tpz.mod.MND) * params.mnd_wsc +
-         attacker:getStat(tpz.mod.CHR) * params.chr_wsc) * BlueGetAlpha(attacker:getMainLvl())
+    local bluStatBonus = 1
+    if caster:getMod(tpz.mod.BLUE_MAGIC_ATTR_POTENCY) then
+        bluStatBonus = 1 + (caster:getMod(tpz.mod.BLUE_MAGIC_ATTR_POTENCY) / 100)
+    end
+    
+    wsc = (
+        (attacker:getStat(tpz.mod.STR) * bluStatBonus)  * params.str_wsc + 
+        (attacker:getStat(tpz.mod.DEX) * bluStatBonus) * params.dex_wsc +
+        (attacker:getStat(tpz.mod.VIT) * bluStatBonus) * params.vit_wsc + 
+        (attacker:getStat(tpz.mod.AGI) * bluStatBonus) * params.agi_wsc +
+        (attacker:getStat(tpz.mod.INT) * bluStatBonus) * params.int_wsc + 
+        (attacker:getStat(tpz.mod.MND) * bluStatBonus) * params.mnd_wsc +
+        (attacker:getStat(tpz.mod.CHR) * bluStatBonus) * params.chr_wsc
+    ) * BlueGetAlpha(attacker:getMainLvl())
+    
     return wsc
 end
 
