@@ -85,10 +85,13 @@ void LoadAutomaton(CCharEntity* PChar)
                 tempEquip.Frame = FRAME_HARLEQUIN;
                 for (int i = 0; i < 12; i++)
                     tempEquip.Attachments[i] = 0;
+
+                int16 elemCapacityBonus = 0 + PChar->getMod(Mod::AUTO_ELEM_CAPACITY);
+
                 for (int i = 0; i < 6; i++)
-                    PChar->PAutomaton->setElementMax(i, 5);
-                PChar->PAutomaton->setElementMax(6, 3);
-                PChar->PAutomaton->setElementMax(7, 3);
+                    PChar->PAutomaton->setElementMax(i, 5 + elemCapacityBonus);
+                PChar->PAutomaton->setElementMax(6, 3 + elemCapacityBonus);
+                PChar->PAutomaton->setElementMax(7, 3 + elemCapacityBonus);
                 for (int i = 0; i < 8; i++)
                     PChar->PAutomaton->m_ElementEquip[i] = 0;
             }
