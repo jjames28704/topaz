@@ -214,6 +214,16 @@ function getCurePower(caster,isBlueMagic)
     local MND = caster:getStat(dsp.mod.MND);
     local VIT = caster:getStat(dsp.mod.VIT);
     local skill = caster:getSkillLevel(dsp.skill.HEALING_MAGIC);
+
+    if isBlueMagic then
+        local bluStatBonus = 1;
+        if caster:getMod(dsp.mod.BLUE_MAGIC_ATTR_POTENCY) then
+            bluStatBonus = 1 + (caster:getMod(dsp.mod.BLUE_MAGIC_ATTR_POTENCY) / 100);
+        end
+        MND = MND * bluStatBonus;
+        VIT = VIT * bluStatBonus;
+    end
+
     local power = math.floor(MND/2) + math.floor(VIT/4) + skill;
     return power;
 end;
@@ -221,6 +231,16 @@ function getCurePowerOld(caster)
     local MND = caster:getStat(dsp.mod.MND);
     local VIT = caster:getStat(dsp.mod.VIT);
     local skill = caster:getSkillLevel(dsp.skill.HEALING_MAGIC); -- it's healing magic skill for the BLU cures as well
+
+    if isBlueMagic then
+        local bluStatBonus = 1;
+        if caster:getMod(dsp.mod.BLUE_MAGIC_ATTR_POTENCY) then
+            bluStatBonus = 1 + (caster:getMod(dsp.mod.BLUE_MAGIC_ATTR_POTENCY) / 100);
+        end
+        MND = MND * bluStatBonus;
+        VIT = VIT * bluStatBonus;
+    end
+
     local power = ((3 * MND) + VIT + (3 * math.floor(skill/5)));
     return power;
 end;
