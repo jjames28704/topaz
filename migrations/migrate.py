@@ -11,6 +11,7 @@ import spell_family_column
 import mission_blob_extra
 import cop_mission_ids
 import add_jobmasterdisp_to_chars
+import add_new_jp_item_mods
 
 credentials = {}
 db = None
@@ -89,6 +90,7 @@ def run_all_migrations():
     run_migration(mission_blob_extra)
     run_migration(cop_mission_ids)
     run_migration(add_jobmasterdisp_to_chars)
+    run_migration(add_new_jp_item_mods)
     close()
 
     print("Finished running all migrations")
