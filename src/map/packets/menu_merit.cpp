@@ -69,7 +69,7 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 
 	PChar->pushPacket(new CBasicPacket(*this));
 
-    // ver 30121205_4 second packet
+	// ver 30121205_4 second packet
 
     this->size = 0x6E;
 
