@@ -19,7 +19,7 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    local strboost = target:getMainLvl()/7 + target:getJobPointValue(dsp.jp.HASSO_EFFECT)
+    local strboost = target:getMainLvl()/7 + target:getJobPointValue(tpz.jp.HASSO_EFFECT)
     if (target:getMainJob()~=12) then --sjob sam, use sub level
         strboost = target:getSubLvl()/7
     end

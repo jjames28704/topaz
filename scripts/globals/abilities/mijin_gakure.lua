@@ -20,7 +20,7 @@ function onUseAbility(player,target,ability)
     local resist = applyPlayerResistance(player, nil, target, player:getStat(tpz.mod.INT)-target:getStat(tpz.mod.INT), 0, tpz.magic.ele.NONE)
 
     --Job Point boost 3% per point
-    dmg = dmg * (1 + (player:getJobPointValue(dsp.jp.MIJIN_GAUKURE_EFFECT) * 0.03))
+    dmg = dmg * (1 + (player:getJobPointValue(tpz.jp.MIJIN_GAUKURE_EFFECT) * 0.03))
     dmg = dmg * resist
 
     dmg = utils.stoneskin(target, dmg)

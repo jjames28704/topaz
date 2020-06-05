@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effect.OVERDRIVE
+--     tpz.effect.OVERDRIVE
 --
 -----------------------------------
 require("scripts/globals/status")

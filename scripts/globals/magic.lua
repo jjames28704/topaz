@@ -644,11 +644,11 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
     end
 
     -- JP accuracy bonus
-    if (caster:getMainJob() == dsp.job.SCH) then
-        if (caster:hasStatusEffect(dsp.effect.LIGHT_ARTS) and caster:hasStatusEffect(dsp.effect.PENURY)) then
-            magicacc = magicacc + caster:getJobPointValue(dsp.jp.STRATEGEM_EFFECT_I)
-        elseif (caster:hasStatusEffect(dsp.effect.DARK_ARTS) and caster:hasStatusEffect(dsp.effect.PARSIMONY)) then
-            magicacc = magicacc + caster:getJobPointValue(dsp.jp.STRATEGEM_EFFECT_I)
+    if (caster:getMainJob() == tpz.job.SCH) then
+        if (caster:hasStatusEffect(tpz.effect.LIGHT_ARTS) and caster:hasStatusEffect(tpz.effect.PENURY)) then
+            magicacc = magicacc + caster:getJobPointValue(tpz.jp.STRATEGEM_EFFECT_I)
+        elseif (caster:hasStatusEffect(tpz.effect.DARK_ARTS) and caster:hasStatusEffect(tpz.effect.PARSIMONY)) then
+            magicacc = magicacc + caster:getJobPointValue(tpz.jp.STRATEGEM_EFFECT_I)
         end
     end
 
@@ -819,20 +819,20 @@ function getSpellBonusAcc(caster, target, spell, params)
     end
 
     --rdm job point: during saboteur, enfeebling macc +2
-    if (skill == dsp.skill.ENFEEBLING_MAGIC and caster:hasStatusEffect(dsp.effect.SABOTEUR)) then
-        local jp_value = caster:getJobPointValue(dsp.jp.SABOTEUR_EFFECT)
+    if (skill == tpz.skill.ENFEEBLING_MAGIC and caster:hasStatusEffect(tpz.effect.SABOTEUR)) then
+        local jp_value = caster:getJobPointValue(tpz.jp.SABOTEUR_EFFECT)
         magicAccBonus = magicAccBonus + (jp_value * 2)
     end
 
     --blm job point: macc bonus +1
-    magicAccBonus = magicAccBonus + caster:getJobPointValue(dsp.jp.BLM_MAGIC_ACC_BONUS)
+    magicAccBonus = magicAccBonus + caster:getJobPointValue(tpz.jp.BLM_MAGIC_ACC_BONUS)
 
     --whm job point: macc bonus +1
-    magicAccBonus = magicAccBonus + caster:getJobPointValue(dsp.jp.WHM_MAGIC_ACC_BONUS)
+    magicAccBonus = magicAccBonus + caster:getJobPointValue(tpz.jp.WHM_MAGIC_ACC_BONUS)
 
     --ninja job point
-    if(skill == dsp.skill.NINJUTSU) then
-        magicAccBonus = magicAccBonus + caster:getJobPointValue(dsp.jp.NINJITSU_ACC_BONUS)
+    if(skill == tpz.skill.NINJUTSU) then
+        magicAccBonus = magicAccBonus + caster:getJobPointValue(tpz.jp.NINJITSU_ACC_BONUS)
     end
 
     -- BLU mag acc merits - nuke acc is handled in bluemagic.lua
@@ -1444,18 +1444,18 @@ function doElementalNuke(caster, spell, target, spellParams)
         mDMG = mDMG + caster:getJobPointValue(tpz.jp.MAGIC_DMG_BONUS)
 
         -- blm job point: manafont elemental magic damage +3
-        if caster:hasStatusEffect(dsp.effect.MANAFONT) then
-            mDMG = mDMG + (caster:getJobPointValue(dsp.jp.MANAFONT_EFFECT) * 3);
+        if caster:hasStatusEffect(tpz.effect.MANAFONT) then
+            mDMG = mDMG + (caster:getJobPointValue(tpz.jp.MANAFONT_EFFECT) * 3);
         end
 
         -- blm job point: with manawell mDMG +1
-        if caster:hasStatusEffect(dsp.effect.MANAWELL) then
-            mDMG = mDMG + caster:getJobPointValue(dsp.jp.MANAWELL_EFFECT)
-            caster:delStatusEffectSilent(dsp.effect.MANAWELL);
+        if caster:hasStatusEffect(tpz.effect.MANAWELL) then
+            mDMG = mDMG + caster:getJobPointValue(tpz.jp.MANAWELL_EFFECT)
+            caster:delStatusEffectSilent(tpz.effect.MANAWELL);
         end
 
         -- blm job point: magic damage bonus
-        mDMG = mDMG + caster:getJobPointValue(dsp.jp.MAGIC_DMG_BONUS)
+        mDMG = mDMG + caster:getJobPointValue(tpz.jp.MAGIC_DMG_BONUS)
 
         --[[
                 Calculate base damage:

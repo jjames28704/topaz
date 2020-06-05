@@ -17,7 +17,7 @@ function onEffectTick(target, effect)
 end
 
 function onEffectLose(target, effect)
-    local jp_value = target:getJobPointValue(dsp.jp.VELOCITY_SHOT_EFFECT)
+    local jp_value = target:getJobPointValue(tpz.jp.VELOCITY_SHOT_EFFECT)
     target:delMod(tpz.mod.RATT, jp_value * 2)
     target:delMod(tpz.mod.ATTP, -15)
     target:delMod(tpz.mod.HASTE_ABILITY, -1500)

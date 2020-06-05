@@ -14,6 +14,6 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    target:addStatusEffect(dsp.effect.MANAWELL,1,0,60)
-    return dsp.effect.MANAWELL
+    target:addStatusEffect(tpz.effect.MANAWELL,1,0,60)
+    return tpz.effect.MANAWELL
 end

@@ -15,7 +15,7 @@ end
 function onUseAbility(player,target,ability)
     local MP = player:getMP()
     local HP = player:getHP()
-    local jp_value = player:getJobPointValue(dsp.jp.CONVERT_EFFECT)
+    local jp_value = player:getJobPointValue(tpz.jp.CONVERT_EFFECT)
     if MP > 0 then
         -- Murgleis sword augments Convert.
         if player:getMod(tpz.mod.AUGMENTS_CONVERT) > 0 and HP > player:getMaxHP()/2 then

@@ -43,11 +43,11 @@ function onUseAbility(player,target,ability,action)
     local taChar = player:getTrickAttackChar(target)
 
     -- 3 ATT per JP
-    player:addMod(dsp.mod.ATT, 3 * player:getJobPointValue(dsp.jp.HIGH_JUMP_EFFECT))
+    player:addMod(tpz.mod.ATT, 3 * player:getJobPointValue(tpz.jp.HIGH_JUMP_EFFECT))
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, 0, params, 0, action, true, taChar)
 
-    player:delMod(dsp.mod.ATT, 3 * player:getJobPointValue(dsp.jp.HIGH_JUMP_EFFECT))
+    player:delMod(tpz.mod.ATT, 3 * player:getJobPointValue(tpz.jp.HIGH_JUMP_EFFECT))
 
     if (tpHits + extraHits > 0) then
         -- Under Spirit Surge, High Jump reduces TP of target

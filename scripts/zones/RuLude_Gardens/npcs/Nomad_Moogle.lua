@@ -32,9 +32,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(dsp.ki.LIMIT_BREAKER) == false and player:getMainLvl() >= 75) then
-        player:startEvent(10045,75,2,10,7,30,302895,4095);      
-    elseif (player:getMainLvl() == 75 and player:levelCap() == 75 and MAX_LEVEL >= 80 and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.NEW_WORLDS_AWAIT) == QUEST_AVAILABLE) then
+    if (player:hasKeyItem(tpz.ki.LIMIT_BREAKER) == false and player:getMainLvl() >= 75) then
+        player:startEvent(10045,75,2,10,7,30,302895,4095);
+    elseif (player:getMainLvl() == 75 and player:levelCap() == 75 and MAX_LEVEL >= 80 and player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.NEW_WORLDS_AWAIT) == QUEST_AVAILABLE) then
         player:startEvent(10045,0,1,1,0);
     elseif (player:getMainLvl() >= 76 and player:levelCap() == 80 and MAX_LEVEL >= 85 and player:getQuestStatus(JEUNO,tpz.quest.id.jeuno.EXPANDING_HORIZONS) == QUEST_AVAILABLE) then
         player:startEvent(10045,0,1,2,0);
@@ -111,12 +111,12 @@ function onEventFinish(player,csid,option)
         player:levelCap(95);
         player:completeQuest(JEUNO,tpz.quest.id.jeuno.DORMANT_POWERS_DISLODGED);
         player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_95);
-        player:addKeyItem(dsp.ki.SOUL_GEM);
+        player:addKeyItem(tpz.ki.SOUL_GEM);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.SOUL_GEM);
     elseif (csid == 10240) then
         if (option == 28) then
             player:addKeyItem(tpz.ki.JOB_BREAKER);
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.JOB_BREAKER);  
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,tpz.ki.JOB_BREAKER);
         end
     end
 end;

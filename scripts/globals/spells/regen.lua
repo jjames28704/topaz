@@ -12,14 +12,14 @@ function onMagicCastingCheck(caster, target, spell)
 end
 
 function onSpellCast(caster, target, spell)
-    local hp = math.ceil(5 * (1 + 0.01 * caster:getMod(dsp.mod.REGEN_MULTIPLIER))) -- spell base times gear multipliers
+    local hp = math.ceil(5 * (1 + 0.01 * caster:getMod(tpz.mod.REGEN_MULTIPLIER))) -- spell base times gear multipliers
     hp = hp + caster:getMerit(tpz.merit.REGEN_EFFECT) -- bonus hp from merits
     hp = hp + caster:getMod(tpz.mod.LIGHT_ARTS_REGEN) -- bonus hp from light arts
     hp = hp + caster:getMod(tpz.mod.REGEN_BONUS)      -- bonus hp from jobpoint gifts
 
     local duration = calculateDuration(75 + caster:getMod(tpz.mod.REGEN_DURATION), spell:getSkillType(), spell:getSpellGroup(), caster, target)
     duration = calculateDurationForLvl(duration, 21, target:getMainLvl())
-    duration = duration + (caster:getJobPointValue(dsp.jp.REGEN_DURATION) * 3)
+    duration = duration + (caster:getJobPointValue(tpz.jp.REGEN_DURATION) * 3)
 
     if target:addStatusEffect(tpz.effect.REGEN, hp, 0, duration) then
         spell:setMsg(tpz.msg.basic.MAGIC_GAIN_EFFECT)

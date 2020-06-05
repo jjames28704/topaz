@@ -16,6 +16,6 @@ end
 
 function onUseAbility(player,target,ability)
     local jp_value = player:getJobPointValue(tpz.jp.BULLY_EFFECT)
-    target:addStatusEffectEx(dsp.effect.DOUBT, tpz.effect.INTIMIDATE, 15 + jp_value, 0, 30)
+    target:addStatusEffectEx(tpz.effect.DOUBT, tpz.effect.INTIMIDATE, 15 + jp_value, 0, 30)
     return tpz.effect.INTIMIDATE
 end

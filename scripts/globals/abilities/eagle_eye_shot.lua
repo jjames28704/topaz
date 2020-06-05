@@ -43,11 +43,11 @@ function onUseAbility(player,target,ability,action)
     params.enmityMult = 0.5
 
     -- Job Point Bonus Damage
-    player:addMod(dsp.mod.ALL_WSDMG_ALL_HITS,player:getJobPointValue(dsp.jp.EAGLE_EYE_SHOT_EFFECT) * 3)
+    player:addMod(tpz.mod.ALL_WSDMG_ALL_HITS,player:getJobPointValue(tpz.jp.EAGLE_EYE_SHOT_EFFECT) * 3)
 
     local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, 0, params, 0, action, true)
 
-    player:delMod(dsp.mod.ALL_WSDMG_ALL_HITS,player:getJobPointValue(dsp.jp.EAGLE_EYE_SHOT_EFFECT) * 3)
+    player:delMod(tpz.mod.ALL_WSDMG_ALL_HITS,player:getJobPointValue(tpz.jp.EAGLE_EYE_SHOT_EFFECT) * 3)
 
     -- Set the message id ourselves
     if (tpHits + extraHits > 0) then

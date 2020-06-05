@@ -8,7 +8,7 @@ require("scripts/globals/status")
 
 function onEffectGain(target,effect)
     local power = effect:getPower()
-    local jp_value = target:getJobPointValue(dsp.jp.BERSERK_EFFECT)
+    local jp_value = target:getJobPointValue(tpz.jp.BERSERK_EFFECT)
     local jp_effect = jp_value * 2
 
     target:addMod(tpz.mod.ATTP, power)
@@ -23,9 +23,9 @@ end
 
 function onEffectLose(target,effect)
     local power = effect:getPower()
-    local jp_value = target:getJobPointValue(dsp.jp.BERSERK_EFFECT)
+    local jp_value = target:getJobPointValue(tpz.jp.BERSERK_EFFECT)
     local jp_effect = jp_value * 2
-    
+
     target:delMod(tpz.mod.ATTP, power)
     target:delMod(tpz.mod.RATTP, power)
     target:delMod(tpz.mod.DEFP, -power)
