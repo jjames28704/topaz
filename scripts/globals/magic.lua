@@ -391,7 +391,7 @@ function getCurePower(caster,isBlueMagic)
 
     local power = math.floor(MND/2) + math.floor(VIT/4) + skill;
     return power;
-end;
+end
 function getCurePowerOld(caster)
     local MND = caster:getStat(tpz.mod.MND)
     local VIT = caster:getStat(tpz.mod.VIT)
@@ -1144,7 +1144,7 @@ function addBonuses(caster, spell, target, dmg, params)
         local group = spell:getSpellGroup()
         if (group == tpz.magic.spellGroup.WHITE and caster:hasStatusEffect(tpz.effect.RAPTURE)) then
             dmg = dmg + jp_value
-        else if (group == tpz.magic.spellGroup.BLACK and caster:hasStatusEffect(tpz.effect.EBULLIENCE)) then
+        elseif (group == tpz.magic.spellGroup.BLACK and caster:hasStatusEffect(tpz.effect.EBULLIENCE)) then
             dmg = dmg + jp_vaule
         end
     end
