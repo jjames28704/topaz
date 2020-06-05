@@ -6529,7 +6529,7 @@ inline int32 CLuaBaseEntity::completeMission(lua_State *L)
 *  Function: setMissionLogEx()
 *  Purpose : Sets mission log extra data to correctly track progress in branching missions.
 *  Example : player:setMissionLogEx(tpz.mission.log_id.COP, tpz.mission.logEx.ULMIA, 14)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setMissionLogEx(lua_State *L)
@@ -6973,14 +6973,14 @@ inline int32 CLuaBaseEntity::getMeritCount(lua_State *L)
 ************************************************************************/
 inline int32 CLuaBaseEntity::getJobPointValue(lua_State *L)
 {
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-    
+    TPZ_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
     if (m_PBaseEntity->objtype != TYPE_PC)
     {
         lua_pushinteger(L, 0);
     }
-    else 
+    else
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
         lua_pushinteger(L, PChar->PJobPoints->GetJobPointValue((JOBPOINT_TYPE)lua_tointeger(L, 1)));
