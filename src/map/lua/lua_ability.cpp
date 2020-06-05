@@ -103,7 +103,7 @@ int32 CLuaAbility::getAnimation(lua_State* L)
 }
 
 int32 CLuaAbility::getVE(lua_State * L) {
-    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
 
     lua_pushinteger(L, m_PLuaAbility->getVE());
     return 0;
