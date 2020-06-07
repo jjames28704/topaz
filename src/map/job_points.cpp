@@ -47,7 +47,7 @@ void CJobPoints::LoadJobPoints()
             if(Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
                 uint32 jobid = Sql_GetUIntData(SqlHandle, 1);
                 uint16 job_category = JobPointsCategoryByJobId(jobid);
-                JobPoints_t current_job = {}; 
+                JobPoints_t current_job = {};
                 current_job.jobid = jobid;
                 current_job.job_category = job_category;
                 current_job.capacity_points = Sql_GetUIntData(SqlHandle, 2);
@@ -97,16 +97,24 @@ void CJobPoints::RaiseJobPoint(JOBPOINT_TYPE jp_type)
     JobPointType_t* job_point = GetJobPointType(jp_type);
 
     uint8 cost = JobPointCost(job_point->value);
-    if(cost != 0 && job->job_points >= cost) 
+    if(cost != 0 && job->job_points >= cost)
     {
         job->job_points -= cost;
         job->job_points_spent += cost;
         job_point->value += 1;
-        Sql_Query(SqlHandle, "UPDATE char_job_points SET jptype%u='%u', job_points='%u', job_points_spent='%u' WHERE charid='%u' AND jobid='%u'", 
+        Sql_Query(SqlHandle, "UPDATE char_job_points SET jptype%u='%u', job_points='%u', job_points_spent='%u' WHERE charid='%u' AND jobid='%u'",
             JobPointTypeIndex(job_point->id), job_point->value, job->job_points, job->job_points_spent, jp_PChar->id, job->jobid);
 
         jobpointutils::AddGiftMods(jp_PChar);
     }
+}
+
+void CJobPoints::SetJobPoints(int16 amt)
+{
+    int8 job = (int8)jp_PChar->GetMJob();
+    Sql_Query(SqlHandle, "INSERT INTO char_job_points SET charid='%u', jobid='%u', job_points='%u' ON DUPLICATE KEY UPDATE job_points='%u'",
+      jp_PChar->id, job, amt, amt);
+    LoadJobPoints();
 }
 
 uint16 CJobPoints::GetJobPointsSpent()
@@ -124,14 +132,14 @@ uint8 CJobPoints::GetJobPointValue(JOBPOINT_TYPE jp_type)
     if(
             IsJobPointExist(jp_type)
         &&  jp_PChar->GetMLevel() >= 99
-        &&  jp_PChar->GetMJob() == JobPointsCategoryIndexByJpType(jp_type) 
+        &&  jp_PChar->GetMJob() == JobPointsCategoryIndexByJpType(jp_type)
     ){
         return GetJobPointType(jp_type)->value;
     }
     return 0;
 }
 
-namespace jobpointutils 
+namespace jobpointutils
 {
     std::vector<JobPointGifts_t> jp_gifts[MAX_JOBTYPE] = {};
 

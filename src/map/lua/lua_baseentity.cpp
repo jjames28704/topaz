@@ -115,6 +115,7 @@
 #include "../packets/inventory_modify.h"
 #include "../packets/inventory_size.h"
 #include "../packets/key_items.h"
+#include "../packets/menu_jp.h"
 #include "../packets/menu_mog.h"
 #include "../packets/menu_merit.h"
 #include "../packets/menu_raisetractor.h"
@@ -6986,6 +6987,29 @@ inline int32 CLuaBaseEntity::getJobPointValue(lua_State *L)
         lua_pushinteger(L, PChar->PJobPoints->GetJobPointValue((JOBPOINT_TYPE)lua_tointeger(L, 1)));
     }
     return 1;
+}
+
+/************************************************************************
+*  Function: setJobPoints()
+*  Purpose : Sets the jobpoints for a player for all jobs to an amount
+*  Example : player:setJobPoints(30)
+*  Notes   : Used in GM command
+************************************************************************/
+
+inline int32 CLuaBaseEntity::setJobPoints(lua_State *L)
+{
+    TPZ_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    TPZ_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    TPZ_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    PChar->PJobPoints->SetJobPoints((uint16)lua_tointeger(L, 1));
+
+    PChar->pushPacket(new CMenuJobPointsPacket(PChar));
+
+    return 0;
 }
 
 /************************************************************************
@@ -14440,6 +14464,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMeritCount),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMerits),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getJobPointValue),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setJobPoints),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getGil),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addGil),

@@ -336,9 +336,9 @@ enum JOBPOINT_TYPE : uint16
 };
 
 /**
- * Abilities modified by 
+ * Abilities modified by
  */
-enum JP_MODIFICATIONS : uint16 
+enum JP_MODIFICATIONS : uint16
 {
     JP_STEAL_ID = 28
 };
@@ -363,7 +363,7 @@ enum JP_MODIFICATIONS : uint16
 *                                                                       *
 ************************************************************************/
 
-struct JobPointType_t 
+struct JobPointType_t
 {
     uint16 id;
     uint8 value;
@@ -400,6 +400,7 @@ class CJobPoints
         CJobPoints(CCharEntity* PChar);
         bool        IsJobPointExist(JOBPOINT_TYPE jp_type); // Check to see if JP exists
         void        RaiseJobPoint(JOBPOINT_TYPE jp_type); // add upgrade
+        void        SetJobPoints(int16 amt); //set job points for all jobs
 
         JobPoints_t*    GetJobPointsByType(JOBPOINT_TYPE jp_type);
         JobPointType_t* GetJobPointType(JOBPOINT_TYPE jp_type);
