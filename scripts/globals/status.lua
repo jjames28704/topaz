@@ -650,7 +650,7 @@ tpz.effect =
     ENDRAIN                  = 487, -- FENRIR 96
     ENASPIR                  = 488, -- FENRIR 96
     AFTERGLOW                = 489, -- WS AFTEREFFECT
-    BRAZEN_STRENGTH          = 490, --
+    BRAZEN_RUSH              = 490, --
     INNER_STRENGTH           = 491,
     ASYLUM                   = 492,
     SUBTLE_SORCERY           = 493,
@@ -1293,7 +1293,7 @@ tpz.mod =
     THIRD_EYE_ANTICIPATE_RATE = 839, -- Adds anticipate rate in percents
     HASSO_SEIGAN_ZANSHIN_CAP  = 977, -- Increases maximum chance of Zanshin activating while under the effects of Hasso and Seigan a percentage (cap above 25%)
     THIRD_EYE_EVASIONS        = 978, -- Increases the number of evasions from Third Eye
-    
+
     -- Ninja
     UTSUSEMI                  = 307, -- Everyone's favorite --tracks shadows.
     UTSUSEMI_BONUS                  = 900, -- Extra shadows from gear
@@ -1686,7 +1686,7 @@ tpz.mod =
     CONQUEST_REGION_BONUS     = 934, -- Increases the influence points awarded to the player's nation when receiving conquest points
     CAMPAIGN_BONUS            = 935, -- Increases the evaluation for allied forces by percentage
     SUPERIOR_LEVEL            = 958, -- Su Level (1-5)
-    ONE_HOUR_RECAST           = 989, -- Decreases the recast time of one-hour abilities by n minutes. 
+    ONE_HOUR_RECAST           = 989, -- Decreases the recast time of one-hour abilities by n minutes.
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 through 825 used by WS DMG mods these are not spares.
@@ -2224,7 +2224,7 @@ local JPCATEGORY_GEO      = 0x2A0
 local JPCATEGORY_RUN      = 0x2C0
 
 tpz.jp = {
-    
+
     --WAR
     MIGHTY_STRIKES_EFFECT    = JPCATEGORY_WAR + 0x00, --O p.acc +2
     BRAZEN_RUSH_EFFECT       = JPCATEGORY_WAR + 0x02, --X p.atk +4
