@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -56,6 +56,7 @@
 #include "../entities/battleentity.h"
 #include "../entities/mobentity.h"
 #include "../entities/petentity.h"
+#include "../entities/trustentity.h"
 #include "../enmity_container.h"
 #include "../items.h"
 #include "../item_container.h"
@@ -272,6 +273,8 @@ namespace battleutils
         for (int32 SkillId = 0; SkillId < MAX_WEAPONSKILL_ID; ++SkillId)
         {
             delete g_PWeaponSkillList[SkillId];
+            g_PWeaponSkillList[SkillId] = nullptr;
+
         }
     }
 
@@ -280,9 +283,10 @@ namespace battleutils
     ************************************************************************/
     void FreeMobSkillList()
     {
-        for (auto mobskill : g_PMobSkillList)
+        for (auto& mobskill : g_PMobSkillList)
         {
             delete mobskill;
+            mobskill = nullptr;
         }
     }
 
@@ -2552,7 +2556,7 @@ namespace battleutils
                 else { num += 7; break; }
                 break;
         }
-        return std::min<uint8>(num, 8); // не более восьми ударов за одну атаку
+        return std::min<uint8>(num, 8); // No more than eight hits per attack
     }
 
     /************************************************************************
@@ -2814,48 +2818,48 @@ namespace battleutils
         {{SC_DARKNESS, SC_DARKNESS}, SC_DARKNESS_II},
 
         // Level 2 Pairs
-        {{SC_DISTORTION, SC_GRAVITATION}, SC_DARKNESS}, 
-        {{SC_FRAGMENTATION, SC_GRAVITATION}, SC_FRAGMENTATION}, 
+        {{SC_DISTORTION, SC_GRAVITATION}, SC_DARKNESS},
+        {{SC_FRAGMENTATION, SC_GRAVITATION}, SC_FRAGMENTATION},
 
-        {{SC_GRAVITATION, SC_DISTORTION}, SC_DARKNESS}, 
-        {{SC_FUSION, SC_DISTORTION}, SC_FUSION}, 
+        {{SC_GRAVITATION, SC_DISTORTION}, SC_DARKNESS},
+        {{SC_FUSION, SC_DISTORTION}, SC_FUSION},
 
-        {{SC_GRAVITATION, SC_FUSION}, SC_GRAVITATION}, 
-        {{SC_FRAGMENTATION, SC_FUSION}, SC_LIGHT}, 
+        {{SC_GRAVITATION, SC_FUSION}, SC_GRAVITATION},
+        {{SC_FRAGMENTATION, SC_FUSION}, SC_LIGHT},
 
-        {{SC_DISTORTION, SC_FRAGMENTATION}, SC_DISTORTION}, 
-        {{SC_FUSION, SC_FRAGMENTATION}, SC_LIGHT}, 
-		
+        {{SC_DISTORTION, SC_FRAGMENTATION}, SC_DISTORTION},
+        {{SC_FUSION, SC_FRAGMENTATION}, SC_LIGHT},
+
 			//Level 1 Pairs > Level 2 Skillchain
-		
-        {{SC_SCISSION, SC_TRANSFIXION}, SC_DISTORTION}, 
-        {{SC_IMPACTION, SC_LIQUEFACTION}, SC_FUSION}, 
-        {{SC_COMPRESSION, SC_DETONATION}, SC_GRAVITATION}, 
-        {{SC_REVERBERATION, SC_INDURATION}, SC_FRAGMENTATION}, 
-		
+
+        {{SC_SCISSION, SC_TRANSFIXION}, SC_DISTORTION},
+        {{SC_IMPACTION, SC_LIQUEFACTION}, SC_FUSION},
+        {{SC_COMPRESSION, SC_DETONATION}, SC_GRAVITATION},
+        {{SC_REVERBERATION, SC_INDURATION}, SC_FRAGMENTATION},
+
             // Level 1 Pairs
-        {{SC_COMPRESSION, SC_TRANSFIXION}, SC_COMPRESSION}, 
-        {{SC_REVERBERATION, SC_TRANSFIXION}, SC_REVERBERATION}, 
+        {{SC_COMPRESSION, SC_TRANSFIXION}, SC_COMPRESSION},
+        {{SC_REVERBERATION, SC_TRANSFIXION}, SC_REVERBERATION},
 
-        {{SC_TRANSFIXION, SC_COMPRESSION}, SC_TRANSFIXION}, 
-        {{SC_DETONATION, SC_COMPRESSION}, SC_DETONATION}, 
+        {{SC_TRANSFIXION, SC_COMPRESSION}, SC_TRANSFIXION},
+        {{SC_DETONATION, SC_COMPRESSION}, SC_DETONATION},
 
-        {{SC_SCISSION, SC_LIQUEFACTION}, SC_SCISSION}, 
+        {{SC_SCISSION, SC_LIQUEFACTION}, SC_SCISSION},
 
-        {{SC_LIQUEFACTION, SC_SCISSION}, SC_LIQUEFACTION}, 
-        {{SC_REVERBERATION, SC_SCISSION}, SC_REVERBERATION}, 
-        {{SC_DETONATION, SC_SCISSION}, SC_DETONATION}, 
+        {{SC_LIQUEFACTION, SC_SCISSION}, SC_LIQUEFACTION},
+        {{SC_REVERBERATION, SC_SCISSION}, SC_REVERBERATION},
+        {{SC_DETONATION, SC_SCISSION}, SC_DETONATION},
 
-        {{SC_INDURATION, SC_REVERBERATION}, SC_INDURATION}, 
-        {{SC_IMPACTION, SC_REVERBERATION}, SC_IMPACTION}, 
+        {{SC_INDURATION, SC_REVERBERATION}, SC_INDURATION},
+        {{SC_IMPACTION, SC_REVERBERATION}, SC_IMPACTION},
 
-        {{SC_SCISSION, SC_DETONATION}, SC_SCISSION}, 
+        {{SC_SCISSION, SC_DETONATION}, SC_SCISSION},
 
-        {{SC_COMPRESSION, SC_INDURATION}, SC_COMPRESSION}, 
-        {{SC_IMPACTION, SC_INDURATION}, SC_IMPACTION}, 
+        {{SC_COMPRESSION, SC_INDURATION}, SC_COMPRESSION},
+        {{SC_IMPACTION, SC_INDURATION}, SC_IMPACTION},
 
-        {{SC_LIQUEFACTION, SC_IMPACTION}, SC_LIQUEFACTION}, 
-        {{SC_DETONATION, SC_IMPACTION}, SC_DETONATION} 
+        {{SC_LIQUEFACTION, SC_IMPACTION}, SC_LIQUEFACTION},
+        {{SC_DETONATION, SC_IMPACTION}, SC_DETONATION}
     };
 
     SKILLCHAIN_ELEMENT FormSkillchain(const std::list<SKILLCHAIN_ELEMENT>& resonance, const std::list<SKILLCHAIN_ELEMENT>& skill)
@@ -3881,6 +3885,10 @@ namespace battleutils
             case EMobDifficulty::IncrediblyTough:
                 CharmTime = 22500;
                 break;
+
+            default:
+                // no-op
+                break;
             }
 
             //apply charm time extension from gear
@@ -4039,6 +4047,9 @@ namespace battleutils
         case EMobDifficulty::IncrediblyTough:
             charmChance = 10.f;
             break;
+        default:
+            // no-op
+            break;
         }
 
         uint8 charmerBSTlevel = 0;
@@ -4147,6 +4158,10 @@ namespace battleutils
                                 return;
                 }
                             CBattleEntity* highestClaim = mob->PEnmityContainer->GetHighestEnmity();
+                            if (highestClaim->objtype == TYPE_TRUST)
+                            {
+                                highestClaim = static_cast<CTrustEntity*>(highestClaim)->PMaster;
+                            }
                             PAttacker->ForAlliance([&](CBattleEntity* PMember){
                                 if (!highestClaim || highestClaim == PMember || highestClaim == PMember->PPet)
                                 { // someone in your alliance is top of hate list, claim for your alliance
@@ -4461,7 +4476,6 @@ namespace battleutils
         if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND))
         {
             uint16 BindBreakChance = 0; // 0-1000 (100.0%) scale. Maybe change to a float later..
-            uint16 LvDiffByExp = charutils::GetRealExp(PAttacker->GetMLevel(), PDefender->GetMLevel()); // This is temp.
             EMobDifficulty mobCheck = charutils::CheckMob(PAttacker->GetMLevel(), PDefender->GetMLevel());
 
             // Todo: replace with an actual calculated value based on level difference. Not it, Bro!
@@ -4490,6 +4504,10 @@ namespace battleutils
             case EMobDifficulty::VeryTough:
             case EMobDifficulty::IncrediblyTough:
                 BindBreakChance = 990;
+                break;
+
+            default:
+                // no-op
                 break;
             }
 
