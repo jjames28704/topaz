@@ -33,7 +33,14 @@ function onUseAbility(player,target,ability,action)
     params.hitsHigh = true
 
     local taChar = player:getTrickAttackChar(target)
+
+    -- Jp adds ATK per JP
+    player:addMod(tpz.mod.ATT, 3 * player:getJobPointValue(tpz.jp.JUMP_EFFECT))
+
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, 0, params, 0, action, true, taChar)
+
+    -- Remove after damage calculated
+    player:delMod(tpz.mod.ATT, 3 * player:getJobPointValue(tpz.jp.JUMP_EFFECT))
 
     if (tpHits + extraHits > 0) then
         -- Under Spirit Surge, Jump also decreases target defense by 20% for 60 seconds

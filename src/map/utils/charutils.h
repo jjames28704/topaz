@@ -31,6 +31,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 class CPetEntity;
 class CMobEntity;
 class CMeritPoints;
+class CJobPoints;
 class CAbility;
 
 /**
@@ -163,6 +164,7 @@ namespace charutils
     void	SaveCharStats(CCharEntity* PChar);					        // сохраняем флаги, текущие значения жихней, маны и профессий
     void    SaveCharGMLevel(CCharEntity* PChar);                        // saves the char's gm level and nameflags
     void    SaveMentorFlag(CCharEntity* PChar);                         // saves the char's mentor flag
+    void    SaveJobMasterDisp(CCharEntity* PChar);                        // saves the char's /jobmasterdisp setting
     void    SaveMenuConfigFlags(CCharEntity* PChar);                    // saves the char's unnamed flags
     void	SaveCharNation(CCharEntity* PChar);							// Save the character's nation of allegiance.
     void    SaveCampaignAllegiance(CCharEntity* PChar);                 // Save the character's campaign allegiance.

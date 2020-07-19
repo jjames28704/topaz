@@ -56,6 +56,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 #include "../packets/key_items.h"
 #include "../packets/linkshell_equip.h"
 #include "../packets/menu_merit.h"
+#include "../packets/menu_jp.h"
 #include "../packets/message_basic.h"
 #include "../packets/message_debug.h"
 #include "../packets/message_special.h"
@@ -637,8 +638,8 @@ namespace charutils
             PChar->jobs.exp[JOB_SCH] = (uint16)Sql_GetIntData(SqlHandle, 20);
             PChar->jobs.exp[JOB_GEO] = (uint16)Sql_GetIntData(SqlHandle, 21);
             PChar->jobs.exp[JOB_RUN] = (uint16)Sql_GetIntData(SqlHandle, 22);
-            meritPoints = (uint8)Sql_GetIntData(SqlHandle, 23);
-            limitPoints = (uint16)Sql_GetIntData(SqlHandle, 24);
+            meritPoints              = (uint8)Sql_GetIntData(SqlHandle, 23);
+            limitPoints              = (uint16)Sql_GetIntData(SqlHandle, 24);
         }
 
         fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, zoning, "
@@ -774,12 +775,14 @@ namespace charutils
         PChar->PMeritPoints = new CMeritPoints(PChar);
         PChar->PMeritPoints->SetMeritPoints(meritPoints);
         PChar->PMeritPoints->SetLimitPoints(limitPoints);
+        PChar->PJobPoints = new CJobPoints(PChar);
 
         fmtQuery =
             "SELECT "
             "gmlevel, "    // 0
             "mentor, "     // 1
-            "nnameflags "  // 2
+            "nnameflags, "  // 2
+            "jobmasterdisp " // 3
             "FROM chars "
             "WHERE charid = %u;";
 
@@ -792,6 +795,7 @@ namespace charutils
             PChar->m_GMlevel = (uint8)Sql_GetUIntData(SqlHandle, 0);
             PChar->m_mentorUnlocked = Sql_GetUIntData(SqlHandle, 1) > 0;
             PChar->menuConfigFlags.flags = (uint32)Sql_GetUIntData(SqlHandle, 2);
+            PChar->m_jobmasterdisp = Sql_GetUIntData(SqlHandle, 3) > 0;
         }
 
         charutils::LoadInventory(PChar);
@@ -802,6 +806,7 @@ namespace charutils
         BuildingCharSkillsTable(PChar);
         BuildingCharAbilityTable(PChar);
         BuildingCharTraitsTable(PChar);
+        jobpointutils::AddGiftMods(PChar);
 
         PChar->animation = (HP == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
 
@@ -1286,6 +1291,7 @@ namespace charutils
 
     void UpdateSubJob(CCharEntity* PChar)
     {
+        jobpointutils::AddGiftMods(PChar);
         charutils::BuildingCharSkillsTable(PChar);
         charutils::CalculateStats(PChar);
         charutils::CheckValidEquipment(PChar);
@@ -3544,6 +3550,7 @@ namespace charutils
                     PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
                 }
 
+                jobpointutils::AddGiftMods(PChar);
                 BuildingCharSkillsTable(PChar);
                 CalculateStats(PChar);
                 CheckValidEquipment(PChar);
@@ -3737,11 +3744,13 @@ namespace charutils
                     PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
                     PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
 
+                    jobpointutils::AddGiftMods(PChar);
                     BuildingCharSkillsTable(PChar);
                     CalculateStats(PChar);
                     BuildingCharAbilityTable(PChar);
                     BuildingCharTraitsTable(PChar);
                     BuildingCharWeaponSkills(PChar);
+
                     if (PChar->PAutomaton != nullptr && PChar->PAutomaton != PChar->PPet)
                     {
                         puppetutils::LoadAutomatonStats(PChar);
@@ -4203,6 +4212,13 @@ namespace charutils
         const char* Query = "UPDATE %s SET %s %u WHERE charid = %u;";
 
         Sql_Query(SqlHandle, Query, "chars", "mentor =", PChar->m_mentorUnlocked, PChar->id);
+    }
+
+    void SaveJobMasterDisp(CCharEntity* PChar)
+    {
+        const char* Query = "UPDATE %s SET %s %u WHERE charid = %u;";
+
+        Sql_Query(SqlHandle, Query, "chars", "jobmasterdisp =", PChar->m_jobmasterdisp, PChar->id);
     }
 
     /************************************************************************

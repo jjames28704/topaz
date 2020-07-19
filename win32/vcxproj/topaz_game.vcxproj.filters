@@ -362,6 +362,12 @@
     <ClInclude Include="..\..\src\map\packets\inventory_size.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\job_point_details.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\job_point_update.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\map\packets\key_items.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
@@ -563,6 +569,9 @@
     <ClInclude Include="..\..\src\map\merit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\job_points.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\map\latent_effect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -675,9 +684,6 @@
       <Filter>Header Files\utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\utils\petutils.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\utils\trustutils.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\utils\synthutils.h">
@@ -892,12 +898,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\map\packets\trust_sync.h">
       <Filter>Header Files\packets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\ai\helpers\gambits_container.h">
-      <Filter>Header Files\ai\helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\daily_system.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1141,6 +1141,12 @@
     <ClCompile Include="..\..\src\map\packets\inventory_size.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\job_point_details.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\job_point_update.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\map\packets\key_items.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
@@ -1336,6 +1342,9 @@
     <ClCompile Include="..\..\src\map\recast_container.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\map\job_points.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>    
     <ClCompile Include="..\..\src\map\merit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1424,9 +1433,6 @@
       <Filter>Source Files\utils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\utils\petutils.cpp">
-      <Filter>Source Files\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\utils\trustutils.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\utils\blueutils.cpp">
@@ -1644,12 +1650,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\timetriggers.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\daily_system.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\ai\helpers\gambits_container.cpp">
-      <Filter>Source Files\ai\helpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

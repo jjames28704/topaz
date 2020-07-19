@@ -31,6 +31,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 #include "../../utils/battleutils.h"
 #include "../../../common/utils.h"
 #include "../../utils/charutils.h"
+#include "../../job_points.h"
 
 CAbilityState::CAbilityState(CBattleEntity* PEntity, uint16 targid, uint16 abilityid) :
     CState(PEntity, targid),
@@ -83,7 +84,13 @@ void CAbilityState::ApplyEnmity()
             !(m_PAbility->getCE() == 0 && m_PAbility->getVE() == 0))
         {
             CMobEntity* mob = (CMobEntity*)PTarget;
-            mob->PEnmityContainer->UpdateEnmity(m_PEntity, m_PAbility->getCE(), m_PAbility->getVE(), false, m_PAbility->getID() == ABILITY_CHARM);
+
+            //JP Effect for Invincible
+            uint32 bonus_ve = (
+                m_PEntity->objtype == TYPE_PC && m_PAbility->getID() == ABILITY_INVINCIBLE
+            ) ? static_cast<CCharEntity*>(m_PEntity)->PJobPoints->GetJobPointValue(JP_INVINCIBLE_EFFECT) * 100 : 0;
+
+            mob->PEnmityContainer->UpdateEnmity(m_PEntity, m_PAbility->getCE(), m_PAbility->getVE() + bonus_ve, false, m_PAbility->getID() == ABILITY_CHARM);
             battleutils::ClaimMob(mob, m_PEntity);
         }
     }

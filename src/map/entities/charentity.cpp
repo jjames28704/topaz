@@ -76,7 +76,7 @@
 #include "../packets/char_job_extra.h"
 #include "../packets/status_effects.h"
 #include "../mobskill.h"
-
+#include "../job_points.h"
 
 CCharEntity::CCharEntity()
 {
@@ -228,6 +228,7 @@ CCharEntity::~CCharEntity()
     delete UContainer;
     delete CraftContainer;
     delete PMeritPoints;
+    delete PJobPoints;
 }
 
 uint8 CCharEntity::GetGender()

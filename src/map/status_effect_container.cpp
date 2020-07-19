@@ -895,6 +895,7 @@ bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, ui
                 {
                     if (PEffect->GetSubID() == m_POwner->id)
                     {
+                        // JP bust Avoidance chance here?
                         if (!CheckForElevenRoll())
                         {
                             uint16 duration = 300;

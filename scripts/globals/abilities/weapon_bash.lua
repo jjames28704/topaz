@@ -33,7 +33,8 @@ function onUseAbility(player,target,ability)
     end
 
     -- Calculating and applying Weapon Bash damage
-    local damage = math.floor(((darkKnightLvl + 11) / 4) + player:getMod(tpz.mod.WEAPON_BASH))
+    local jp_value = target:getJobPointValue(tpz.jp.WEAPON_BASH_EFFECT)
+    local damage = math.floor(((darkKnightLvl + 11) / 4) + player:getMod(tpz.mod.WEAPON_BASH) + jp_value * 10)
     target:takeDamage(damage, player, tpz.attackType.PHYSICAL, tpz.damageType.BLUNT)
     target:updateEnmityFromDamage(player, damage)
 

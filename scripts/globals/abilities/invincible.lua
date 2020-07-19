@@ -10,6 +10,8 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
+    local jp_value = player:getJobPointValue(tpz.jp.INVINCIBLE_EFFECT)
+    ability:setVE(ability:getVE() + 100 * jp_value)
     return 0,0
 end
 

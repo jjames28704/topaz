@@ -139,8 +139,7 @@ struct map_config_t
     bool   skillup_bloodpact;         // Enable/disable skillups for bloodpacts
     bool   anticheat_enabled;         // Is the anti-cheating system enabled
     bool   anticheat_jail_disable;    // Globally disable auto-jailing by the anti-cheat system
-    uint16  daily_tally_amount;       // Amount of daily tally points given at midnight for Gobbie Mystery Box
-    uint16  daily_tally_limit;        // Upper limit of daily tally points for Gobbie Mystery Box
+    uint8  max_blu_points;            // Total number of additional BLU points attainable
 };
 
 /************************************************************************

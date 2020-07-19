@@ -32,6 +32,7 @@
 #include "utils/zoneutils.h"
 #include "map.h"
 #include "party.h"
+#include "job_points.h"
 #include "treasure_pool.h"
 #include "message.h"
 #include "latent_effect_container.h"
@@ -1153,6 +1154,7 @@ void CParty::RefreshSync()
             charutils::ApplyAllEquipMods(member);
 
             blueutils::ValidateBlueSpells(member);
+            jobpointutils::AddGiftMods(member);
             charutils::BuildingCharSkillsTable(member);
             charutils::CalculateStats(member);
             charutils::BuildingCharTraitsTable(member);

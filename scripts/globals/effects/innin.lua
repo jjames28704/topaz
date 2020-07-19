@@ -9,6 +9,9 @@ require("scripts/globals/status")
 function onEffectGain(target,effect) --power=30 initially, subpower=20 for enmity
     target:addMod(tpz.mod.EVA,-effect:getPower())
     target:addMod(tpz.mod.ENMITY,-effect:getSubPower())
+
+    local jp_value = target:getJobPointValue(tpz.jp.INNIN_EFFECT)
+    target:addMod(tpz.mod.ACC, jp_value)
 end
 
 function onEffectTick(target,effect)
@@ -25,4 +28,7 @@ function onEffectLose(target,effect)
     --remove the remaining power
     target:delMod(tpz.mod.EVA,-effect:getPower())
     target:delMod(tpz.mod.ENMITY,-effect:getSubPower())
+
+    local jp_value = target:getJobPointValue(tpz.jp.INNIN_EFFECT)
+    target:delMod(tpz.mod.ACC, jp_value)
 end

@@ -29,8 +29,9 @@ function onUseAbility(player, target, ability)
         end
     end
 
+    local jp_value = target:getJobPointValue(tpz.jp.CHAKRA_EFFECT) * 10
     local recover = player:getStat(tpz.mod.VIT) * (2 + player:getMod(tpz.mod.CHAKRA_MULT) / 10) -- TODO: Figure out "function of level" addition (August 2017 update)
-    player:setHP(player:getHP() + recover)
+    player:setHP(player:getHP() + recover + jp_value)
 
     local merits = player:getMerit(tpz.merit.INVIGORATE)
     if merits > 0 then

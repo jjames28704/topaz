@@ -13,6 +13,7 @@ end
 function onSpellCast(caster,target,spell)
     local sLvl = caster:getSkillLevel(tpz.skill.SINGING) -- Gets skill level of Singing
     local iLvl = caster:getWeaponSkillLevel(tpz.slot.RANGED)
+    local jp_value = caster:getJobPointValue(tpz.jp.MINNE_EFFECT)
 
     local power = 30 + math.floor((sLvl + iLvl)/10)
 
@@ -26,6 +27,7 @@ function onSpellCast(caster,target,spell)
     end
 
     power =  power + caster:getMerit(tpz.merit.MINNE_EFFECT)
+    power =  power + jp_value
 
     if (caster:hasStatusEffect(tpz.effect.SOUL_VOICE)) then
         power = power * 2

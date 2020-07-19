@@ -47,7 +47,6 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 #include "packet_system.h"
 #include "party.h"
 #include "utils/petutils.h"
-#include "utils/trustutils.h"
 #include "spell.h"
 #include "time_server.h"
 #include "transport.h"
@@ -55,9 +54,9 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 #include "status_effect_container.h"
 #include "utils/zoneutils.h"
 #include "conquest_system.h"
-#include "daily_system.h"
 #include "utils/mobutils.h"
 #include "ai/controllers/automaton_controller.h"
+#include "job_points.h"
 
 #include "lua/luautils.h"
 
@@ -219,9 +218,8 @@ int32 do_init(int32 argc, char** argv)
     battleutils::LoadMobSkillsList();
     battleutils::LoadSkillChainDamageModifiers();
     petutils::LoadPetList();
-    trustutils::LoadTrustList();
     mobutils::LoadCustomMods();
-    daily::LoadDailyItems();
+    jobpointutils::LoadGifts();
 
     ShowStatus("do_init: loading zones");
     zoneutils::LoadZoneList();
@@ -267,7 +265,6 @@ void do_final(int code)
     battleutils::FreeMobSkillList();
 
     petutils::FreePetList();
-    trustutils::FreeTrustList();
     zoneutils::FreeZoneList();
     luautils::free();
     message::close();
@@ -1014,8 +1011,7 @@ int32 map_config_default()
     map_config.skillup_bloodpact = true;
     map_config.anticheat_enabled = false;
     map_config.anticheat_jail_disable = false;
-    map_config.daily_tally_amount = 10;
-    map_config.daily_tally_limit = 50000;
+    map_config.max_blu_points = 25;
     return 0;
 }
 
@@ -1373,13 +1369,9 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.anticheat_jail_disable = atoi(w2);
         }
-        else if (strcmp(w1, "daily_tally_amount") == 0)
+        else if (strcmp(w1, "max_blu_points") == 0)
         {
-            map_config.daily_tally_amount = atoi(w2);
-        }
-        else if (strcmp(w1, "daily_tally_limit") == 0)
-        {
-            map_config.daily_tally_limit = atoi(w2);
+            map_config.max_blu_points = atoi(w2);
         }
         else
         {
